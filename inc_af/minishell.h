@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
+/*   By: afulmini <afulmini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 11:28:59 by afulmini          #+#    #+#             */
-/*   Updated: 2021/11/30 09:48:27 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/01/21 14:40:31 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@
 
 # include "../libft/libft.h"
 
+
+
 typedef struct	s_shell
 {
 	char	**env;
@@ -69,6 +71,18 @@ typedef struct s_cmd
 	pid_t			pid;
 
 }				t_cmd;
+
+typedef struct s_cmd_list
+{
+	char				*cmd;
+	struct s_cmd_list	*next;
+	struct s_cmd		*cmd_elem;
+}	t_cmd_list;
+
+typedef struct s_cursor
+{
+	struct s_cmd_list	*elem;
+}
 
 int	main(int ac, char **ac, char **env);
 
