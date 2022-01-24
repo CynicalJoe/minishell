@@ -6,7 +6,7 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 11:28:59 by afulmini          #+#    #+#             */
-/*   Updated: 2022/01/24 11:35:36 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/01/24 11:53:46 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,8 @@ typedef struct s_shell
 	char			*prompt;		// prompt for user to input commands
 	t_cmd_container	cmd_container;	// connect to container struct
 	int				exit_status;	// exit status --> make it a global variable?
-	bool			in_exec;		// use int ?
-	int				status;
-	int				level;
+	int				in_exec;		// use int instead of bool thus TRUE == 1 & FALSE == 0;
+	int				level;			// update the shell level we are in
 }	t_shell;
 
 // struct that contains the full command --> pre executed

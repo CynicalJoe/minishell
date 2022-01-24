@@ -15,7 +15,7 @@
 
 
 // Global
-t_shell	g_shell;
+t_shell	g_shell; // use a global var to connect to the shell struct?
 //		STRUCTS
 
 // struct of shell
@@ -25,8 +25,7 @@ typedef struct s_shell
 	char			*prompt;		// prompt for user to input commands
 	t_cmd_container	cmd_container;
 	int				exit_status;	// exit status --> make it a global variable?
-	t_bool			in_exec;
-	int				status;
+	int				in_exec;
 	int				level;
 }	t_shell;
 
@@ -113,7 +112,7 @@ int	main(int ac, char **av, char **env)
 	signal(SIGQUIT, SIG_IGN);	// check SIG_IGN
 	while (1)
 	{
-		set_line(cmd_container, readline(shell.prompt))		// prompt for the user
+		set_line(cmd_container, readline(shell.prompt));		// prompt for the user
 		if (cmd_container->line == NULL)
 			exit_shell(&shell, "Bye :)", 0);
 		if (ft_strlen(cmd_container->line) > 0)

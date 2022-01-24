@@ -6,7 +6,7 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 10:17:32 by afulmini          #+#    #+#             */
-/*   Updated: 2022/01/24 10:31:54 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/01/24 12:01:08 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	destroy_cmd(t_cmd *cmd)
 	return (NULL);
 }
 
-// get size of each command from the container struct
+// get size of each command from the cmd_container struct
 size_t	get_cmds_size(t_cmd_container *cmd_container)
 {
 	size_t	size;

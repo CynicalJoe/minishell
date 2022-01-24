@@ -6,7 +6,7 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 11:28:59 by afulmini          #+#    #+#             */
-/*   Updated: 2022/01/24 09:42:40 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/01/24 11:52:54 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@
 
 
 // Global
-t_shell	g_shell;
+
 //		STRUCTS
 
 // struct of shell
@@ -56,7 +56,6 @@ typedef struct s_shell
 	t_cmd_container	cmd_container;
 	int				exit_status;	// exit status --> make it a global variable?
 	bool			in_exec;		// use int ?
-	int				status;
 	int				level;
 }	t_shell;
 

@@ -6,12 +6,13 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 11:24:06 by afulmini          #+#    #+#             */
-/*   Updated: 2022/01/24 11:35:01 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/01/24 12:06:28 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
+// get size of env
 ssize_t	get_env_index(t_shell *shell, char *key)
 {
 	char	*new_key;
@@ -25,11 +26,12 @@ ssize_t	get_env_index(t_shell *shell, char *key)
 		if(ft_strncmp(new_key, shell->env[line_index], new_key_len) == 0)
 			break ;
 	free(new_key);
-	if ((size_t) line_index >= ft_strarray_length(shell))		// check if the env is good
+	if ((size_t) line_index >= ft_strarray_length(shell))		// check if the new env is good len
 		return (-1);
 	return (line_index);
 }
 
+// get the env variable name your need key == key value to look for (eg. PATH, PWD, etc);
 char	*get_env_var(t_shell *shell, char *key)
 {
 	ssize_t	env_index;

@@ -6,12 +6,13 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 10:11:15 by afulmini          #+#    #+#             */
-/*   Updated: 2022/01/24 10:18:04 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/01/24 12:00:52 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
+// init cmd_container struct
 void	init_container(t_cmd_container *cmd_container)
 {
 	cmd_container->line = NULL;
@@ -21,6 +22,7 @@ void	init_container(t_cmd_container *cmd_container)
 	cmd_container->tokens = NULL;
 }
 
+// destroy cmd_cnotainer struct
 void	*destroy_cmd_container(t_cmd_container *cmd_container)
 {
 	size_t	i;
