@@ -120,7 +120,7 @@ int	main(int ac, char **av, char **env)
 			add_history(cmd_container->line);
 			if (!tokenise(cmd_container->line))		// parse and tokenise input if == 1 not good
 				continue;
-			process_cmds(&shell, cmd_container);	// execute commands parsed
+			// execute commands parsed
 		}
 	}
 	return (EXIT_SUCCESS);
