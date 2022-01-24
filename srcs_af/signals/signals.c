@@ -1,5 +1,19 @@
-#include "../../inc/minishell.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   signals.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/01/24 09:53:31 by afulmini          #+#    #+#             */
+/*   Updated: 2022/01/24 10:08:53 by afulmini         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
+#include "../include/minishell.h"
+
+// Ctrl + D => EOF
+// catch Ctrl+C => SIGINT
 void	ctrl_c_signal(int signal)
 {
 	(void)signal;
@@ -14,6 +28,7 @@ void	ctrl_c_signal(int signal)
 		ft_putchar('\n');
 }
 
+// catch Ctrl+backslash	=> SIGQUIT
 void	ctrl_backslash_signal(int signal)
 {
 	(void)signal;
