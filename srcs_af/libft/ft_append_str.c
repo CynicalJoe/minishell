@@ -1,26 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   create.c                                           :+:      :+:    :+:   */
+/*   ft_append_str.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/24 09:13:36 by afulmini          #+#    #+#             */
-/*   Updated: 2022/01/24 11:40:52 by afulmini         ###   ########.fr       */
+/*   Created: 2022/01/24 11:11:28 by afulmini          #+#    #+#             */
+/*   Updated: 2022/01/24 11:16:09 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minishell.h"
-// create the Shell struct extracting the vars from the env variables and macros
-t_shell create_shell(char **env)
-{
-	t_shell	shell;
+#include "libft.h"
 
-	shell.env = create_env(env);
-	shell.prompt = NULL;
-	set_env(&shell, "PWD", getcwd(NULL, 0), 1);		//defined
-	update_prompt(&shell);
-	init_container(&shell.cmd_container);
-	shell.in_exec = FALSE;
-	return(shell);
+char	*ft_append_str(char *s1, char *s2, int frees1, int frees2)
+{
+	char	*res;
+	size_t	res_size;
+	size_t	s1_len;
+
+	res_size = ft_strlen(s1) + ft_strlen(s2) + 1;
+	res = ft_calloc(res_size, sizeof(char));
+	if (!res)
+		return (NULL);
+	s1_len = ft_strcpy(s1, res);
+	ft_strcpy(s2, &res[s1_len]);
+	if (frees1)
+		free((void *)s1);
+	if (frees2)
+		free((void *)s2);
+	return (res);
 }

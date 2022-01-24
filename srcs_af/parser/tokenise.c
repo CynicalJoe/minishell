@@ -6,14 +6,14 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 18:56:03 by afulmini          #+#    #+#             */
-/*   Updated: 2022/01/22 18:56:26 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/01/24 11:01:25 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
 // tokenise the input from the user and seperate it in the different structs
-t_bool	tokenise(t_cmd_container *cmd_container)
+int	tokenise(t_cmd_container *cmd_container)
 {
 	size_t	length;
 
@@ -32,7 +32,7 @@ t_bool	tokenise(t_cmd_container *cmd_container)
 	if (!all_cmds_filled(cmd_container) || get_cmds_size(cmd_container) == 0)	// check if the commands are all sent to the next struct, if not, quit
 	{
 		destroy_cmd_container(cmd_container);
-		return (FALSE);
+		return (0);
 	}
-	return (TRUE)
+	return (1);
 }

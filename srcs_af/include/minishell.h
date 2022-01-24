@@ -6,7 +6,7 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 11:28:59 by afulmini          #+#    #+#             */
-/*   Updated: 2022/01/24 10:44:39 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/01/24 11:35:36 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,11 +97,12 @@ int	main(int ac, char **av, char **env);
 
 // parse & tokenize functions
 int		quotes_closed(char *str);
-bool	all_cmds_filled(t_cmd_container *cmd_container);
+int		all_cmds_filled(t_cmd_container *cmd_container);
 void	check_and_give_token(t_cmd_container *cmd_container, char c);
 void	tokenise_pipe(t_cmd_container *cmd_container);
 void	tokenise_quote(t_cmd_container *cmd_container, char quote);
 void	tokenise_redir(t_cmd_container *cmd_container, char redir);
+int		tokenise(t_cmd_container *cmd_container);
 
 void	next_token(t_cmd_container *cmd_container);
 t_cmd	**realloc_cmds(t_cmd_container *cmd_container);
@@ -110,6 +111,11 @@ t_cmd	**realloc_cmds(t_cmd_container *cmd_container);
 char	**create_env(char **default_env);
 void	*destroy_shell(t_shell *shell);
 t_shell create_shell(char **env);
+
+// get and set env variables
+ssize_t	get_env_index(t_shell *shell, char *key);
+char	*get_env_var(t_shell *shell, char *key);
+void	set_env(t_shell	*shell, char *key, char *value, int free_val);
 
 // cmd_container and cmd initialisation and destruction
 void	init_container(t_cmd_container *cmd_container);

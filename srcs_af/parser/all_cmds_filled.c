@@ -6,14 +6,14 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 18:59:30 by afulmini          #+#    #+#             */
-/*   Updated: 2022/01/22 18:59:45 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/01/24 10:59:47 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
 // check is commands are filled
-t_bool	all_cmds_filled(t_cmd_container *cmd_container)
+int	all_cmds_filled(t_cmd_container *cmd_container)
 {
 	size_t	cmd_idx;
 
@@ -23,9 +23,9 @@ t_bool	all_cmds_filled(t_cmd_container *cmd_container)
 		if (cmd_container->cmds[cmd_idx]->tokens == NULL)
 		{
 			is_error(NULL, NULL, "found empty command.", EXIT_FAILURE);
-			return (FALSE);
+			return (0);
 		}
 		cmd_idx++;
 	}
-	return (TRUE);
+	return (1);
 }

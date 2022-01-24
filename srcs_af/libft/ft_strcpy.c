@@ -1,26 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   create.c                                           :+:      :+:    :+:   */
+/*   ft_strcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/24 09:13:36 by afulmini          #+#    #+#             */
-/*   Updated: 2022/01/24 11:40:52 by afulmini         ###   ########.fr       */
+/*   Created: 2021/02/24 11:17:46 by afulmini          #+#    #+#             */
+/*   Updated: 2022/01/24 11:20:31 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minishell.h"
-// create the Shell struct extracting the vars from the env variables and macros
-t_shell create_shell(char **env)
-{
-	t_shell	shell;
+#include "libft.h"
 
-	shell.env = create_env(env);
-	shell.prompt = NULL;
-	set_env(&shell, "PWD", getcwd(NULL, 0), 1);		//defined
-	update_prompt(&shell);
-	init_container(&shell.cmd_container);
-	shell.in_exec = FALSE;
-	return(shell);
+size_t	ft_strcpy(const char *src, char *dest)
+{
+	size_t	src_len;
+	size_t	i;
+
+	if (!dest || !src)
+		return (0);
+	src_len = ft_strlen(src);
+	i = 0;
+	while (i < src_len)
+	{
+		dest[i] = src[i];
+		i++;
+	}
+	dest[i] = 0;
+	return (src_len);
 }

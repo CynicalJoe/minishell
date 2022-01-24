@@ -6,7 +6,7 @@
 #    By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/11 16:52:24 by afulmini          #+#    #+#              #
-#    Updated: 2022/01/24 09:18:25 by afulmini         ###   ########.fr        #
+#    Updated: 2022/01/24 11:20:59 by afulmini         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,7 @@ SRCS = ft_memset.c\
 	   ft_atoi.c\
 	   ft_atol.c\
 	   ft_strlcpy.c\
+	   ft_strcpy.c\
 	   ft_strchr.c\
 	   ft_strrchr.c\
 	   ft_strnstr.c\
@@ -70,6 +71,7 @@ SRCS = ft_memset.c\
 	   ft_append_char_to_str.c\
 	   ft_addstr_to_strarray.c\
 	   ft_destroy_strarray.c\
+	   ft_append_str.c\
 
 OBJS = ${SRCS:.c=.o}
 

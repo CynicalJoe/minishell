@@ -6,7 +6,7 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/03 11:11:45 by afulmini          #+#    #+#             */
-/*   Updated: 2022/01/24 09:18:18 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/01/24 11:20:49 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ size_t		ft_strlen(const char *s);
 int			ft_atoi(const char *str);
 t_ll		ft_atol(const char *str);
 size_t		ft_strlcpy(char *dst, const char *src, size_t dstsize);
+size_t		ft_strcpy(const char *src, char *dest);
 char		*ft_strchr(const char *s, int c);
 char		*ft_strrchr(const char *s, int c);
 char		*ft_strnstr(const char *haystack, const char *needle, size_t len);
@@ -85,6 +86,7 @@ size_t		ft_strarray_length(char **str_array);
 char		*ft_append_char_to_str(char *s, char c);
 char		**ft_addstr_to_strarray(char **array, char *str, _Bool free_array);
 void		*ft_destroy_strarray(char ***str_array);
+char		*ft_append_str(char *s1, char *s2, int frees1, int frees2);
 
 /*
 ** To handle List
