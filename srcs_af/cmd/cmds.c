@@ -6,12 +6,13 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 10:17:32 by afulmini          #+#    #+#             */
-/*   Updated: 2022/01/24 10:28:26 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/01/24 10:31:54 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
+// create command_struct to use for our exec and redir
 t_cmd	*create_cmd(size_t i, char **args)
 {
 	t_cmd	*cmd;
@@ -44,7 +45,8 @@ void	destroy_cmd(t_cmd *cmd)
 	return (NULL);
 }
 
-size_t	geT_cmds_size(t_cmd_container *cmd_container)
+// get size of each command from the container struct
+size_t	get_cmds_size(t_cmd_container *cmd_container)
 {
 	size_t	size;
 

@@ -6,7 +6,7 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 11:28:59 by afulmini          #+#    #+#             */
-/*   Updated: 2022/01/24 10:30:16 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/01/24 10:44:39 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,7 @@
 // # include "../../inc_af/minishell.h"
 
 
-// Global
-t_shell	g_shell;
+// Global ??
 //		STRUCTS
 
 // struct of shell
@@ -53,7 +52,7 @@ typedef struct s_shell
 {
 	char			**env;			// get the env for 
 	char			*prompt;		// prompt for user to input commands
-	t_cmd_container	cmd_container;
+	t_cmd_container	cmd_container;	// connect to container struct
 	int				exit_status;	// exit status --> make it a global variable?
 	bool			in_exec;		// use int ?
 	int				status;
@@ -97,6 +96,7 @@ typedef struct s_cmd
 int	main(int ac, char **av, char **env);
 
 // parse & tokenize functions
+int		quotes_closed(char *str);
 bool	all_cmds_filled(t_cmd_container *cmd_container);
 void	check_and_give_token(t_cmd_container *cmd_container, char c);
 void	tokenise_pipe(t_cmd_container *cmd_container);
