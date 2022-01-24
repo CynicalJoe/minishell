@@ -32,9 +32,9 @@ int piper(t_cmd *cmd, int in, int out, char **env)
 {
 	
 	if (cmd->previous)
-		dup2(in, 0)
+		dup2(in, 0);
 	if (cmd->next)
-		dup2(out, 1)
+		dup2(out, 1);
 	execve(cmd->args[0], cmd->args, env);
 	return (1);
 
@@ -49,7 +49,7 @@ int *create_pipes(t_shell *shell)
 
 	n = 0;
 	i = 0;
-	temp = shell->cmd_list
+	temp = shell->cmd_list;
 	while(temp->next)
 	{
 		n +=2;
