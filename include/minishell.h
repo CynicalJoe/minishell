@@ -6,7 +6,7 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 11:28:59 by afulmini          #+#    #+#             */
-/*   Updated: 2022/01/24 11:52:54 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/01/24 12:34:08 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ typedef struct s_shell
 	t_cmd_container	cmd_container;
 	int				exit_status;	// exit status --> make it a global variable?
 	bool			in_exec;		// use int ?
-	int				level;
+	int				level;		// update the SHLVL --> using export?
 }	t_shell;
 
 // struct that contains the full command --> pre executed
@@ -85,7 +85,7 @@ typedef struct s_cmd
 	size_t			size;			// size of command
 	struct s_cmd	*previous;
 	struct s_cmd	*next;
-	bool			piped;			// use int? 	
+	int				piped;				// use int? TRUe = 1, false = 0
 	t_shell_redir	out;
 	t_shell_redir	in;
 }	t_cmd;
