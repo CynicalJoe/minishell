@@ -6,7 +6,7 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 18:59:56 by afulmini          #+#    #+#             */
-/*   Updated: 2022/01/24 10:44:34 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/01/24 13:30:14 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 // check for closed quotes in parsing line for command ==> returns if open or not
 int	quotes_closed(char *str)
 {
-	int	is_open;
+	int		is_open;
 	size_t	strlen;
 	size_t	index;
 	char	current_quote;

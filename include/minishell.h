@@ -6,7 +6,7 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 11:28:59 by afulmini          #+#    #+#             */
-/*   Updated: 2022/01/24 12:34:08 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/01/24 14:00:34 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,13 +53,13 @@ typedef struct s_shell
 {
 	char			**env;			// get the env for 
 	char			*prompt;		// prompt for user to input commands
-	t_cmd_container	cmd_container;
+	t_cmd_container	cmd_container;	// link to the command_container
 	int				exit_status;	// exit status --> make it a global variable?
 	bool			in_exec;		// use int ?
 	int				level;		// update the SHLVL --> using export?
 }	t_shell;
 
-// struct that contains the full command --> pre executed
+// struct that contains the full command --> pre executed --> creates tokens according to pipe, redir, literal or not
 typedef struct s_cmd_container
 {
 	char	*line;			// line read from the prompt
@@ -69,12 +69,6 @@ typedef struct s_cmd_container
 	char	*token;			// each part that is tokenised (string with cmd and args)
 }	t_cmd_container;
 
-// struct to redirect ourput/intput
-typedef struct s_shell_redir
-{
-	int		fd_backup;
-	int		fd_replace;
-}	t_shell_redir;
 
 // struct for commands size, flags, args, etc....
 typedef struct s_cmd
@@ -85,16 +79,14 @@ typedef struct s_cmd
 	size_t			size;			// size of command
 	struct s_cmd	*previous;
 	struct s_cmd	*next;
-	int				piped;				// use int? TRUe = 1, false = 0
-	t_shell_redir	out;
-	t_shell_redir	in;
+	int				piped;			// replace file?	// use int? TRUe = 1, false = 0
 }	t_cmd;
 
 
 int	main(int ac, char **av, char **env);
 
 // parse & tokenize functions
-bool	all_cmds_filled(t_cmd_container *cmd_container);
+int		all_cmds_filled(t_cmd_container *cmd_container);
 void	check_and_give_token(t_cmd_container *cmd_container, char c);
 void	tokenise_pipe(t_cmd_container *cmd_container);
 void	tokenise_quote(t_cmd_container *cmd_container, char quote);
@@ -104,7 +96,7 @@ void	next_token(t_cmd_container *cmd_container);
 t_cmd	**realloc_cmds(t_cmd_container *cmd_container);
 
 // shell creator & destroyer
-char	**create_env(char **default);
+char	**create_env(char **default_env);
 void	*destroy_shell(t_shell *shell);
 t_shell create_shell(char **env);
 

@@ -1,4 +1,4 @@
-#include "include/minishel.h"
+#include "../include/minishell.h"
 
 
 int pipe_in(t_cmd *cmd, int in, int out, char **env)
