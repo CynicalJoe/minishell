@@ -6,7 +6,7 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 12:15:21 by afulmini          #+#    #+#             */
-/*   Updated: 2022/02/02 13:02:49 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/02/02 13:10:12 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 // change directories
 // need to update the $PWD var from our shell env
-void	cd(t_shell *shell, char **cmd)
+void	my_cd(t_shell *shell, char **cmd)
 {
 	char	*path;
 	char	*old_pwd;

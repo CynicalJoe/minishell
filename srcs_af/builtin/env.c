@@ -6,7 +6,7 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 11:30:44 by afulmini          #+#    #+#             */
-/*   Updated: 2022/01/26 12:14:21 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/02/02 13:09:52 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ ssize_t	ft_find_char(char *s, char c)
 {
 	ssize_t	i;
 
-	if (!str)
+	if (!s)
 		return (-1);
 	i = 0;
 	while (s[i])
@@ -35,7 +35,7 @@ int	ft_contains_char(char *str, char c)
 	return (1);
 }
 
-void	env(t_shell *shell, char **cmd)
+void	my_env(t_shell *shell, char **cmd)
 {
 	size_t	i;
 

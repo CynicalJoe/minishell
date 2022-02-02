@@ -6,7 +6,7 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 11:28:59 by afulmini          #+#    #+#             */
-/*   Updated: 2022/02/02 12:15:09 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/02/02 13:11:24 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,5 +155,8 @@ void	my_pwd(t_shell *shell, char **args);
 void	my_exit(t_shell *shell, char **args);
 void	my_unset(t_shell *shell, char *program_path, t_cmd *cmd);
 void	my_export(t_shell *shell, char **cmd);
+
+int	ft_contains_char(char *str, char c);
+ssize_t	ft_find_char(char *s, char c);
 
 #endif
