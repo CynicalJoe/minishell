@@ -17,12 +17,12 @@
 //			FUNCTIONS
 
 // get current dir()
-char	*printDir()
+/* char	*printDir()
 {
     char cwd[1024];
     getcwd(cwd, sizeof(cwd));
     return (cwd);
-}
+} */
 
 // setline to prompt and get user input
 void	set_line(t_cmd_container *cmd_container, char *line)

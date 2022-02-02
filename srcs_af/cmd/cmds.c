@@ -6,7 +6,7 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 10:17:32 by afulmini          #+#    #+#             */
-/*   Updated: 2022/01/27 17:16:55 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/02/02 12:21:31 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,6 @@ t_cmd	*create_cmd(size_t i, char **args)	// **args are all the tokens to send to
 	cmd->previous = NULL;
 	cmd->next = NULL;
 	cmd->pid = -1;
-	cmd->out.fd_backup = -1;
-	cmd->out.fd_replace = -1;
-	cmd->in.fd_backup = -1;
-	cmd->in.fd_replace = -1;
 	return (cmd);
 }
 
