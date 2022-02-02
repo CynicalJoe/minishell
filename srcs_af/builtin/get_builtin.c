@@ -6,14 +6,14 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 16:59:10 by afulmini          #+#    #+#             */
-/*   Updated: 2022/02/01 10:16:20 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/02/02 13:18:55 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-//special prototype as this function returns functions
-
+// define if the called function is builtin or our_builtin
+// then send to t_shell and use **cmd
 void	(*get_builtin(char *builtin_str))(t_shell *shell, char **cmd)
 {
 	if (ft_strcmp(builtin_str, "cd") == 0)
