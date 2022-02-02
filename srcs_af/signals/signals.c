@@ -6,7 +6,7 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 09:53:31 by afulmini          #+#    #+#             */
-/*   Updated: 2022/01/24 10:08:53 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/01/25 09:35:47 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 void	ctrl_c_signal(int signal)
 {
 	(void)signal;
-	if (!g_shell->in_execution)
+	if (!g_shell->in_exec)
 	{
 		ft_putchar('\n');
 		rl_replace_line("", 0);

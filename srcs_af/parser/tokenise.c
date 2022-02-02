@@ -6,7 +6,7 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 18:56:03 by afulmini          #+#    #+#             */
-/*   Updated: 2022/01/24 13:30:41 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/01/26 15:27:11 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	tokenise(t_cmd_container *cmd_container)
 	next_token(cmd_container);
 	if (cmd_container->tokens != NULL)
 		next_cmd(cmd_container);	// define this function to get the next command
-	
+		// next_cmd sends the tokens from cmd_container to the s_cmd struct to be processed and executed
 	if (all_cmds_filled(cmd_container) || get_cmds_size(cmd_container) == 0)	// check if the commands are all sent to the next struct, if not, quit
 	{
 		destroy_cmd_container(cmd_container);

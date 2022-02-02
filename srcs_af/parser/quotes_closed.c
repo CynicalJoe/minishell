@@ -6,7 +6,7 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 18:59:56 by afulmini          #+#    #+#             */
-/*   Updated: 2022/01/24 13:30:14 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/01/27 16:32:41 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,5 @@ int	quotes_closed(char *str)
 		}
 		index++;
 	}
-	return (!is_open);
+	return (!is_open);	// opposite of is_open ==> 1;
 }

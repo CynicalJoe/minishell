@@ -6,7 +6,7 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 09:21:12 by afulmini          #+#    #+#             */
-/*   Updated: 2022/01/24 11:02:23 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/01/25 09:31:56 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	**create_env(char **default_env)
 	char	**new_env;
 	size_t	line_index;
 
-	new_env = ft_calloc(ft_strarray_length(default_env) + 1, sizeof(char * ));
+	new_env = ft_calloc(ft_strarray_length(default_env) + 1, sizeof(char *));
 	if (new_env == NULL)
 		return (NULL);
 	line_index = 0;

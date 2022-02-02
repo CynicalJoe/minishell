@@ -6,12 +6,13 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 19:20:24 by afulmini          #+#    #+#             */
-/*   Updated: 2022/01/24 13:29:55 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/02/02 11:55:51 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
+// got to the next token -> meaning next arg in the cmd 
 void	next_token(t_cmd_container *cmd_container)
 {
 	if (cmd_container->token == NULL)

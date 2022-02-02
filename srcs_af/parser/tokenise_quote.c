@@ -6,11 +6,11 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 19:18:36 by afulmini          #+#    #+#             */
-/*   Updated: 2022/01/22 19:18:58 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/01/26 14:49:02 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/minishell.h"
+#include "../include/minishell.h"
 
 // token for quotes
 void	tokenise_quote(t_cmd_container *cmd_container, char quote)

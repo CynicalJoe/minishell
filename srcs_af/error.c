@@ -1,25 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstiter.c                                       :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gtournay <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/11 13:33:04 by gtournay          #+#    #+#             */
-/*   Updated: 2020/09/12 12:20:18 by gtournay         ###   ########.fr       */
+/*   Created: 2022/02/01 09:10:42 by afulmini          #+#    #+#             */
+/*   Updated: 2022/02/01 10:19:35 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "include/minishell.h"
 
-void	ft_lstiter(t_list *lst, void (*f)(void *))
+bool	put_error(char *program, char *part1, char *part2)
 {
-	t_list	*temp;
-
-	temp = lst;
-	while (temp)
-	{
-		f(temp->content);
-		temp = temp->next;
-	}
+	ft_putstr_fd(program, 2);
+	ft_putstr_fd(": ", 2);
+	ft_putstr_fd(part1, 2);
+	ft_putstr_fd(": ", 2);
+	ft_putendl_fd(part2, 2);
+	return (FALSE);
 }

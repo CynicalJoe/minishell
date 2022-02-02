@@ -11,6 +11,7 @@
 # include <sys/types.h>ß
 
 # include "../libft/libft.h"
+# include "include/minishell.h"
 // # include "../../inc_af/minishell.h"
 
 
@@ -55,18 +56,27 @@ typedef struct s_cmd
 	size_t			size;			// size of command
 	struct s_cmd	*previous;
 	struct s_cmd	*next;
-	t_bool			piped;
+	bool			piped;
 	t_shell_redir	out;
 	t_shell_redir	in;
 }	t_cmd;
 
 //			FUNCTIONS
 
+// get current dir()
+char	*printDir()
+{
+    char cwd[1024];
+    getcwd(cwd, sizeof(cwd));
+    return (cwd);
+}
+
 // setline to prompt and get user input
 void	set_line(t_cmd_container *cmd_container, char *line)
 {
 	free(cmd_container->line);
-	cmd_container->line = line;
+	cmd_container->line = printDir();
+	cmd_container->line += (int)line;
 }
 
 //			TOKENISE
@@ -103,13 +113,12 @@ int	main(int ac, char **av, char **env)
 
 	(void)av;
 	shell = create_shell(env);
-	// update shell level using export
-	
+	// update shell level using export ->
 	if (ac != 1)
 		exit_shell(&shell, "minishell does not take any arguments.\n", 1);
 	cmd_container = &shell.cmd_container;
 	signal(SIGINT, ctrl_c_signal);
-	signal(SIGQUIT, SIG_IGN);	// check SIG_IGN
+	signal(SIGQUIT, SIG_IGN);	// if Ctrl + backslahs ==> ignore signal
 	while (1)
 	{
 		set_line(cmd_container, readline(shell.prompt));		// prompt for the user
@@ -120,9 +129,12 @@ int	main(int ac, char **av, char **env)
 			add_history(cmd_container->line);
 			if (!tokenise(cmd_container->line))		// parse and tokenise input if == 1 not good
 				continue;
-			// execute commands parsed
+			// execute commands parsed and redir them ...
+			
 		}
 	}
 	return (EXIT_SUCCESS);
 }
 
+
+// Things to do ==> update SHLVL for each call of the program 

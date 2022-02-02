@@ -6,7 +6,7 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 12:15:21 by afulmini          #+#    #+#             */
-/*   Updated: 2022/01/26 12:37:51 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/01/31 18:37:25 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	cd(t_shell *shell, char **cmd)
 	}
 	else
 	{
-		set_env_var(shell, "OLDPWD", old_pwd, FALSE);
+		set_env(shell, "OLDPWD", old_pwd, FALSE);
 		update_prompt(shell);
 		shell->exit_status = 0;
 	}
