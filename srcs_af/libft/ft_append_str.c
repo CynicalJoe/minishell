@@ -6,13 +6,13 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 11:11:28 by afulmini          #+#    #+#             */
-/*   Updated: 2022/01/24 11:16:09 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/02/01 10:12:13 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_append_str(char *s1, char *s2, int frees1, int frees2)
+char	*ft_append_str(char *s1, char *s2, bool frees1, bool frees2)
 {
 	char	*res;
 	size_t	res_size;

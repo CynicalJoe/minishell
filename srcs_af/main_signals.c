@@ -1,19 +1,28 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main_signals.c                                     :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/22 12:19:33 by afulmini          #+#    #+#             */
-/*   Updated: 2022/01/22 16:53:03 by afulmini         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
 
-#include "../../inc_af/minishell.h"
+#include "include/minishell.h"
 
-extern int g_exit_code;
+void	ctrl_backslash_signal(int sig)
+{
+	(void)sig;
+	if (g_shell->in_exec)
+		ft_putendl_fd("Quit: 3", 1);	// check the quit error message
+}
 
+void	ctrl_c_signal(int sig)
+{
+	(void)sig;
+	if (g_shell->in_exec)
+	{
+		ft_putchar_fd('\n',1);
+		rl_replace_line("", 0);
+		rl_on_new_line();
+		rl_redisplay();
+	}
+	else
+		ft_putchar_fd('\n', 1);
+}
+
+/* 
 void	main_sig_handler(int signal)
 {
 	if (signal == SIGINT)
@@ -44,3 +53,4 @@ void	unexp_eof_sigint_handler(int signal)
 		g_exit_code = 1;
 	}
 }
+ */

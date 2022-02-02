@@ -6,13 +6,13 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/23 17:06:54 by afulmini          #+#    #+#             */
-/*   Updated: 2022/01/24 09:07:24 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/01/31 16:41:34 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	**ft_addstr_to_strarray(char **array, char *str, _Bool free_array)
+char	**ft_addstr_to_strarray(char **array, char *str, bool free_array)
 {
 	char	**res;
 	size_t	len;

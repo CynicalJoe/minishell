@@ -14,53 +14,6 @@
 # include "include/minishell.h"
 // # include "../../inc_af/minishell.h"
 
-
-// Global
-t_shell	g_shell; // use a global var to connect to the shell struct?
-//		STRUCTS
-
-// struct of shell
-typedef struct s_shell
-{
-	char			**env;			// get the env for 
-	char			*prompt;		// prompt for user to input commands
-	t_cmd_container	cmd_container;
-	int				exit_status;	// exit status --> make it a global variable?
-	int				in_exec;
-	int				level;
-}	t_shell;
-
-// struct that contains the full command --> pre parsed
-typedef struct s_cmd_container
-{
-	char	*line;
-	size_t	read_index;
-	t_cmd	**cmds;
-	char	**tokens;
-	char	*token;
-}	t_cmd_container;
-
-// struct to redirect ourput/intput
-typedef struct s_shell_redir
-{
-	int		fd_backup;
-	int		fd_replace;
-}	t_shell_redir;
-
-// struct for commands size, flags, args, etc....
-typedef struct s_cmd
-{
-	size_t			index;			// index to move in command
-	char			**tokens;
-	char			**args;
-	size_t			size;			// size of command
-	struct s_cmd	*previous;
-	struct s_cmd	*next;
-	bool			piped;
-	t_shell_redir	out;
-	t_shell_redir	in;
-}	t_cmd;
-
 //			FUNCTIONS
 
 // get current dir()
@@ -80,30 +33,6 @@ void	set_line(t_cmd_container *cmd_container, char *line)
 }
 
 //			TOKENISE
-
-// check the size of the cmd_container
-size_t	get_cmds_size(t_cmd_container *cmd_container)
-{
-	size_t	size;
-
-	if (cmd_container == NULL)
-		return (0);
-	size = 0;
-	while (cmd_container->cmds[size] != NULL)
-		size++;
-	return (size);
-}
-
-// got to the next token
-void	next_token(t_cmd_container *cmd_container)
-{
-	if (cmd_container->token = NULL)
-		return ;
-	cmd_container->tokens = ft_addstr_to_strarray(cmd_container->tokens, cmd_container->token, TRUE);	// check for the works of this function
-	cmd_container->token = NULL;
-}
-
-
 
 int	main(int ac, char **av, char **env)
 {
@@ -130,7 +59,7 @@ int	main(int ac, char **av, char **env)
 			if (!tokenise(cmd_container->line))		// parse and tokenise input if == 1 not good
 				continue;
 			// execute commands parsed and redir them ...
-			
+
 		}
 	}
 	return (EXIT_SUCCESS);

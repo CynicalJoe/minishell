@@ -6,14 +6,14 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 10:17:32 by afulmini          #+#    #+#             */
-/*   Updated: 2022/01/24 12:01:08 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/01/27 17:16:55 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
 // create command_struct to use for our exec and redir
-t_cmd	*create_cmd(size_t i, char **args)
+t_cmd	*create_cmd(size_t i, char **args)	// **args are all the tokens to send to the command struct
 {
 	t_cmd	*cmd;
 
@@ -56,4 +56,31 @@ size_t	get_cmds_size(t_cmd_container *cmd_container)
 	while (cmd_container->cmds[size] != NULL)
 		size++;
 	return (size);
+}
+
+// optional ==> used for the tests and check all the inputs we will send to the cmd_struct
+void	display_cmd(t_cmd *cmd)
+{
+	size_t	cmd_part_index;
+
+	if (cmd == NULL)
+		return ;
+	ft_putstr_fd("Command ", 1);
+	ft_putnbr(cmd->index);
+	if (cmd->piped)
+		ft_putstr_fd(" (piped)", 1);
+	ft_putendl_fd(":",1);
+	if (cmd->tokens != NULL)
+	{
+		cmd_part_index = 0;
+		while (cmd->tokens[cmd_part_index] != NULL)
+		{
+			ft_putnbr(cmd_part_index);
+			ft_putstr_fd(" - ", 1);
+			ft_putendl_fd(cmd->tokens[cmd_part_index], 1);
+			cmd_part_index++;
+		}
+	}
+	else
+		ft_putstrdl_fd("(null)");
 }

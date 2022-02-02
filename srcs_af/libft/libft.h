@@ -6,7 +6,7 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/03 11:11:45 by afulmini          #+#    #+#             */
-/*   Updated: 2022/01/24 11:20:49 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/02/01 10:14:20 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,9 +84,9 @@ char		*strchrset_skip_bs(const char *s, char *charset);
 //  extra
 size_t		ft_strarray_length(char **str_array);
 char		*ft_append_char_to_str(char *s, char c);
-char		**ft_addstr_to_strarray(char **array, char *str, _Bool free_array);
+char		**ft_addstr_to_strarray(char **array, char *str, bool free_array);
 void		*ft_destroy_strarray(char ***str_array);
-char		*ft_append_str(char *s1, char *s2, int frees1, int frees2);
+char		*ft_append_str(char *s1, char *s2, bool frees1, bool frees2);
 
 /*
 ** To handle List
