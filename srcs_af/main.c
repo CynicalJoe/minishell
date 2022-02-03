@@ -28,7 +28,7 @@
 void	set_line(t_cmd_container *cmd_container, char *line)
 {
 	free(cmd_container->line);
-	cmd_container->line = printDir();
+	//cmd_container->line = printDir();
 	cmd_container->line += (int)line;
 }
 
@@ -56,10 +56,10 @@ int	main(int ac, char **av, char **env)
 		if (ft_strlen(cmd_container->line) > 0)
 		{
 			add_history(cmd_container->line);
-			if (!tokenise(cmd_container->line))		// parse and tokenise input if == 1 not good
+			if (!tokenise(cmd_container->line))		// parse and tokenise outpu if == 1 not good
 				continue;
 			// execute commands parsed and redir them ...
-
+			// process_commands()
 		}
 	}
 	return (EXIT_SUCCESS);

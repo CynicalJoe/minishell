@@ -6,7 +6,7 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 11:28:59 by afulmini          #+#    #+#             */
-/*   Updated: 2022/02/02 13:11:24 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/02/03 17:45:45 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ t_shell	g_shell;
 // struct of shell ==> if used as global is it justifiable?
 typedef struct s_shell
 {
-	char			**env;			// get the env for 
+	char			**env;			// get the env variables to use
 	char			*prompt;		// prompt for user to input commands
 	t_cmd_container	cmd_container;	// connect to container struct
 	int				exit_status;	// exit status --> make it a global variable?
@@ -73,14 +73,16 @@ typedef struct s_cmd_container
 
 
 // struct for commands size, flags, args, etc....
+// 1 for each command
 typedef struct s_cmd
 {
 	size_t			index;			// index to move in command
-	char			**tokens;		// what type it is
+	char			**tokens;		// what type it is	
 	char			**args;			// cmd and args for the commands to exec	
 	size_t			size;			// size of command
-	struct s_cmd	*previous;
-	struct s_cmd	*next;
+	struct s_cmd	*previous;		// link between the different cmds structs
+	struct s_cmd	*next;			// link between the different cmds structs
+	// piped flag defines the link to the next command
 	int				piped;			// use int? or bool? TRUE or FALSE or 0 1 2
 	int				in_out;			// use for redirection
 	pid_t			pid;
@@ -107,6 +109,8 @@ void	tokenise_quote(t_cmd_container *cmd_container, char quote);
 void	tokenise_redir(t_cmd_container *cmd_container, char redir);
 int		tokenise(t_cmd_container *cmd_container);
 
+size_t	get_cmd_size(t_cmd_container *cmd_container);
+char	*ft_append_str_to_str_array(char **strarray, char *str, bool free_array);
 void	next_token(t_cmd_container *cmd_container);
 t_cmd	**realloc_cmds(t_cmd_container *cmd_container);
 
@@ -133,6 +137,12 @@ void	destroy_cmd(t_cmd *cmd);
 size_t	get_cmds_size(t_cmd_container *cmd_container);		// get the size of the commands in the container
 void	next_cmd(t_cmd_container *cmd_container);			// gets next command in the container struct
 
+//			src/process/ 		==> process commands before executing them
+
+char	*processed_args(t_shell *shell, char *arg);
+char	*append_env_to_str(t_shell *shell, char *str, char *key);
+
+
 //			src/execute/
 void	parse_cmd(t_shell *shell, t_cmd *cmd);
 char	*get_program_path(t_shell *shell, char *program);
@@ -141,9 +151,6 @@ char	*build_path(char *path, char *program);
 
 // exec program
 void	execute_command(t_shell *shell, t_cmd *cmd);
-
-//			src/process/ 		==> process commands before executing them
-char	*append_env_to_str(t_shell *shell, char *str, char *key);
 
 //			src/builtin/
 // check builtin function list 
@@ -155,8 +162,5 @@ void	my_pwd(t_shell *shell, char **args);
 void	my_exit(t_shell *shell, char **args);
 void	my_unset(t_shell *shell, char *program_path, t_cmd *cmd);
 void	my_export(t_shell *shell, char **cmd);
-
-int	ft_contains_char(char *str, char c);
-ssize_t	ft_find_char(char *s, char c);
 
 #endif

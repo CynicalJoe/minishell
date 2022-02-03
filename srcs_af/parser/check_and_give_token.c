@@ -6,7 +6,7 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 19:19:46 by afulmini          #+#    #+#             */
-/*   Updated: 2022/02/02 12:14:11 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/02/03 16:53:45 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	check_and_give_token(t_cmd_container *cmd_container, char c)
 	else if (c == ';')		// not necessary to process this ==> we can ignore this flag and put up an error
 		next_cmd(cmd_container);		// defined but not necessary for the minishell subject
 	// if not special char add to cmd_container->token
+	// last token gets the NULL value
 	else
 		cmd_container->token = ft_append_char_to_str(cmd_container->token, c);	// 
 }

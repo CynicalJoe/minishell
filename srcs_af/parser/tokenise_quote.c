@@ -6,13 +6,15 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 19:18:36 by afulmini          #+#    #+#             */
-/*   Updated: 2022/01/26 14:49:02 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/02/03 16:11:23 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
 // token for quotes
+// 1 token == all the chars between the string including the quotes themselves
+// they are closed we checked earlier
 void	tokenise_quote(t_cmd_container *cmd_container, char quote)
 {
 	char	current_char;

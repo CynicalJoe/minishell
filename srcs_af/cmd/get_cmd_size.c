@@ -1,23 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tokenise_pipe.c                                    :+:      :+:    :+:   */
+/*   get_cmd_size.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/22 19:19:00 by afulmini          #+#    #+#             */
-/*   Updated: 2022/02/03 17:43:11 by afulmini         ###   ########.fr       */
+/*   Created: 2022/02/03 16:05:21 by afulmini          #+#    #+#             */
+/*   Updated: 2022/02/03 16:56:14 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-// token for pipe
-void	tokenise_pipe(t_cmd_container *cmd_container)
+// get size of each command from the cmd_container struct
+size_t	get_cmds_size(t_cmd_container *cmd_container)
 {
-	// set up the command before the pipe
-	next_cmd(cmd_container);
-	// update piped status of the command preceding this char
-	// next command will receive the output of the precedent
-	cmd_container->cmds[get_cmds_size(cmd_container) - 1]->piped = 1;
+	size_t	size;
+
+	if (cmd_container->cmds == NULL)
+		return (0);
+	size = 0;
+	while (cmd_container->cmds[size] != NULL)
+		size++;
+	return (size);
 }
+
