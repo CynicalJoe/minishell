@@ -13,7 +13,7 @@
 #include "../include/minishell.h"
 
 //special prototype as this function returns functions
-
+/* The get_builtin function returns a function pointer to the corresponding to the string passed in parameter */
 void	(*get_builtin(char *builtin_str))(t_shell *shell, char **cmd)
 {
 	if (ft_strcmp(builtin_str, "cd") == 0)
