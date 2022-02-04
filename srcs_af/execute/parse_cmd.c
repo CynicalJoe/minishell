@@ -6,11 +6,21 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 16:25:24 by afulmini          #+#    #+#             */
-/*   Updated: 2022/02/02 12:34:33 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/02/04 16:44:47 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
+
+bool	is_redir(char *arg)
+{
+	if (ft_strcmp(arg, ">>") == 0
+		|| ft_strcmp(arg, ">") == 0
+		|| ft_strcmp(arg, "<<") == 0
+		|| ft_strcmp(arg, "<") == 0)
+		return (TRUE);
+	return (FALSE);
+}
 
 void	parse_cmd(t_shell *shell, t_cmd *cmd)
 {
@@ -24,7 +34,7 @@ void	parse_cmd(t_shell *shell, t_cmd *cmd)
 		if (is_redir(cmd->tokens[index])) // check for redirection ==> define is_redirection
 		{
 			index++;
-			if (!)  // dispatch the redirection  check and define dipastch_redirection 
+			if (!dispatch_redirection())  // dispatch the redirection  yet to define dipastch_redirection 
 			{
 				ft_destroy_strarray(&args);
 				return ;
