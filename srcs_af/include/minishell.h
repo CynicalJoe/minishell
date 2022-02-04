@@ -6,7 +6,7 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 11:28:59 by afulmini          #+#    #+#             */
-/*   Updated: 2022/02/03 17:45:45 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/02/04 16:20:06 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ typedef struct s_cmd
 	size_t			index;			// index to move in command
 	char			**tokens;		// what type it is	
 	char			**args;			// cmd and args for the commands to exec	
+	// cmd->args[0] == cmd
 	size_t			size;			// size of command
 	struct s_cmd	*previous;		// link between the different cmds structs
 	struct s_cmd	*next;			// link between the different cmds structs
@@ -140,6 +141,8 @@ void	next_cmd(t_cmd_container *cmd_container);			// gets next command in the con
 //			src/process/ 		==> process commands before executing them
 
 char	*processed_args(t_shell *shell, char *arg);
+char	*get_processed_quote(t_shell *shell, char *args, size_t len, size_t *i);
+char	*get_env_var_name(char *arg, size_t len, size_t *i);
 char	*append_env_to_str(t_shell *shell, char *str, char *key);
 
 
@@ -151,6 +154,7 @@ char	*build_path(char *path, char *program);
 
 // exec program
 void	execute_command(t_shell *shell, t_cmd *cmd);
+void	execute_program(t_shell *shell, char *path, t_cmd *cmd);
 
 //			src/builtin/
 // check builtin function list 
@@ -162,5 +166,9 @@ void	my_pwd(t_shell *shell, char **args);
 void	my_exit(t_shell *shell, char **args);
 void	my_unset(t_shell *shell, char *program_path, t_cmd *cmd);
 void	my_export(t_shell *shell, char **cmd);
+
+// utils
+int	ft_contains_char(char *str, char c);
+ssize_t	ft_find_char(char *s, char c);
 
 #endif
