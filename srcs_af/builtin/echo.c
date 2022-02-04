@@ -6,13 +6,13 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 08:45:31 by afulmini          #+#    #+#             */
-/*   Updated: 2022/01/26 08:50:18 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/02/04 08:56:46 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-void	echo(t_shell *shell, char **cmd)
+void	my_echo(t_shell *shell, char **cmd)
 {
 	int		print_nl;
 	size_t	index;

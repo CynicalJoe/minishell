@@ -6,7 +6,7 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 17:21:48 by afulmini          #+#    #+#             */
-/*   Updated: 2022/02/02 12:56:27 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/02/02 12:20:57 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,7 @@ bool	check_if_exist(char *path, char *program)
 		full_path = program;
 	else
 		full_path = build_path(path, program);
-	// check command to verify if path is good and exist
-	// read man stat fstat etc..
+	// check command to verify if path is good stat?	
 	if (path != NULL)
 		free(full_path);
 	return (res);
