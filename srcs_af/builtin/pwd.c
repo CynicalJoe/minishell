@@ -6,7 +6,7 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 11:22:30 by afulmini          #+#    #+#             */
-/*   Updated: 2022/01/26 11:29:25 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/02/05 18:06:24 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	pwd(t_shell *shell, char **args)
 	pwd = getcwd(NULL, 0);
 	if (pwd == NULL)
 	{
-		// error message to be sent
+		put_error("pwd", "getcwd error", strerror(errno));
 		shell->exit_status = 1;
 		return ;
 	}

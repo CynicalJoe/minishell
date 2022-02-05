@@ -6,7 +6,7 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 11:30:44 by afulmini          #+#    #+#             */
-/*   Updated: 2022/02/04 08:56:43 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/02/05 18:06:45 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ void	my_env(t_shell *shell, char **cmd)
 	i = 0;
 	while (shell->env[i] != NULL)
 	{
-		// check for ft_contains_char()
 		if (ft_contains_char(shell->env[i], '='))
 			ft_putendl_fd(shell->env[i], 1);
 		i++;
