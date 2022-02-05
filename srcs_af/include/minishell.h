@@ -6,7 +6,7 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 11:28:59 by afulmini          #+#    #+#             */
-/*   Updated: 2022/02/04 16:20:06 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/02/05 09:19:04 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,7 +143,7 @@ void	next_cmd(t_cmd_container *cmd_container);			// gets next command in the con
 char	*processed_args(t_shell *shell, char *arg);
 char	*get_processed_quote(t_shell *shell, char *args, size_t len, size_t *i);
 char	*get_env_var_name(char *arg, size_t len, size_t *i);
-char	*append_env_to_str(t_shell *shell, char *str, char *key);
+char	*ft_append_env_to_str(t_shell *shell, char *str, char *key);
 
 
 //			src/execute/
