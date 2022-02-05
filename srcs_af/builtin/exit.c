@@ -6,7 +6,7 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 18:26:28 by afulmini          #+#    #+#             */
-/*   Updated: 2022/02/04 16:42:19 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/02/05 12:45:14 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ bool	is_numberstr(char *str)
 
 void	exit_builtin_msg(t_shell *shell, int exit_code)
 {
-	ft_putstr("\033[0;32m");
+	ft_putstr("\033[0;32m");	// Green
 	ft_putstr("Goodbye :)");
 	ft_putendl("\033[0m", STDERR_FILENO);
 	errno = exit_code;
@@ -41,14 +41,14 @@ void	exit_builtin_msg(t_shell *shell, int exit_code)
 
 void	my_exit(t_shell *shell, char **args)
 {
-	size_t	args_size;
+	size_t	size;
 	size_t	exit_code;
 
-	args_size = ft_strarray_length(args);
+	size = ft_strarray_length(args);
 	ft_putendl_fd("exit", 2);
-	if (args_size == 1)
+	if (size == 1)
 		exit_builtin_msg(shell, 0);
-	else if (args_size >= 2)
+	else if (size >= 2)
 	{
 		exit_code = ft_atol(args[1]);	// defined in libft
 		if (errno == ERANGE || !is_numberstr(args[1])) 
@@ -56,7 +56,7 @@ void	my_exit(t_shell *shell, char **args)
 			put_error("minishell", "exit", "numeric argument required.");
 			exit_builtin_msg(shell, 255);
 		}
-		if (args_size > 2)
+		if (size > 2)
 			put_error("minishell", "exit", "too many arguments.");
 		else
 			exit_builtin_msg(shell, exit_code % 256);	//  the exit codes go from 0 to 255 and then repeat on a scale of 255	
