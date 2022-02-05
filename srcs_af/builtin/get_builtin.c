@@ -6,13 +6,12 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 16:59:10 by afulmini          #+#    #+#             */
-/*   Updated: 2022/02/01 10:16:20 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/02/05 18:09:21 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-//special prototype as this function returns functions
 /* The get_builtin function returns a function pointer to the corresponding to the string passed in parameter */
 void	(*get_builtin(char *builtin_str))(t_shell *shell, char **cmd)
 {

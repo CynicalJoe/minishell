@@ -6,7 +6,7 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 11:24:06 by afulmini          #+#    #+#             */
-/*   Updated: 2022/02/03 17:36:21 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/02/05 18:16:25 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@ ssize_t	get_env_index(t_shell *shell, char *key)
 	new_key_len = ft_strlen(new_key);
 	line_index = -1;
 	while (shell->env[++line_index] != NULL)
-		if(ft_strncmp(new_key, shell->env[line_index], new_key_len) == 0)
+		if (ft_strncmp(new_key, shell->env[line_index], new_key_len) == 0)
 			break ;
 	free(new_key);
-	if ((size_t) line_index >= ft_strarray_length(shell))		// check if the new env is good len
+	if ((size_t) line_index >= ft_strarray_length(shell))
 		return (-1);
 	return (line_index);
 }
@@ -68,7 +68,8 @@ void	set_env(t_shell	*shell, char *key, char *value, bool free_val)
 	if (value == NULL)
 		new_env[line_index] = ft_strdup(key);
 	else
-		new_env[line_index] = ft_append_str(key, ft_append_str("=", value, FALSE, free_val), FALSE, TRUE);
+		new_env[line_index] = ft_append_str(key,
+				ft_append_str("=", value, FALSE, free_val), FALSE, TRUE);
 	new_env[line_index + 1] = NULL;
 	ft_destroy_strarray(&shell->env);
 	shell->env = new_env;
