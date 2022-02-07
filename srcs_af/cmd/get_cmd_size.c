@@ -6,7 +6,7 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 16:05:21 by afulmini          #+#    #+#             */
-/*   Updated: 2022/02/03 16:56:14 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/02/06 15:54:24 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,4 +24,3 @@ size_t	get_cmds_size(t_cmd_container *cmd_container)
 		size++;
 	return (size);
 }
-
