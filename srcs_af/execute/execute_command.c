@@ -6,13 +6,13 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 16:54:38 by afulmini          #+#    #+#             */
-/*   Updated: 2022/02/07 16:40:54 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/02/07 17:03:51 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-char	*ft_to_lower(char *s)
+char	*ft_str_tolower(char *s)
 {
 	size_t	i;
 
@@ -33,13 +33,13 @@ void	execute_command(t_shell *shell, t_cmd *cmd)
 
 	if (cmd->args == NULL)
 		return ;
-	program = ft_to_lower(cmd->args[0]);
+	program = ft_str_tolower(cmd->args[0]);
 	if (get_builtin(program) != NULL)	// ==> check if the program is a builtin function we built
 		get_builtin(program)(shell, cmd->args);	// check this type of function prototype
 	else if (ft_contains_char(program, '/'))
 	{
 		if (check_if_exist(NULL, program))
-			execute_program();	//define function in execute_program.c ==>
+			execute_program(shell, program, cmd);	//define function in execute_program.c ==>
 			// we need the shell the path and the cmd itself
 		else
 			put_error("minishell", "no such file or directory", cmd->args[0]);
@@ -47,7 +47,7 @@ void	execute_command(t_shell *shell, t_cmd *cmd)
 	else
 	{
 		program_path = get_program_path(shell, cmd->args[0]);
-		execute_program();
+		execute_program(shell, program_path, cmd);
 		free(program_path);
 	}
 }
