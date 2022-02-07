@@ -6,11 +6,11 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/23 16:53:46 by afulmini          #+#    #+#             */
-/*   Updated: 2022/02/03 16:09:39 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/02/07 14:58:26 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/minishell.h"
+#include "../include/minishell.h"
 
 // allocates memory for the t_cmd struct and returns pointer to it
 t_cmd	**realloc_cmds(t_cmd_container *cmd_container)

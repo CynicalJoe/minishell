@@ -6,7 +6,7 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 18:49:47 by afulmini          #+#    #+#             */
-/*   Updated: 2022/02/06 15:53:05 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/02/06 15:54:03 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,4 @@
 
 void	my_export(t_shell *shell, char **cmd)
 {
-
 }

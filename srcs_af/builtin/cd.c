@@ -6,11 +6,11 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 12:15:21 by afulmini          #+#    #+#             */
-/*   Updated: 2022/02/05 18:02:35 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/02/07 14:58:26 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/minishell.h"
+#include "../include/minishell.h"
 
 void	update_pwd(t_shell *shell, char *pwd)
 {

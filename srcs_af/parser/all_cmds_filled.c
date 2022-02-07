@@ -6,11 +6,11 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 18:59:30 by afulmini          #+#    #+#             */
-/*   Updated: 2022/02/03 16:39:38 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/02/07 14:58:07 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/minishell.h"
+#include "../include/minishell.h"
 
 // check is commands are filled
 // check if we have empty tokens if yes return error

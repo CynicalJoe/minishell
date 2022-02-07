@@ -6,11 +6,11 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 18:59:56 by afulmini          #+#    #+#             */
-/*   Updated: 2022/01/27 16:32:41 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/02/07 14:58:26 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/minishell.h"
+#include "../include/minishell.h"
 
 // check for closed quotes in parsing line for command ==> returns if open or not
 int	quotes_closed(char *str)

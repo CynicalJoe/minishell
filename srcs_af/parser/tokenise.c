@@ -6,11 +6,11 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 18:56:03 by afulmini          #+#    #+#             */
-/*   Updated: 2022/02/03 16:53:18 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/02/07 14:58:26 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/minishell.h"
+#include "../include/minishell.h"
 
 // tokenise the input from the user and seperate it in the different structs
 int	tokenise(t_cmd_container *cmd_container)

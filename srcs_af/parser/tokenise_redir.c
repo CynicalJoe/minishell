@@ -6,11 +6,11 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 19:00:38 by afulmini          #+#    #+#             */
-/*   Updated: 2022/02/03 16:51:54 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/02/07 14:58:26 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/minishell.h"
+#include "../include/minishell.h"
 // token for redir
 void	tokenise_redir(t_cmd_container *cmd_container, char redir)
 {

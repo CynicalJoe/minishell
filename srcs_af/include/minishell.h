@@ -6,7 +6,7 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 11:28:59 by afulmini          #+#    #+#             */
-/*   Updated: 2022/02/05 09:19:04 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/02/07 14:54:59 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,38 +39,11 @@
 # include <sys/stat.h>
 # include <sys/types.h>
 # include <fcntl.h>
+# include<readline/readline.h>
+# include<readline/history.h>
 
 # include "../libft/libft.h"
 // # include "../../inc_af/minishell.h"
-
-
-// Global ??
-//		STRUCTS
-t_shell	g_shell;
-
-// struct of shell ==> if used as global is it justifiable?
-typedef struct s_shell
-{
-	char			**env;			// get the env variables to use
-	char			*prompt;		// prompt for user to input commands
-	t_cmd_container	cmd_container;	// connect to container struct
-	int				exit_status;	// exit status --> make it a global variable?
-	int				in_exec;		// use int instead of bool thus TRUE == 1 & FALSE == 0;
-	int				level;			// update the shell level we are in --> each call of minishell += 1 level
-}	t_shell;
-
-// struct that contains the full command --> pre executed
-typedef struct s_cmd_container
-{
-	char	*line;			// line read from the prompt
-	size_t	read_index;		// index in the container struct
-	t_cmd	**cmds;			// link to t_cmds
-	char	**tokens;		// str array of the tokens extracted from the line inputed
-	char	*token;			// each part that is tokenised (string with cmd and args)
-}	t_cmd_container;
-
-// struct to redirect output/intput ?? 
-
 
 // struct for commands size, flags, args, etc....
 // 1 for each command
@@ -89,6 +62,35 @@ typedef struct s_cmd
 	pid_t			pid;
 	int				pipe[2];
 }	t_cmd;
+
+
+// struct that contains the full command --> pre executed
+typedef struct s_cmd_container
+{
+	char	*line;			// line read from the prompt
+	size_t	read_index;		// index in the container struct
+	t_cmd	**cmds;			// link to t_cmds
+	char	**tokens;		// str array of the tokens extracted from the line inputed
+	char	*token;			// each part that is tokenised (string with cmd and args)
+}	t_cmd_container;
+
+
+// struct of shell ==> if used as global is it justifiable?
+typedef struct s_shell
+{
+	char			**env;			// get the env variables to use
+	char			*prompt;		// prompt for user to input commands
+	t_cmd_container	cmd_container;	// connect to container struct
+	int				exit_status;	// exit status --> make it a global variable?
+	int				in_exec;		// use int instead of bool thus TRUE == 1 & FALSE == 0;
+	int				level;			// update the shell level we are in --> each call of minishell += 1 level
+}	t_shell;
+
+// struct to redirect output/intput ?? 
+
+// Global ??
+//		STRUCTS
+t_shell	*g_shell;
 
 
 int	main(int ac, char **av, char **env);
@@ -120,12 +122,13 @@ t_cmd	**realloc_cmds(t_cmd_container *cmd_container);
 char	**create_env(char **default_env);
 void	*destroy_shell(t_shell *shell);
 t_shell create_shell(char **env);
+void	update_prompt(t_shell *shell);
 
 // get and set env variables
 size_t	get_env_len(t_shell *shell);
 ssize_t	get_env_index(t_shell *shell, char *key);
 char	*get_env_var(t_shell *shell, char *key);
-void	set_env(t_shell	*shell, char *key, char *value, int free_val);
+void	set_env(t_shell	*shell, char *key, char *value, bool free_val);
 void	unset_env_var(t_shell *shell, char *key);
 
 //			src/cmd/

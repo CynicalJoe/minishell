@@ -6,7 +6,7 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 16:54:38 by afulmini          #+#    #+#             */
-/*   Updated: 2022/02/04 09:00:01 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/02/06 15:56:56 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	execute_command(t_shell *shell, t_cmd *cmd)
 	}
 	else
 	{
-		program_path = get_program_path(shell, cmd->args[0]);		// in check_path.c
+		program_path = get_program_path(shell, cmd->args[0]);
 		execute_program();
 		free(program_path);
 	}

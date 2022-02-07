@@ -6,7 +6,7 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 09:34:44 by afulmini          #+#    #+#             */
-/*   Updated: 2022/01/24 10:08:51 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/02/07 14:26:46 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	*destroy_shell(t_shell *shell)
 		shell->env = ft_destroy_strarray(&shell->env);
 		free(shell->prompt);
 		shell->prompt = NULL;
-		destroy_cmds(&shell->cmd_container);
+		destroy_cmd_container(&shell->cmd_container);
 	}
 	return (NULL);
 }
@@ -31,5 +31,5 @@ void	exit_shell(t_shell *shell, char*message, int exit_code)
 	if (message != NULL)
 		ft_putendl_fd(message, 2);
 	destroy_shell(shell);
-	return (exit_code);
+	exit(exit_code);
 }

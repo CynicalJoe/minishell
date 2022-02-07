@@ -6,11 +6,11 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 09:38:33 by afulmini          #+#    #+#             */
-/*   Updated: 2022/02/05 18:15:19 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/02/07 14:27:08 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/minishell.h"
+#include "../include/minishell.h"
 
 void	update_prompt(t_shell *shell)
 {

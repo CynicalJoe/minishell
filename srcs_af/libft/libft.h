@@ -6,7 +6,7 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/03 11:11:45 by afulmini          #+#    #+#             */
-/*   Updated: 2022/02/01 10:14:20 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/02/07 14:53:32 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@
 
 # define ULL_MAX 9223372036854775807
 # define ULL_MIN -9223372036854775808
+# define TRUE 1
+# define FALSE 0
 
 typedef unsigned long long	t_ull;
 typedef long long			t_ll;
@@ -80,6 +82,7 @@ char		*ft_strrchrset(const char *s, char *charset);
 void		bubble_sort_strset(char **strset, int len);
 void		swap_char(char *a, char *b);
 char		*strchrset_skip_bs(const char *s, char *charset);
+char		*ft_str_toupper(char *s);
 
 //  extra
 size_t		ft_strarray_length(char **str_array);
@@ -87,6 +90,11 @@ char		*ft_append_char_to_str(char *s, char c);
 char		**ft_addstr_to_strarray(char **array, char *str, bool free_array);
 void		*ft_destroy_strarray(char ***str_array);
 char		*ft_append_str(char *s1, char *s2, bool frees1, bool frees2);
+size_t		ft_ull_ibase_len(unsigned long long number, int ibase);
+char		*ft_lltoa_ibase(long long number, int base, bool uppercase);
+char		*ft_ulltoa_ibase(unsigned long long number, int ibase,
+				bool uppercase);
+char		*fill_res(unsigned long long number, int ibase, char *res, int len);
 
 /*
 ** To handle List
