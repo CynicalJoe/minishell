@@ -1,38 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   echo.c                                             :+:      :+:    :+:   */
+/*   ft_copy_strarray.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/26 08:45:31 by afulmini          #+#    #+#             */
-/*   Updated: 2022/02/07 15:08:01 by afulmini         ###   ########.fr       */
+/*   Created: 2022/02/07 15:34:42 by afulmini          #+#    #+#             */
+/*   Updated: 2022/02/07 15:34:59 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minishell.h"
+#include "libft.h"
 
-void	my_echo(t_shell *shell, char **cmd)
+
+char	**ft_copy_strarray(char **str_array)
 {
-	int		print_nl;
+	char	**new_array;
 	size_t	index;
 
-	(void)shell;
-	print_nl = 1;
+	new_array = NULL;
 	index = 0;
-	while (cmd[index] != NULL && ft_strcmp(cmd[index], "-n") == 0)
+	while (str_array[index])
 	{
-		print_nl = 0;
+		new_array = ft_addstr_to_strarray(new_array,
+				ft_strdup(str_array[index]),
+				TRUE);
 		index++;
 	}
-	while (cmd[index] != NULL)
-	{
-		ft_putstr_fd(cmd[index], 1);
-		if (cmd[index + 1] == NULL)
-			ft_putchar_fd(' ', 1);
-		index++;
-	}
-	if (print_nl)
-		ft_putchar_fd('\n', 1);
-	shell->exit_status = 0;
+	return (new_array);
 }

@@ -6,15 +6,15 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 19:20:24 by afulmini          #+#    #+#             */
-/*   Updated: 2022/02/07 14:58:26 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/02/07 15:07:20 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-char	*ft_append_str_to_str_array(char **strarray, char *str, bool free_array)
+char	**ft_append_str_to_str_array(char **strarray, char *str, bool free_array)
 {
-	char	*res;
+	char	**res;
 	size_t	len;
 	size_t	i;
 

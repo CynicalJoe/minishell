@@ -6,7 +6,7 @@
 #    By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/11 16:52:24 by afulmini          #+#    #+#              #
-#    Updated: 2022/02/07 14:43:14 by afulmini         ###   ########.fr        #
+#    Updated: 2022/02/07 15:35:49 by afulmini         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -75,6 +75,8 @@ SRCS = ft_memset.c\
 	   ft_ull_ibase_len.c\
 	   ft_lltoa_ibase.c\
 	   ft_ulltoa_ibase.c\
+	   ft_sort_strarray.c\
+	   ft_copy_strarray.c\
 
 OBJS = ${SRCS:.c=.o}
 

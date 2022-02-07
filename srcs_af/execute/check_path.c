@@ -6,7 +6,7 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 17:21:48 by afulmini          #+#    #+#             */
-/*   Updated: 2022/02/02 12:20:57 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/02/07 16:33:28 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ bool	check_if_exist(char *path, char *program)
 		full_path = program;
 	else
 		full_path = build_path(path, program);
-	// check command to verify if path is good stat?	
+	res = stat(full_path, &buf) == 0;	//check the validity of the requested path	
 	if (path != NULL)
 		free(full_path);
 	return (res);
@@ -46,7 +46,7 @@ char	*get_program_path(t_shell *shell, char *program)
 	path_env = get_env_var(shell, "PATH");
 	if (path_env == NULL)
 		return (NULL);
-	splitted_path = ft_split(path_env, ":");	// split the env path to get each elem;
+	splitted_path = ft_split(path_env, ':');	// split the env path to get each elem;
 	free(path_env);
 	if (splitted_path == NULL)
 		return (NULL);

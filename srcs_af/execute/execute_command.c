@@ -6,37 +6,23 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 16:54:38 by afulmini          #+#    #+#             */
-/*   Updated: 2022/02/06 15:56:56 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/02/07 16:40:54 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-int	is_uppercase(char c)
-{
-	if (c >= 'A' && c <= 'Z')
-		return (1);
-	return (0);
-}
-
-char	ft_lowercase_char(char c)
-{
-	if (is_uppercase(c))
-		return (c + 32);
-	return (c);
-}
-
-char	*ft_to_lower(char *str)
+char	*ft_to_lower(char *s)
 {
 	size_t	i;
 
 	i = 0;
-	while (str[i])
+	while (s[i])
 	{
-		str[i] = ft_lower_case(str[i]);
+		s[i] = (char)ft_tolower(s[i]);
 		i++;
 	}
-	return (str);
+	return (s);
 }
 
 // execute the command extracted from temporary struct s_cmd

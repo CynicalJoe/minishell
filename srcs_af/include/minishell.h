@@ -6,7 +6,7 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 11:28:59 by afulmini          #+#    #+#             */
-/*   Updated: 2022/02/07 14:54:59 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/02/07 15:49:31 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ void	tokenise_redir(t_cmd_container *cmd_container, char redir);
 int		tokenise(t_cmd_container *cmd_container);
 
 size_t	get_cmd_size(t_cmd_container *cmd_container);
-char	*ft_append_str_to_str_array(char **strarray, char *str, bool free_array);
+char	**ft_append_str_to_str_array(char **strarray, char *str, bool free_array);
 void	next_token(t_cmd_container *cmd_container);
 t_cmd	**realloc_cmds(t_cmd_container *cmd_container);
 
@@ -137,7 +137,7 @@ void	init_container(t_cmd_container *cmd_container);
 void	*destroy_cmd_container(t_cmd_container *cmd_container);
 
 t_cmd	*create_cmd(size_t i, char **args);
-void	destroy_cmd(t_cmd *cmd);
+void	*destroy_cmd(t_cmd *cmd);
 size_t	get_cmds_size(t_cmd_container *cmd_container);		// get the size of the commands in the container
 void	next_cmd(t_cmd_container *cmd_container);			// gets next command in the container struct
 
@@ -167,7 +167,7 @@ void	my_echo(t_shell *shell, char **cmd);
 void	my_env(t_shell *shell, char **cmd);
 void	my_pwd(t_shell *shell, char **args);
 void	my_exit(t_shell *shell, char **args);
-void	my_unset(t_shell *shell, char *program_path, t_cmd *cmd);
+void	my_unset(t_shell *shell, char **cmd);
 void	my_export(t_shell *shell, char **cmd);
 
 // utils

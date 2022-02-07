@@ -6,7 +6,7 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 10:17:32 by afulmini          #+#    #+#             */
-/*   Updated: 2022/02/03 16:57:53 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/02/07 15:50:06 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ t_cmd	*create_cmd(size_t i, char **args)	// **args are all the tokens to send to
 }
 
 // free t_cmd and elems
-void	destroy_cmd(t_cmd *cmd)
+void	*destroy_cmd(t_cmd *cmd)
 {
 	if (cmd != NULL)
 	{
