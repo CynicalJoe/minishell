@@ -6,14 +6,14 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 16:05:21 by afulmini          #+#    #+#             */
-/*   Updated: 2022/02/06 15:54:24 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/02/08 11:58:06 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
 // get size of each command from the cmd_container struct
-size_t	get_cmds_size(t_cmd_container *cmd_container)
+size_t	get_cmd_size(t_cmd_container *cmd_container)
 {
 	size_t	size;
 

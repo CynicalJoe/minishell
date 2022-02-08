@@ -6,7 +6,7 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 16:35:11 by afulmini          #+#    #+#             */
-/*   Updated: 2022/02/06 15:55:48 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/02/08 11:58:06 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	next_cmd(t_cmd_container *cmd_container)
 
 	// next token not necessary 
 	// next_token(cmd_container);	// got fetch the token we need for command if there is one left => not necessary
-	size = get_cmds_size(cmd_container);	// get size needed +1 for each cmd in the structs; starts at zero for the first command
+	size = get_cmd_size(cmd_container);	// get size needed +1 for each cmd in the structs; starts at zero for the first command
 	new_cmds = realloc_cmds(cmd_container);		// allocate memory 
 	new_cmds[size] = create_cmd(size, cmd_container->tokens);	// create t_cmd struct
 	// link all the commands together

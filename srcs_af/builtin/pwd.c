@@ -6,13 +6,13 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 11:22:30 by afulmini          #+#    #+#             */
-/*   Updated: 2022/02/07 14:58:26 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/02/08 11:41:47 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-void	pwd(t_shell *shell, char **args)
+void	my_pwd(t_shell *shell, char **args)
 {
 	char	*pwd;
 

@@ -6,7 +6,7 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 10:11:15 by afulmini          #+#    #+#             */
-/*   Updated: 2022/02/07 15:48:56 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/02/08 11:58:06 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	*destroy_cmd_container(t_cmd_container *cmd_container)
 		cmd_container->line = NULL;
 		cmd_container->read_index = 0;
 		i = 0;
-		while (i < get_cmds_size(cmd_container))
+		while (i < get_cmd_size(cmd_container))
 		{
 			destroy_cmd(cmd_container->cmds[i]);
 			i++;

@@ -6,7 +6,7 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 11:28:59 by afulmini          #+#    #+#             */
-/*   Updated: 2022/02/07 15:49:31 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/02/08 11:58:06 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,7 +138,7 @@ void	*destroy_cmd_container(t_cmd_container *cmd_container);
 
 t_cmd	*create_cmd(size_t i, char **args);
 void	*destroy_cmd(t_cmd *cmd);
-size_t	get_cmds_size(t_cmd_container *cmd_container);		// get the size of the commands in the container
+size_t	get_cmd_size(t_cmd_container *cmd_container);		// get the size of the commands in the container
 void	next_cmd(t_cmd_container *cmd_container);			// gets next command in the container struct
 
 //			src/process/ 		==> process commands before executing them

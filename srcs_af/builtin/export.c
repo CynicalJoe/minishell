@@ -6,7 +6,7 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 18:49:47 by afulmini          #+#    #+#             */
-/*   Updated: 2022/02/07 15:43:03 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/02/08 12:13:30 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static void	export_var(t_shell *shell, char *var)
 	shell->exit_status = 0;
 }
 
-static void	display_env_var(t_shell *shell)
+void	display_env_var(t_shell *shell)
 {
 	char	**sorted_env;
 	size_t	i;

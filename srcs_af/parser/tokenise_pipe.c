@@ -6,7 +6,7 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 19:19:00 by afulmini          #+#    #+#             */
-/*   Updated: 2022/02/03 17:43:11 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/02/08 11:58:06 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,5 +19,5 @@ void	tokenise_pipe(t_cmd_container *cmd_container)
 	next_cmd(cmd_container);
 	// update piped status of the command preceding this char
 	// next command will receive the output of the precedent
-	cmd_container->cmds[get_cmds_size(cmd_container) - 1]->piped = 1;
+	cmd_container->cmds[get_cmd_size(cmd_container) - 1]->piped = 1;
 }

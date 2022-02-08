@@ -6,7 +6,7 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 18:59:30 by afulmini          #+#    #+#             */
-/*   Updated: 2022/02/07 14:58:07 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/02/08 11:58:06 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	all_cmds_filled(t_cmd_container *cmd_container)
 	size_t	cmd_idx;
 
 	cmd_idx = 0;
-	while (cmd_idx < get_cmds_size(cmd_container))
+	while (cmd_idx < get_cmd_size(cmd_container))
 	{
 		if (cmd_container->cmds[cmd_idx]->tokens == NULL)
 		{
