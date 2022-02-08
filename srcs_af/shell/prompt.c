@@ -6,7 +6,7 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 09:38:33 by afulmini          #+#    #+#             */
-/*   Updated: 2022/02/08 12:51:07 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/02/08 12:50:50 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,7 @@ void	update_prompt(t_shell *shell)
 		return ;
 	if (getcwd(new_prompt, PATH_MAX) != NULL)
 	{
-		new_prompt = ft_append_str("\033[1;34m welcome to MyMinishell:$> \033[0m",
-				"", FALSE, FALSE);
+		new_prompt = ft_append_str("\033[1;34m welcome to MyMinishell:$> \033[0m", "", FALSE, FALSE);
 	}
 	else
 	{
