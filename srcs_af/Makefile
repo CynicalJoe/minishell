@@ -53,7 +53,8 @@ SRCS = 	signals/signals.c \
 		execute/execute_program.c \
 		execute/parse_cmd.c \
 		execute/process_utils.c \
-		redir/.......... \
+		execute/process_commands.c \
+		# redir/..........
 		main.c \
 		error.c 
 

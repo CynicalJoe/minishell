@@ -6,7 +6,7 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 11:28:59 by afulmini          #+#    #+#             */
-/*   Updated: 2022/02/08 17:25:08 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/02/09 12:10:19 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,6 +160,7 @@ char	*build_path(char *path, char *program);
 //			 exec program
 void	execute_command(t_shell *shell, t_cmd *cmd);
 void	execute_program(t_shell *shell, char *path, t_cmd *cmd);
+void	process_commands(t_shell *shell, t_cmd_container *cmd_container);
 
 //			src/builtin/
 // check builtin function list 

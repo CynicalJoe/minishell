@@ -6,7 +6,7 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 16:54:38 by afulmini          #+#    #+#             */
-/*   Updated: 2022/02/07 17:03:51 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/02/09 12:01:23 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,7 @@ void	execute_command(t_shell *shell, t_cmd *cmd)
 	else if (ft_contains_char(program, '/'))
 	{
 		if (check_if_exist(NULL, program))
-			execute_program(shell, program, cmd);	//define function in execute_program.c ==>
-			// we need the shell the path and the cmd itself
+			execute_program(shell, program, cmd);
 		else
 			put_error("minishell", "no such file or directory", cmd->args[0]);
 	}

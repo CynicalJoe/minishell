@@ -6,12 +6,13 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 08:45:31 by afulmini          #+#    #+#             */
-/*   Updated: 2022/02/07 15:08:01 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/02/09 11:08:09 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
+// check for when we have -nnnnn
 void	my_echo(t_shell *shell, char **cmd)
 {
 	int		print_nl;

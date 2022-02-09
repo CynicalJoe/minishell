@@ -6,7 +6,7 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 12:07:47 by afulmini          #+#    #+#             */
-/*   Updated: 2022/02/09 11:06:11 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/02/09 11:33:23 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ int	main(int ac, char **av, char **env)
 	if (ac != 1)
 		exit_shell(&shell, "minishell does not take any arguments.", 1);
 	cmd_container = &shell.cmd_container;
-	printf("in_exec = %d \n", shell.in_exec);
 	signal(SIGINT, ctrl_c_signal);
 	signal(SIGQUIT, SIG_IGN);	// if Ctrl + backslash ==> ignore signal
 	while (1)
