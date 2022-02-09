@@ -79,8 +79,6 @@ $(NAME):	$(LIBFT_PATH)/libft.a $(INCLUDE) $(OBJS)
 
 %.o:	%.c $(INCLUDE)
 	@$(CC) $(CFLAGS) -I$(INC_DIR) $(RDLN_LFLAGS) $(RDLN_INC) -c $< -o $@
-#	Print end of compilation
-#	@printf "\033[2K\r$(BLUE)$(NAME)$(NO_COLOR)$(BLUE): $(PURPLE)$<$(NO_COLOR)"
 
 $(LIBFT_PATH)/libft.a:
 	$(MAKE) -C $(LIBFT_PATH) bonus
