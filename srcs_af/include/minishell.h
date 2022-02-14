@@ -6,7 +6,7 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 11:28:59 by afulmini          #+#    #+#             */
-/*   Updated: 2022/02/09 12:10:19 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/02/11 18:43:58 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@
 # include <sys/stat.h>
 # include <sys/types.h>
 # include <fcntl.h>
-# include<readline/readline.h>
-# include<readline/history.h>
+# include <readline/readline.h>
+# include <readline/history.h>
 
 # include "../libft/libft.h"
 // # include "../../inc_af/minishell.h"
