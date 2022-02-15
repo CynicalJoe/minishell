@@ -6,7 +6,7 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 09:05:13 by afulmini          #+#    #+#             */
-/*   Updated: 2022/02/07 09:09:10 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/02/15 12:39:42 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	my_unset(t_shell *shell, char **cmd)
 	i = 1;
 	while (cmd[1] != NULL)
 	{
-		if (ft_isalpha(cmd[i][0] || cmd[i][0] == '_'))
+		if (ft_isalpha(cmd[i][0]) || cmd[i][0] == '_')
 			unset_env_var(shell, cmd[i]);
 		else
 		{

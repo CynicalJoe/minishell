@@ -6,7 +6,7 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 18:49:47 by afulmini          #+#    #+#             */
-/*   Updated: 2022/02/08 12:13:30 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/02/15 12:39:32 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	my_export(t_shell *shell, char **cmd)
 		display_env_var(shell);
 	while (cmd[i] != NULL)
 	{
-		if (ft_isalpha(cmd[i][0] || cmd[i][0] == '_'))
+		if (ft_isalpha(cmd[i][0]) || cmd[i][0] == '_')
 			export_var(shell, cmd[i]);
 		else
 		{
