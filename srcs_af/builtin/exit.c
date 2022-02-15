@@ -20,7 +20,7 @@ bool	only_numbers(char *str)
 
 void	exit_action(t_shell *shell, int exit_code)
 {
-	ft_putendl_fd("\033[0;32m Goodbye :\033[0m", 1);
+	ft_putendl_fd("\033[0;32m Goodbye :) \033[0m", 1);
 	errno = exit_code;
 	exit_shell(shell, NULL, exit_code);
 }

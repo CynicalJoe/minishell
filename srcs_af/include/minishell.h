@@ -6,7 +6,7 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 11:28:59 by afulmini          #+#    #+#             */
-/*   Updated: 2022/02/14 10:51:48 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/02/14 13:58:19 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,20 +40,20 @@
 # include <sys/stat.h>
 # include <sys/types.h>
 # include <fcntl.h>
-# include <readline/readline.h>
-# include <readline/history.h>
+# include<readline/readline.h>
+# include<readline/history.h>
 
 # include "../libft/libft.h"
 // # include "../../inc_af/minishell.h"
 
-// struct for commands size, flags, args, etc....
-// 1 for each command
 typedef struct s_redir
 {
 	int	fd_backup;
 	int	fd_replaced;
 }	t_redir;
 
+// struct for commands size, flags, args, etc....
+// 1 for each command
 typedef struct s_cmd
 {
 	size_t			index;			// index to move in command
@@ -67,9 +67,9 @@ typedef struct s_cmd
 	int				piped;			// use int? or bool? TRUE or FALSE or 0 1 2
 	// int				in_out;			// use for redirection
 	pid_t			pid;
-	int				pipe[2];
-	t_redir			in;
+	int				pipe[2];		// apparently not necessary
 	t_redir			out;
+	t_redir			in;
 }	t_cmd;
 
 
@@ -168,7 +168,6 @@ char	*build_path(char *path, char *program);
 //			 exec program
 void	execute_command(t_shell *shell, t_cmd *cmd);
 void	execute_program(t_shell *shell, char *path, t_cmd *cmd);
-void	process_commands(t_shell *shell, t_cmd_container *cmd_container);
 
 //			src/builtin/
 // check builtin function list 
@@ -184,6 +183,32 @@ void	my_export(t_shell *shell, char **cmd);
 // utils
 int	ft_contains_char(char *str, char c);
 ssize_t	ft_find_char(char *s, char c);
+
+// backup
+bool	dispatch_redirection(t_cmd *cmd, size_t arg_index);
+bool	start_file_redirection(t_redir *shell_redir, char *file, int mode, int to_replace);
+
+void	start_shell_redirection(t_redir *shell_redir, int to_replace, int replacement);
+
+void	stop_shell_redirection(t_redir *shell_redir);
+
+int		get_output_redirection_mode(char *redirection);
+void	read_until_keyword_behavior(char *keyword, int file_fd);
+bool	read_until_keyword(char *keyword);
+void	process_commands(t_shell *shell, t_cmd_container *cmd_container);
+void	set_in_exec(t_shell *shell, bool state);
+
+t_cmd	*process_piped(t_shell *shell, t_cmd *cmd);
+void	start_piped_redirections(t_cmd *cmd);
+void	wait_piped(t_shell *shell, t_cmd *cmd);
+void	close_pipe(t_cmd *cmd);
+char	*get_processed_quote(t_shell *shell, char *arg, size_t arg_len, size_t *i);
+char	*get_processed_arg(t_shell *shell, char *arg);
+char	*append_env_var_to_str(t_shell *shell, char *str, char *key);
+
+
+
+
 
 
 

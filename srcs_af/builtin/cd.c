@@ -6,7 +6,7 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 12:15:21 by afulmini          #+#    #+#             */
-/*   Updated: 2022/02/07 14:58:26 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/02/15 15:22:47 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	update_pwd(t_shell *shell, char *pwd)
 	set_env(shell, "PWD", new_pwd, FALSE);
 	update_prompt(shell);
 	shell->exit_status = 0;
+	free(new_pwd);
 }
 
 void	my_cd(t_shell *shell, char **cmd)

@@ -6,7 +6,7 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 17:21:48 by afulmini          #+#    #+#             */
-/*   Updated: 2022/02/07 17:08:50 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/02/14 13:28:10 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 // build the path to the builtin function according to the env 
 char	*build_path(char *path, char *program)
 {
-	return (ft_append_str(path, ft_append_str("/", program, FALSE, FALSE), TRUE, TRUE));
+	return (ft_append_str(path, ft_append_str("/", program, FALSE, FALSE), FALSE, TRUE));
 }
 
 // check if current command exists in the path given by env:

@@ -6,7 +6,7 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 12:07:47 by afulmini          #+#    #+#             */
-/*   Updated: 2022/02/09 11:33:23 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/02/15 14:08:53 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	main(int ac, char **av, char **env)
 {
 	t_shell			shell;
 	t_cmd_container	*cmd_container;
-
+	//t_cmd			*current;
 
 	(void)av;
 	shell = create_shell(env);
@@ -46,7 +46,7 @@ int	main(int ac, char **av, char **env)
 	cmd_container = &shell.cmd_container;
 	signal(SIGINT, ctrl_c_signal);
 	signal(SIGQUIT, SIG_IGN);	// if Ctrl + backslash ==> ignore signal
-	while (1)
+	while (TRUE)
 	{
 		set_line(cmd_container, readline(shell.prompt));		// prompt for the user
 		if (cmd_container->line == NULL)
@@ -54,24 +54,28 @@ int	main(int ac, char **av, char **env)
 		if (ft_strlen(cmd_container->line) > 0)
 		{
 			add_history(cmd_container->line);
-			printf("%s\n", cmd_container->line);
-			printf("%zu\n", ft_strlen(cmd_container->line));
+			//printf("%s\n", cmd_container->line);
+			//printf("%zu\n", ft_strlen(cmd_container->line));
+			//printf("number of tokens = %d\n", (int)cmd_container->cmds->size);
 			if (!tokenise(cmd_container))
 			{
 				continue;
-			}		// parse and tokenise outpu if == 1 not good
+			}
+		//	printf("this is the container == \n");
+		//	display_cmd_container(cmd_container);		// parse and tokenise outpu if == 1 not good
 		//	printf("this is the container == \n");
 		//	display_cmd_container(cmd_container);
 		//	printf("%s \n", cmd_container->line);
 			// execute commands parsed and redir them ...
 		//	printf("this is the container == \n");
 		//	display_cmd_container(cmd_container);
-			// process_commands(&shell, cmd_container);
-			destroy_cmd_container(cmd_container);
+			process_commands(&shell, cmd_container);
+		//	destroy_cmd_container(cmd_container);
 		}
 	}
-	return (EXIT_SUCCESS);
+	return (0);
 }
 
 
-// Things to do ==> update SHLVL for each call of the program 
+// Things to do ==> update SHLVL for each call of the program
+// just parse line for the minishell command?

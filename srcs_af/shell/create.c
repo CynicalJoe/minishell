@@ -6,7 +6,7 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 09:13:36 by afulmini          #+#    #+#             */
-/*   Updated: 2022/02/08 13:11:23 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/02/15 15:22:51 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ t_shell	create_shell(char **env)
 
 	shell.env = create_env(env);
 	shell.prompt = NULL;
-	set_env(&shell, "PWD", getcwd(NULL, 0), TRUE);
 	update_prompt(&shell);
 	init_container(&shell.cmd_container);
 	shell.in_exec = FALSE;

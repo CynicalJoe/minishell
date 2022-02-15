@@ -6,7 +6,7 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 16:54:38 by afulmini          #+#    #+#             */
-/*   Updated: 2022/02/09 12:01:23 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/02/14 18:25:40 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,14 +36,14 @@ void	execute_command(t_shell *shell, t_cmd *cmd)
 	program = ft_str_tolower(cmd->args[0]);
 	if (get_builtin(program) != NULL)	// ==> check if the program is a builtin function we built
 		get_builtin(program)(shell, cmd->args);	// check this type of function prototype
-	else if (ft_contains_char(program, '/'))
+	else if (ft_contains_char(program, '/'))	// if we are given a path for command
 	{
 		if (check_if_exist(NULL, program))
 			execute_program(shell, program, cmd);
 		else
 			put_error("minishell", "no such file or directory", cmd->args[0]);
 	}
-	else
+	else	// no path given
 	{
 		program_path = get_program_path(shell, cmd->args[0]);
 		execute_program(shell, program_path, cmd);

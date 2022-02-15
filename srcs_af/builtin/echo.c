@@ -6,13 +6,12 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 08:45:31 by afulmini          #+#    #+#             */
-/*   Updated: 2022/02/15 11:18:12 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/02/14 18:24:40 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-// check for when we have -nnnnn
 void	my_echo(t_shell *shell, char **cmd)
 {
 	bool	print_nl;
@@ -20,7 +19,8 @@ void	my_echo(t_shell *shell, char **cmd)
 
 	(void)shell;
 	print_nl = TRUE;
-	index = 0;
+	index = 1;
+
 	while (cmd[index] != NULL && ft_strncmp(cmd[index], "-n", 2) == 0)
 	{
 		int	count;
@@ -44,7 +44,7 @@ void	my_echo(t_shell *shell, char **cmd)
 	while (cmd[index] != NULL)
 	{
 		ft_putstr_fd(cmd[index], 1);
-		if (cmd[index + 1] == NULL)
+		if (cmd[index + 1] != NULL)
 			ft_putchar_fd(' ', 1);
 		index++;
 	}

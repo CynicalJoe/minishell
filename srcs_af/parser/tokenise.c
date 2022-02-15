@@ -6,7 +6,7 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 18:56:03 by afulmini          #+#    #+#             */
-/*   Updated: 2022/02/08 17:11:10 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/02/14 13:36:19 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ bool	tokenise(t_cmd_container *cmd_container)
 	{
 		// free the container for the next command
 		destroy_cmd_container(cmd_container);
-		return (0);
+		return (FALSE);
 	}
-	return (1);
+	return (TRUE);
 }

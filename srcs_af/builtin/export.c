@@ -6,7 +6,7 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 18:49:47 by afulmini          #+#    #+#             */
-/*   Updated: 2022/02/15 12:39:32 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/02/15 12:39:00 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ static char	*get_export_var_key(char *var)
 {
 	char	*key;
 	size_t	i;
+
 	key = NULL;
 	i = 0;
 	while (var[i] && var[i] != '=')
@@ -28,7 +29,7 @@ static char	*get_export_var_key(char *var)
 
 static void	export_var(t_shell *shell, char *var)
 {
-	ssize_t	equal_index;	// check the index of the char '='
+	ssize_t	equal_index;
 	char	*key;
 
 	equal_index = ft_find_char(var, '=');
