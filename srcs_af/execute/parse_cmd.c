@@ -6,11 +6,21 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 16:25:24 by afulmini          #+#    #+#             */
-/*   Updated: 2022/02/14 10:28:57 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/02/14 10:39:12 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
+
+bool	is_redir(char *arg)
+{
+	if (ft_strcmp(arg, ">>") == 0
+		|| ft_strcmp(arg, ">") == 0
+		|| ft_strcmp(arg, "<<") == 0
+		|| ft_strcmp(arg, "<") == 0)
+		return (TRUE);
+	return (FALSE);
+}
 
 char	*get_quotes_process(t_shell *shell, char *arg, size_t arg_len, size_t *i)
 {
@@ -29,16 +39,6 @@ char	*get_quotes_process(t_shell *shell, char *arg, size_t arg_len, size_t *i)
 	}	
 	(*i)++;
 	return (res);
-}
-
-bool	is_redir(char *arg)
-{
-	if (ft_strcmp(arg, ">>") == 0
-		|| ft_strcmp(arg, ">") == 0
-		|| ft_strcmp(arg, "<<") == 0
-		|| ft_strcmp(arg, "<") == 0)
-		return (TRUE);
-	return (FALSE);
 }
 
 char	*processed_args(t_shell *shell, char *arg)

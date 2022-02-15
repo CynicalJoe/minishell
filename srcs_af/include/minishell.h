@@ -6,7 +6,7 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 11:28:59 by afulmini          #+#    #+#             */
-/*   Updated: 2022/02/11 18:43:58 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/02/14 10:51:48 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,12 @@
 
 // struct for commands size, flags, args, etc....
 // 1 for each command
+typedef struct s_redir
+{
+	int	fd_backup;
+	int	fd_replaced;
+}	t_redir;
+
 typedef struct s_cmd
 {
 	size_t			index;			// index to move in command
@@ -62,6 +68,8 @@ typedef struct s_cmd
 	// int				in_out;			// use for redirection
 	pid_t			pid;
 	int				pipe[2];
+	t_redir			in;
+	t_redir			out;
 }	t_cmd;
 
 

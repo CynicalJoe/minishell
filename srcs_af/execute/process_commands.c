@@ -6,7 +6,7 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 09:34:39 by afulmini          #+#    #+#             */
-/*   Updated: 2022/02/14 10:28:53 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/02/14 11:18:12 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,18 +21,6 @@ void	set_in_exec(t_shell *shell, bool state)
 		signal(SIGQUIT, SIG_IGN);
 }
 
-t_cmd	*process_pipes(t_shell, *shell, t_cmd *cmd)
-{
-	t_cmd	*current;
-
-	current = cmd;
-	while (current != NULL && (current->piped || current->previous->piped))
-	{
-		if (current->piped)
-			
-	}
-}
-
 void	process_commands(t_shell *shell, t_cmd_container *cmd_container)
 {
 	t_cmd	*current;
@@ -44,14 +32,15 @@ void	process_commands(t_shell *shell, t_cmd_container *cmd_container)
 	while (current != NULL)
 	{
 		if (current->piped)
-		{
-
-		}	// pipe 
+			current = process_pipes(shell, current);
 		else
 		{
+			if (current->previous !+ NULL && current->previous->piped)
+				start_shell_redir();
 			parse_cmd(shell, current);
 			execute_cmd(shell, current);
-
+			stop_shell_redir();
+			stop_shell_redir();
 			current = current->next;
 		}
 	}
