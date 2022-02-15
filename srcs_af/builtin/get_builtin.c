@@ -5,14 +5,13 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/31 16:59:10 by afulmini          #+#    #+#             */
-/*   Updated: 2022/02/06 15:54:11 by afulmini         ###   ########.fr       */
+/*   Created: 2022/02/15 21:40:09 by afulmini          #+#    #+#             */
+/*   Updated: 2022/02/15 21:40:20 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-/* The get_builtin function returns a function pointer to the corresponding to the string passed in parameter */
 void	(*get_builtin(char *builtin_str))(t_shell *shell, char **cmd)
 {
 	if (ft_strcmp(builtin_str, "cd") == 0)
