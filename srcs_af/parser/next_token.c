@@ -6,13 +6,14 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 19:20:24 by afulmini          #+#    #+#             */
-/*   Updated: 2022/02/07 15:07:20 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/02/15 21:51:50 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-char	**ft_append_str_to_str_array(char **strarray, char *str, bool free_array)
+char	**ft_append_str_to_str_array(char **strarray,
+			char *str, bool free_array)
 {
 	char	**res;
 	size_t	len;
@@ -37,15 +38,11 @@ char	**ft_append_str_to_str_array(char **strarray, char *str, bool free_array)
 	return (res);
 }
 
-// got to the next token -> meaning next arg in the cmd 
-// if token NULL return 
-// adds the token to tokens if not NULL 
 void	next_token(t_cmd_container *cmd_container)
 {
 	if (cmd_container->token == NULL)
 		return ;
 	cmd_container->tokens = ft_append_str_to_str_array(cmd_container->tokens,
 			cmd_container->token, TRUE);
-	// set token to null after passed to tokens
 	cmd_container->token = NULL;
 }

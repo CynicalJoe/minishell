@@ -6,7 +6,7 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 16:25:24 by afulmini          #+#    #+#             */
-/*   Updated: 2022/02/14 13:43:25 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/02/15 21:48:07 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,17 +31,18 @@ void	parse_cmd(t_shell *shell, t_cmd *cmd)
 	index = 0;
 	while (index < cmd->size)
 	{
-		if (is_redir(cmd->tokens[index])) // check for redirection ==> define is_redirection
+		if (is_redir(cmd->tokens[index]))
 		{
 			index++;
-			if (!dispatch_redirection(cmd, index))  // dispatch the redirection  yet to define dipastch_redirection 
+			if (!dispatch_redirection(cmd, index))
 			{
 				ft_destroy_strarray(&args);
 				return ;
 			}
 		}
 		else
-			args = ft_append_str_to_str_array(args, get_processed_arg(shell, cmd->tokens[index]), TRUE);
+			args = ft_append_str_to_str_array(args,
+					get_processed_arg(shell, cmd->tokens[index]), TRUE);
 		index++;
 	}	
 	cmd->args = args;

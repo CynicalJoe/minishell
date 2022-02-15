@@ -6,13 +6,12 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 18:59:56 by afulmini          #+#    #+#             */
-/*   Updated: 2022/02/07 14:58:26 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/02/15 21:52:11 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-// check for closed quotes in parsing line for command ==> returns if open or not
 int	quotes_closed(char *str)
 {
 	int		is_open;
@@ -37,5 +36,5 @@ int	quotes_closed(char *str)
 		}
 		index++;
 	}
-	return (!is_open);	// opposite of is_open ==> 1;
+	return (!is_open);
 }
