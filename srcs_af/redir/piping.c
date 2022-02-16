@@ -52,7 +52,7 @@ t_cmd *process_piped(t_shell *shell, t_cmd *cmd)
 		if (current->piped)
 			if (pipe(current->pipe) == -1)
 				break ;
-		current-> = fork();
+		current->pid = fork();
 		if (current->pid == -1)
 			put_error("minishell", "fork error", strerror(errno));
 		else if (current->pid == 0)

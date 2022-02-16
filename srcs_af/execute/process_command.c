@@ -6,7 +6,7 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 08:10:59 by afulmini          #+#    #+#             */
-/*   Updated: 2022/02/16 14:37:35 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/02/16 15:18:16 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	process_commands(t_shell *shell, t_cmd_container *cmd_container)
 	if (get_cmd_size(cmd_container) <= 0)
 		return ;
 	set_in_exec(shell, TRUE);
+	current = cmd_container->cmds[0];
 	while (current != NULL)
 	{
 		if (current->piped)
@@ -35,9 +36,11 @@ void	process_commands(t_shell *shell, t_cmd_container *cmd_container)
 		else
 		{
 			if (current->previous != NULL && current->previous->piped)
-				start_redir();	// redir output/inputs
+				start_redir(&current->in, STDOUT_FILENO, current->previous->pipe[0]);	// redir output/inputs
 			parse_cmd(shell, current);
 			execute_command(shell, current);
+			stop_redir(&current->in);
+			stop_redir(&current->out);
 			current = current->next;
 		}
 	}

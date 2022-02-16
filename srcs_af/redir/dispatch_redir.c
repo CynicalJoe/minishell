@@ -6,13 +6,13 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 10:09:08 by afulmini          #+#    #+#             */
-/*   Updated: 2022/02/16 14:53:45 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/02/16 15:18:37 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-int	get_output_redirection_mode(char *redirection)
+int	get_output_redir_mode(char *redirection)
 {
 	if (ft_strcmp(redirection, ">>") == 0)
 		return (O_APPEND);

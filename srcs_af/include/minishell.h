@@ -6,7 +6,7 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 11:28:59 by afulmini          #+#    #+#             */
-/*   Updated: 2022/02/16 14:54:32 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/02/16 15:16:16 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,6 +152,8 @@ size_t	get_cmd_size(t_cmd_container *cmd_container);		// get the size of the com
 void	next_cmd(t_cmd_container *cmd_container);			// gets next command in the container struct
 
 //			src/execute/ 		==> process commands before executing them
+void	process_commands(t_shell *shell, t_cmd_container *cmd_container);
+
 char	*get_processed_arg(t_shell *shell, char *arg);
 char	*get_processed_quote(t_shell *shell, char *args, size_t len, size_t *i);
 char	*get_env_var_name(char *arg, size_t len, size_t *i);

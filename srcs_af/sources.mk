@@ -11,11 +11,15 @@ SOURCES += cmd/cmd_container.c
 SOURCES += cmd/cmds.c
 SOURCES += cmd/get_cmd_size.c
 SOURCES += cmd/next_cmd.c
+
 SOURCES += execute/check_path.c
 SOURCES += execute/process_args.c
 SOURCES += execute/executing.c
 SOURCES += execute/parse_cmd.c
 SOURCES += execute/process_utils.c
+SOURCES += execute/process_command.c
+SOURCES += redir/piping.c
+SOURCES += redir/dispatch_redir.c
 SOURCES += parser/all_cmds_filled.c
 SOURCES += parser/check_and_give_token.c 
 SOURCES += parser/next_token.c
