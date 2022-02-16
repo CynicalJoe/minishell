@@ -1,6 +1,6 @@
 #include "../include/minishell.h"
 
-void start_pipe_redir(t_cmd *cmd)
+void	start_pipe_redir(t_cmd *cmd)
 {
 	if (cmd->previous != NULL && cmd->previous->piped)
 		if (cmd->in.fd_backup == -1)
@@ -28,11 +28,13 @@ void	wait_pipes(t_shell *shell, t_cmd *cmd)
 	int		status;
 
 	current = cmd;
-	while (current != NULL && (current->piped || current->previous->piped) && current->pid != -1)
+	while (current != NULL && (current->piped
+			|| current->previous->piped) && current->pid != -1)
 	{
 		waitpid(current->pid, &status, 0);
 		current = current->next;
-		if (!(current != NULL && (current->piped || current->previous->piped) && current->pid != -1))
+		if (!(current != NULL && (current->piped
+					|| current->previous->piped) && current->pid != -1))
 		{
 			if (WIFEXITED(status))
 				shell->exit_status = WEXITSTATUS(status);
@@ -42,9 +44,9 @@ void	wait_pipes(t_shell *shell, t_cmd *cmd)
 	}
 }
 
-t_cmd *process_piped(t_shell *shell, t_cmd *cmd)
+t_cmd	*process_piped(t_shell *shell, t_cmd *cmd)
 {
-	t_cmd *current;
+	t_cmd	*current;
 
 	current = cmd;
 	while (current != NULL && (current->piped || current->previous->piped))
@@ -58,7 +60,7 @@ t_cmd *process_piped(t_shell *shell, t_cmd *cmd)
 		else if (current->pid == 0)
 		{
 			parse_cmd(shell, current);
-			start_pipe_redir(current);	//	define
+			start_pipe_redir(current);
 			execute_command(shell, current);
 			exit(EXIT_SUCCESS);
 		}

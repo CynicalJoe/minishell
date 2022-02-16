@@ -6,7 +6,7 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 08:10:59 by afulmini          #+#    #+#             */
-/*   Updated: 2022/02/16 15:18:16 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/02/16 15:32:38 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,12 @@ void	process_commands(t_shell *shell, t_cmd_container *cmd_container)
 	while (current != NULL)
 	{
 		if (current->piped)
-			current = process_piped(shell, current);	// piping process; // pipe the output of the current command to send it to the next		
+			current = process_piped(shell, current);
 		else
 		{
 			if (current->previous != NULL && current->previous->piped)
-				start_redir(&current->in, STDOUT_FILENO, current->previous->pipe[0]);	// redir output/inputs
+				start_redir(&current->in, STDOUT_FILENO,
+					current->previous->pipe[0]);
 			parse_cmd(shell, current);
 			execute_command(shell, current);
 			stop_redir(&current->in);

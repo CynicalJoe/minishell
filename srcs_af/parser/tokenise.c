@@ -6,7 +6,7 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 18:56:03 by afulmini          #+#    #+#             */
-/*   Updated: 2022/02/16 12:15:41 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/02/16 15:33:30 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,10 @@ bool	tokenise(t_cmd_container *cmd_container)
 		return (FALSE);
 	}
 	length = ft_strlen(cmd_container->line);
-	while(cmd_container->read_index < length)
+	while (cmd_container->read_index < length)
 	{
-		check_and_give_token(cmd_container, cmd_container->line[cmd_container->read_index]);
+		check_and_give_token(cmd_container,
+			cmd_container->line[cmd_container->read_index]);
 		cmd_container->read_index++;
 	}
 	next_token(cmd_container);
