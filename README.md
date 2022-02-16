@@ -16,4 +16,8 @@ for the non-builtin functions, we can simply reuse pipex as a base to execute th
 
 need struct for the redir fds and back up 
 each command has its own struct and they are connected through a linked list. Each command is linked to a t_redir struct for the fds.
+each redir struct has 2 element: backup fd and new replaced fd.ß
 each command has its own pipe[2] array to conserve the fds.
+
+Piping reworked for the structs and consistency through the different levels of the executable.
+Need to work on redirections for files.
