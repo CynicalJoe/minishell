@@ -6,7 +6,7 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 11:28:59 by afulmini          #+#    #+#             */
-/*   Updated: 2022/02/16 12:14:30 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/02/16 12:18:58 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -183,30 +183,6 @@ void	my_export(t_shell *shell, char **cmd);
 // utils
 int	ft_contains_char(char *str, char c);
 ssize_t	ft_find_char(char *s, char c);
-
-// backup
-bool	dispatch_redirection(t_cmd *cmd, size_t arg_index);
-bool	start_file_redirection(t_redir *shell_redir, char *file, int mode, int to_replace);
-
-void	start_shell_redirection(t_redir *shell_redir, int to_replace, int replacement);
-
-void	stop_shell_redirection(t_redir *shell_redir);
-
-int		get_output_redirection_mode(char *redirection);
-void	read_until_keyword_behavior(char *keyword, int file_fd);
-bool	read_until_keyword(char *keyword);
-void	process_commands(t_shell *shell, t_cmd_container *cmd_container);
-void	set_in_exec(t_shell *shell, bool state);
-
-t_cmd	*process_piped(t_shell *shell, t_cmd *cmd);
-void	start_piped_redirections(t_cmd *cmd);
-void	wait_piped(t_shell *shell, t_cmd *cmd);
-void	close_pipe(t_cmd *cmd);
-char	*get_processed_quote(t_shell *shell, char *arg, size_t arg_len, size_t *i);
-char	*get_processed_arg(t_shell *shell, char *arg);
-char	*append_env_var_to_str(t_shell *shell, char *str, char *key);
-
-
 
 
 
