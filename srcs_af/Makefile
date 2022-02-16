@@ -1,5 +1,23 @@
 NAME			=	minishell
 
+GREEN			=	"\033[32m"
+L_GREEN			=	"\033[1;32m"
+YELLOW			=	"\033[33m"
+RED				=	"\033[31m"
+L_RED			=	"\033[1;31m"
+BLUE			=	"\033[34m"
+MUTED			=	"\033[130m"
+RESET			=	"\033[0m"
+BOLD			=	"\033[1m"
+L_PUPLE			=	"\033[1;35m"
+UP				=	"\033[A"
+DOWN			=	"\033[B"
+RIGHT			=	"\033[C"
+LEFT			=	"\033[D"
+CUT				=	"\033[K"
+SAVE			=	"\033[s"
+RESTORE			=	"\033[u"
+
 GCC				=	gcc
 RM				=	rm -rf
 CFLAGS			=	-Wall -Wextra -Werror
@@ -17,14 +35,18 @@ BREW_INCLUDES_PATH	=	$(BREW_PATH)/readline/include
 all: $(NAME)
 
 %.o:	%.c $(INCLUDES)
-	$(GCC) $(CFLAGS) -I $(INCLUDES) -I $(BREW_INCLUDES_PATH) \
+	@$(GCC) $(CFLAGS) -I $(INCLUDES) -I $(BREW_INCLUDES_PATH) \
 	-D READLINE_PATH=\"$(BREW_INCLUDES_PATH)/readline/readline.h\" \
 	-D HISTORY_PATH=\"$(BREW_INCLUDES_PATH)/readline/history.h\" \
 	-c $< -o $@
+	@echo $(SAVE)$(CUT)$(BOLD)$(L_GREEN) Compiling with $(CFLAGS)...$(RESET)
+	@echo $(CUT) $(GREEN)[$^] to [$@] $(RESET)
+	@printf $(UP)$(UP)
 
 $(NAME): $(LIBFT_PATH)/libft.a $(INCLUDES) $(OBJS)
-	$(GCC) $(CFLAGS) $(LIBFT_PATH)/libft.a \
+	@$(GCC) $(CFLAGS) $(LIBFT_PATH)/libft.a \
 	-L $(BREW_PATH)/readline/lib -lreadline -I $(INCLUDES) -I $(BREW_INCLUDES_PATH) $(OBJS) -o $(NAME)
+	@echo $(BOLD)$(L_PUPLE) ✨$@ linked!!📚$(RESET)
 
 $(LIBFT_PATH)/libft.a:
 	$(MAKE) -C $(LIBFT_PATH)

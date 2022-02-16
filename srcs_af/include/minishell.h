@@ -6,7 +6,7 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 11:28:59 by afulmini          #+#    #+#             */
-/*   Updated: 2022/02/16 16:38:50 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/02/16 17:26:51 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,7 +166,6 @@ void	stop_redir(t_redir *shell_redir);
 
 //			src/redir/piping.c
 t_cmd	*process_piped(t_shell *shell, t_cmd *cmd);
-
 
 //			src/builtin/
 // check builtin function list 

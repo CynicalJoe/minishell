@@ -6,13 +6,32 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 08:45:31 by afulmini          #+#    #+#             */
-/*   Updated: 2022/02/16 15:55:19 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/02/16 17:12:24 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
+bool	check_flag(char *cmd, int index, bool print_nl)
+{
+	bool	new_line;
+	int		count;
 
+	count = index;
+	new_line = print_nl;
+	while (cmd[count] != '\0')
+	{
+		if (cmd[count] == 'n')
+			new_line = FALSE;
+		if (cmd[count] != 'n')
+		{
+			new_line = TRUE;
+			break ;
+		}
+		count++;
+	}
+	return (new_line);
+}
 
 void	my_echo(t_shell *shell, char **cmd)
 {
@@ -26,17 +45,7 @@ void	my_echo(t_shell *shell, char **cmd)
 	while (cmd[index] != NULL && ft_strncmp(cmd[index], "-n", 2) == 0)
 	{
 		count = 1;
-		while (cmd[index][count] != '\0')
-		{
-			if (cmd[index][count] == 'n')
-				print_nl = FALSE;
-			if (cmd[index][count] != 'n')
-			{
-				print_nl = TRUE;
-				break ;
-			}
-			count++;
-		}
+		print_nl = check_flag(cmd[index], count, print_nl);
 		index++;
 	}
 	if (print_nl == TRUE)
