@@ -6,7 +6,7 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 11:28:59 by afulmini          #+#    #+#             */
-/*   Updated: 2022/02/14 13:58:19 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/02/16 12:14:30 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ void	ctrl_c_signal(int sig);
 //			src/parser/
 // parse & tokenize functions
 int		quotes_closed(char *str);
-int		all_cmds_filled(t_cmd_container *cmd_container);
+bool	all_cmds_filled(t_cmd_container *cmd_container);
 void	check_and_give_token(t_cmd_container *cmd_container, char c);
 void	tokenise_pipe(t_cmd_container *cmd_container);
 void	tokenise_quote(t_cmd_container *cmd_container, char quote);

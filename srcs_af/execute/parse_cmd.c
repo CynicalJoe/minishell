@@ -6,7 +6,7 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 16:25:24 by afulmini          #+#    #+#             */
-/*   Updated: 2022/02/15 21:48:07 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/02/16 12:17:26 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	parse_cmd(t_shell *shell, t_cmd *cmd)
 		if (is_redir(cmd->tokens[index]))
 		{
 			index++;
-			if (!dispatch_redirection(cmd, index))
+			if (!dispatch_redirection(cmd, index))	// prototype -> dispatch_redir(t_cmd *cmd, size_t arg_i)
 			{
 				ft_destroy_strarray(&args);
 				return ;

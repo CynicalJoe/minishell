@@ -6,7 +6,7 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 11:24:06 by afulmini          #+#    #+#             */
-/*   Updated: 2022/02/07 14:57:20 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/02/16 12:13:39 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ size_t	get_env_len(t_shell *shell)
 	return (ft_strarray_length(shell->env));
 }
 
-// get index of the env variable we want
 ssize_t	get_env_index(t_shell *shell, char *key)
 {
 	char	*new_key;
@@ -36,7 +35,6 @@ ssize_t	get_env_index(t_shell *shell, char *key)
 	return (line_index);
 }
 
-// get the env variable name your key == key value to look for (eg. PATH, PWD, etc);
 char	*get_env_var(t_shell *shell, char *key)
 {
 	ssize_t	env_index;
@@ -51,7 +49,6 @@ char	*get_env_var(t_shell *shell, char *key)
 	return (ft_strdup(&shell->env[env_index][ft_strlen(key) + 1]));
 }
 
-// get the env variable and set the shell_env var for the shell struct
 void	set_env(t_shell	*shell, char *key, char *value, bool free_val)
 {
 	ssize_t	env_index;

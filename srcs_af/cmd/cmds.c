@@ -6,15 +6,13 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 10:17:32 by afulmini          #+#    #+#             */
-/*   Updated: 2022/02/14 14:03:30 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/02/16 12:13:19 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-// create command_struct to use for our exec and redir
-// create each command with its cmd as cmd->*tokens[0] and args as cmd->*tokens[n>0] ( only | and ; are command seperators )
-t_cmd	*create_cmd(size_t i, char **args)	// **args are all the tokens to send to the command struct
+t_cmd	*create_cmd(size_t i, char **args)
 {
 	t_cmd	*cmd;
 
@@ -35,7 +33,6 @@ t_cmd	*create_cmd(size_t i, char **args)	// **args are all the tokens to send to
 	return (cmd);
 }
 
-// free t_cmd and elems
 void	*destroy_cmd(t_cmd *cmd)
 {
 	if (cmd != NULL)

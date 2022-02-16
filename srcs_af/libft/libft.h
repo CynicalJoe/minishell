@@ -6,7 +6,7 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/03 11:11:45 by afulmini          #+#    #+#             */
-/*   Updated: 2022/02/08 13:09:27 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/02/16 12:15:01 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,6 @@ char		*ft_ulltoa_ibase(unsigned long long number, int ibase,
 char		*fill_res(unsigned long long number, int ibase, char *res, int len);
 char		**ft_copy_strarray(char **str_array);
 char		**ft_sort_strarray(char **strarray);
-
 
 /*
 ** To handle List

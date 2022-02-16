@@ -6,7 +6,7 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 18:59:30 by afulmini          #+#    #+#             */
-/*   Updated: 2022/02/08 11:58:06 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/02/16 12:05:38 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 // check is commands are filled
 // check if we have empty tokens if yes return error
-int	all_cmds_filled(t_cmd_container *cmd_container)
+bool	all_cmds_filled(t_cmd_container *cmd_container)
 {
 	size_t	cmd_idx;
 
@@ -23,10 +23,10 @@ int	all_cmds_filled(t_cmd_container *cmd_container)
 	{
 		if (cmd_container->cmds[cmd_idx]->tokens == NULL)
 		{
-			is_error(NULL, NULL, "found empty command.", EXIT_FAILURE);
-			return (0);
+			put_error("minishell", "error", "empty command found");
+			return (FALSE);
 		}
 		cmd_idx++;
 	}
-	return (1);
+	return (TRUE);
 }

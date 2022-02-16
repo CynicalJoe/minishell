@@ -6,7 +6,7 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 19:18:36 by afulmini          #+#    #+#             */
-/*   Updated: 2022/02/05 18:13:34 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/02/16 12:15:14 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	tokenise_quote(t_cmd_container *cmd_container, char quote)
 	while (current_char && current_char != quote)
 	{
 		cmd_container->token = ft_append_char_to_str(cmd_container->token,
-					current_char);
+				current_char);
 		cmd_container->read_index++;
 		current_char = cmd_container->line[cmd_container->read_index];
 	}
