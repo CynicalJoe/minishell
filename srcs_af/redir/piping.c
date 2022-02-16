@@ -39,7 +39,7 @@ void	wait_pipes(t_shell *shell, t_cmd *cmd)
 			if (WIFEXITED(status))
 				shell->exit_status = WEXITSTATUS(status);
 			else if (WIFSIGNALED(status))
-				shell->exit_status = 1238 + WTERMSIG(status);
+				shell->exit_status = 128 + WTERMSIG(status);
 		}
 	}
 }

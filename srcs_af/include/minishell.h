@@ -6,27 +6,17 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 11:28:59 by afulmini          #+#    #+#             */
-/*   Updated: 2022/02/16 15:16:16 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/02/16 15:51:02 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
-# define WHITE	"\033[0m"
-# define RED	"\033[0;31m"
-# define BRED	"\033[1;31m"
-# define GREEN	"\033[0;32m"
-# define BGREEN	"\033[1;32m"
-# define BLUE	"\033[0;34m"
-# define BBLUE	"\033[1;34m"
-# define CYAN	"\033[0;36m"
-# define BCYAN	"\033[1;36m"
 # define FAILURE -1
 # define TRUE 1
 # define SUCCESS 0
 # define FALSE 0
-
 
 # include <unistd.h>
 # include <string.h>
@@ -44,8 +34,8 @@
 # include<readline/history.h>
 
 # include "../libft/libft.h"
-// # include "../../inc_af/minishell.h"
 
+// struct to redirect output/intput ?? 
 typedef struct s_redir
 {
 	int	fd_backup;
@@ -94,8 +84,6 @@ typedef struct s_shell
 	bool			in_exec;		// use int instead of bool thus TRUE == 1 & FALSE == 0;
 	int				level;			// update the shell level we are in --> each call of minishell += 1 level
 }	t_shell;
-
-// struct to redirect output/intput ?? 
 
 // Global ??
 //		STRUCTS

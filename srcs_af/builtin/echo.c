@@ -6,11 +6,13 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 08:45:31 by afulmini          #+#    #+#             */
-/*   Updated: 2022/02/15 21:38:02 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/02/16 15:55:19 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
+
+
 
 void	my_echo(t_shell *shell, char **cmd)
 {
