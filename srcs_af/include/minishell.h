@@ -6,7 +6,7 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 11:28:59 by afulmini          #+#    #+#             */
-/*   Updated: 2022/02/16 15:51:02 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/02/16 16:38:50 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,7 @@ typedef struct s_cmd
 	struct s_cmd	*previous;		// link between the different cmds structs
 	struct s_cmd	*next;			// link between the different cmds structs
 	// piped flag defines the link to the next command
-	int				piped;			// use int? or bool? TRUE or FALSE or 0 1 2
-	// int				in_out;			// use for redirection
+	bool			piped;			// use int? or bool? TRUE or FALSE or 0 1 2
 	pid_t			pid;
 	int				pipe[2];		// apparently not necessary
 	t_redir			out;
