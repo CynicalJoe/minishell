@@ -12,10 +12,8 @@ SOURCES += cmd/cmds.c
 SOURCES += cmd/get_cmd_size.c
 SOURCES += cmd/next_cmd.c
 SOURCES += execute/check_path.c
-
-#SOURCES += execute/execute_command.c
-#SOURCES += execute/execute_program.c
-
+SOURCES += execute/process_args.c
+SOURCES += execute/executing.c
 SOURCES += execute/parse_cmd.c
 SOURCES += execute/process_utils.c
 SOURCES += parser/all_cmds_filled.c
