@@ -11,7 +11,7 @@ char	*get_processed_quotes(t_shell *shell, char *arg, size_t len, size_t *i)
 	while (*i < len && arg[*i] != quote)
 	{
 		if (arg[*i] == '$' && quote == '\"' && (ft_isalnum(arg[*i + 1]) || arg[*i + 1] == '?'))
-			res = ft_append_env_var_to_str(shell, res, get_env_var_name(arg, len, *i));
+			res = ft_append_env_var_to_str(shell, res, get_env_var_name(arg, len, i));
 		if (arg[*i] != quote)
 			res = ft_append_char_to_str(res, arg[*i]);
 		(*i)++;

@@ -6,13 +6,13 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 13:01:25 by afulmini          #+#    #+#             */
-/*   Updated: 2022/02/15 21:41:52 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/02/16 14:21:39 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-char	*ft_append_env_to_str(t_shell *shell, char *str, char *key)
+char	*ft_append_env_var_to_str(t_shell *shell, char *str, char *key)
 {
 	char	*res;
 
