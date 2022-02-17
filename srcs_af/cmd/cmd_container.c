@@ -6,7 +6,7 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 10:11:15 by afulmini          #+#    #+#             */
-/*   Updated: 2022/02/08 11:58:06 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/02/17 14:35:25 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,19 +46,3 @@ void	*destroy_cmd_container(t_cmd_container *cmd_container)
 	}
 	return (NULL);
 }
-
-/* // optional and best used for testing
-void	display_cmd_container(t_cmd_container *cmd_container)
-{
-	t_cmd	*current;
-
-	if (cmd_container->cmds == NULL)
-		return ;
-	current = cmd_container->cmds[0];
-	while (current != NULL)
-	{
-		display_cmd(current);
-		current = current->next;
-	}
-}
- */

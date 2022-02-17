@@ -6,7 +6,7 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 11:28:59 by afulmini          #+#    #+#             */
-/*   Updated: 2022/02/17 09:01:01 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/02/17 12:59:35 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@
 
 # include "../libft/libft.h"
 
-// struct to redirect output/intput ?? 
+// struct to redirect output/intput 
 typedef struct s_redir
 {
 	int	fd_backup;
