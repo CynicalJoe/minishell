@@ -46,7 +46,7 @@ $(LIBFT_PATH)/libft.a:
 $(NAME)	: $(LIBFT_PATH)/libft.a $(INCLUDES) $(OBJS)
 		@$(GCC) $(CFLAGS) $(LIBFT_PATH)/libft.a \
 		-L $(BREW_PATH)/readline/lib -lreadline -I $(INCLUDES) -I $(BREW_INCLUDES_PATH) $(OBJS) -o $(NAME)
-		@echo $(BOLD)$(L_PUPLE) ✨$@ linked!! $(RESET)
+		@echo $(BOLD)$(L_PUPLE) ✨$@ created!! $(RESET)
 
 #  -lreadline -L /usr/local/opt/readline/lib -I /usr/local/opt/readline/include
 #	Clean	
