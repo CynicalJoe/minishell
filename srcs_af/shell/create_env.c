@@ -6,7 +6,7 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 09:21:12 by afulmini          #+#    #+#             */
-/*   Updated: 2022/02/08 13:15:05 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/02/17 08:52:17 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ char	**create_env(char **default_env)
 	line_index = 0;
 	while (default_env[line_index] != NULL)
 	{
-		new_env[line_index] = ft_strdup(default_env[line_index]);
+		if (default_env[line_index])
+			new_env[line_index] = ft_strdup(default_env[line_index]);
 		line_index++;
 	}
 	new_env[line_index] = NULL;

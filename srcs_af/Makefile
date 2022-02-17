@@ -2,11 +2,8 @@ NAME			=	minishell
 
 GREEN			=	"\033[32m"
 L_GREEN			=	"\033[1;32m"
-YELLOW			=	"\033[33m"
 RED				=	"\033[31m"
 L_RED			=	"\033[1;31m"
-BLUE			=	"\033[34m"
-MUTED			=	"\033[130m"
 RESET			=	"\033[0m"
 BOLD			=	"\033[1m"
 L_PUPLE			=	"\033[1;35m"
@@ -32,40 +29,40 @@ OBJS 				=	$(SOURCES:.c=.o)
 BREW_PATH			=	/usr/local/opt
 BREW_INCLUDES_PATH	=	$(BREW_PATH)/readline/include
 
-all: $(NAME)
-
-%.o:	%.c $(INCLUDES)
-	@$(GCC) $(CFLAGS) -I $(INCLUDES) -I $(BREW_INCLUDES_PATH) \
-	-D READLINE_PATH=\"$(BREW_INCLUDES_PATH)/readline/readline.h\" \
-	-D HISTORY_PATH=\"$(BREW_INCLUDES_PATH)/readline/history.h\" \
-	-c $< -o $@
-	@echo $(SAVE)$(CUT)$(BOLD)$(L_GREEN) Compiling with $(CFLAGS)...$(RESET)
-	@echo $(CUT) $(GREEN)[$^] to [$@] $(RESET)
-	@printf $(UP)$(UP)
-
-$(NAME): $(LIBFT_PATH)/libft.a $(INCLUDES) $(OBJS)
-	@$(GCC) $(CFLAGS) $(LIBFT_PATH)/libft.a \
-	-L $(BREW_PATH)/readline/lib -lreadline -I $(INCLUDES) -I $(BREW_INCLUDES_PATH) $(OBJS) -o $(NAME)
-	@echo $(BOLD)$(L_PUPLE) ✨$@ linked!!📚$(RESET)
+all		: $(NAME)
 
 $(LIBFT_PATH)/libft.a:
 	$(MAKE) -C $(LIBFT_PATH)
 
+%.o		: %.c $(INCLUDES)
+		@$(GCC) $(CFLAGS) -I $(INCLUDES) -I $(BREW_INCLUDES_PATH) \
+		-D READLINE_PATH=\"$(BREW_INCLUDES_PATH)/readline/readline.h\" \
+		-D HISTORY_PATH=\"$(BREW_INCLUDES_PATH)/readline/history.h\" \
+		-c $< -o $@
+		@echo $(SAVE)$(CUT)$(BOLD)$(L_GREEN) Compiling with $(CFLAGS)...$(RESET)
+		@echo $(CUT) $(GREEN)[$^] to [$@] $(RESET)
+		@printf $(UP)$(UP)
+
+$(NAME)	: $(LIBFT_PATH)/libft.a $(INCLUDES) $(OBJS)
+		@$(GCC) $(CFLAGS) $(LIBFT_PATH)/libft.a \
+		-L $(BREW_PATH)/readline/lib -lreadline -I $(INCLUDES) -I $(BREW_INCLUDES_PATH) $(OBJS) -o $(NAME)
+		@echo $(BOLD)$(L_PUPLE) ✨$@ linked!! $(RESET)
+
 #  -lreadline -L /usr/local/opt/readline/lib -I /usr/local/opt/readline/include
 #	Clean	
-clean:
-	$(MAKE) -C $(LIBFT_PATH) clean
-	@$(RM) $(OBJS)
-	@printf "$(NAME) Cleaning all .o in project and libraries.\n"
+clean	:
+		$(MAKE) -C $(LIBFT_PATH) clean
+		@$(RM) $(OBJS)
+		@echo $(L_RED) Cleaning all .o in project and libraries. $(RESET)
 
 #	Full Clean
-fclean: clean
-	$(MAKE) -C $(LIBFT_PATH) fclean
-	@$(RM) $(NAME)
-	@printf "$(NAME) Cleaning compiled programs $(NAME).\n"
+fclean	: clean
+		$(MAKE) -C $(LIBFT_PATH) fclean
+		@$(RM) $(NAME)
+		@echo $(L_RED) Cleaning compiled program $(NAME). $(RESET)
 
 #	Recompile
-re:		fclean all
+re		: fclean all
 
 .PHONY:	all clean fclean re
 

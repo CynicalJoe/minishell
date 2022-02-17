@@ -6,7 +6,7 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 16:35:11 by afulmini          #+#    #+#             */
-/*   Updated: 2022/02/16 15:36:26 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/02/16 18:13:15 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	next_cmd(t_cmd_container *cmd_container)
 {
 	size_t	size;
 	t_cmd	**new_cmds;
-	
+
 	size = get_cmd_size(cmd_container);
 	new_cmds = realloc_cmds(cmd_container);
 	new_cmds[size] = create_cmd(size, cmd_container->tokens);

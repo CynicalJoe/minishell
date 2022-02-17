@@ -6,7 +6,7 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 11:28:59 by afulmini          #+#    #+#             */
-/*   Updated: 2022/02/16 17:26:51 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/02/17 09:01:01 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,55 +46,48 @@ typedef struct s_redir
 // 1 for each command
 typedef struct s_cmd
 {
-	size_t			index;			// index to move in command
-	char			**tokens;		// what type it is	
-	char			**args;			// cmd and args for the commands to exec	
-	// cmd->args[0] == cmd
-	size_t			size;			// size of command
-	struct s_cmd	*previous;		// link between the different cmds structs
-	struct s_cmd	*next;			// link between the different cmds structs
-	// piped flag defines the link to the next command
-	bool			piped;			// use int? or bool? TRUE or FALSE or 0 1 2
+	size_t			index;
+	char			**tokens;
+	char			**args;
+	size_t			size;
+	struct s_cmd	*previous;
+	struct s_cmd	*next;
+	bool			piped;
 	pid_t			pid;
-	int				pipe[2];		// apparently not necessary
+	int				pipe[2];
 	t_redir			out;
 	t_redir			in;
 }	t_cmd;
 
-
 // struct that contains the full command --> pre executed
 typedef struct s_cmd_container
 {
-	char	*line;			// line read from the prompt
-	size_t	read_index;		// index in the container struct
-	t_cmd	**cmds;			// link to t_cmds
-	char	**tokens;		// str array of the tokens extracted from the line inputed
-	char	*token;			// each part that is tokenised (string with cmd and args)
+	char	*line;		
+	size_t	read_index;	
+	t_cmd	**cmds;		
+	char	**tokens;	
+	char	*token;		
 }	t_cmd_container;
-
 
 // struct of shell ==> if used as global is it justifiable?
 typedef struct s_shell
 {
-	char			**env;			// get the env variables to use
-	char			*prompt;		// prompt for user to input commands
-	t_cmd_container	cmd_container;	// connect to container struct
-	int				exit_status;	// exit status --> make it a global variable?
-	bool			in_exec;		// use int instead of bool thus TRUE == 1 & FALSE == 0;
-	int				level;			// update the shell level we are in --> each call of minishell += 1 level
+	char			**env;		
+	char			*prompt;
+	t_cmd_container	cmd_container;
+	int				exit_status;
+	bool			in_exec;
+	int				level;	
 }	t_shell;
 
-// Global ??
-//		STRUCTS
 t_shell	*g_shell;
 
-
-int	main(int ac, char **av, char **env);
+int		main(int ac, char **av, char **env);
 
 bool	put_error(char *program, char *part1, char *part2);
 
 // 			src/signals
-// check for signals interpretation depending on the level and exec you are currently in
+// check for signals interpretations
 void	ctrl_backslash_signal(int sig);
 void	ctrl_c_signal(int sig);
 
@@ -109,7 +102,8 @@ void	tokenise_redir(t_cmd_container *cmd_container, char redir);
 bool	tokenise(t_cmd_container *cmd_container);
 
 size_t	get_cmd_size(t_cmd_container *cmd_container);
-char	**ft_append_str_to_str_array(char **strarray, char *str, bool free_array);
+char	**ft_append_str_to_str_array(char **strarray, char *str,
+			bool free_array);
 void	next_token(t_cmd_container *cmd_container);
 t_cmd	**realloc_cmds(t_cmd_container *cmd_container);
 
@@ -117,7 +111,8 @@ t_cmd	**realloc_cmds(t_cmd_container *cmd_container);
 // shell creator & destroyer
 char	**create_env(char **default_env);
 void	*destroy_shell(t_shell *shell);
-t_shell create_shell(char **env);
+t_shell	create_shell(char **env);
+t_shell	update_level(t_shell shell);
 void	update_prompt(t_shell *shell);
 void	exit_shell(t_shell *shell, char*message, int exit_code);
 
@@ -135,8 +130,8 @@ void	*destroy_cmd_container(t_cmd_container *cmd_container);
 
 t_cmd	*create_cmd(size_t i, char **args);
 void	*destroy_cmd(t_cmd *cmd);
-size_t	get_cmd_size(t_cmd_container *cmd_container);		// get the size of the commands in the container
-void	next_cmd(t_cmd_container *cmd_container);			// gets next command in the container struct
+size_t	get_cmd_size(t_cmd_container *cmd_container);
+void	next_cmd(t_cmd_container *cmd_container);
 
 //			src/execute/ 		==> process commands before executing them
 void	process_commands(t_shell *shell, t_cmd_container *cmd_container);
@@ -145,7 +140,6 @@ char	*get_processed_arg(t_shell *shell, char *arg);
 char	*get_processed_quote(t_shell *shell, char *args, size_t len, size_t *i);
 char	*get_env_var_name(char *arg, size_t len, size_t *i);
 char	*ft_append_env_var_to_str(t_shell *shell, char *str, char *key);
-
 
 //			src/execute/
 void	parse_cmd(t_shell *shell, t_cmd *cmd);
@@ -157,9 +151,10 @@ char	*build_path(char *path, char *program);
 void	execute_command(t_shell *shell, t_cmd *cmd);
 void	execute_program(t_shell *shell, char *path, t_cmd *cmd);
 
-
 //			src/redir/dispatch_redir.c
 bool	dispatch_redir(t_cmd *cmd, size_t arg_i);
+bool	read_to_keyword(char *keyword);
+void	catch_keyword(char *keyword, int file_fd);
 bool	file_redir(t_redir *shell_redir, char *file, int mode, int to_replace);
 void	start_redir(t_redir *shell_redir, int to_replace, int replacement);
 void	stop_redir(t_redir *shell_redir);
@@ -179,15 +174,12 @@ void	my_unset(t_shell *shell, char **cmd);
 void	my_export(t_shell *shell, char **cmd);
 
 // utils
-int	ft_contains_char(char *str, char c);
+int		ft_contains_char(char *str, char c);
 ssize_t	ft_find_char(char *s, char c);
-
-
 
 // TESTING
 void	display_env_var(t_shell *shell);
 void	display_cmd(t_cmd *cmd);
 void	display_cmd_container(t_cmd_container *cmd_container);
-
 
 #endif
