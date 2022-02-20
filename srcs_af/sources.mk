@@ -17,12 +17,9 @@ SOURCES += execute/executing.c
 SOURCES += execute/parse_cmd.c
 SOURCES += execute/process_utils.c
 SOURCES += execute/process_command.c
-
 SOURCES += redir/start_stop_redir.c 
 SOURCES += redir/piping.c
 SOURCES += redir/dispatch_redir.c
-
-
 SOURCES += parser/all_cmds_filled.c
 SOURCES += parser/check_and_give_token.c 
 SOURCES += parser/next_token.c
@@ -41,4 +38,3 @@ SOURCES += shell/set_env.c
 SOURCES += signals/signals.c
 SOURCES += main.c 
 SOURCES += error.c
-

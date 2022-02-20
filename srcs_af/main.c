@@ -6,7 +6,7 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 12:07:47 by afulmini          #+#    #+#             */
-/*   Updated: 2022/02/17 15:53:13 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/02/19 16:36:33 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	main(int ac, char **av, char **env)
 	{
 		set_line(cmd_container, readline(shell.prompt));
 		if (cmd_container->line == NULL)
-			exit_shell(&shell, "\033[0;31m Bye :) \033[0m", 0);
+			exit_shell(&shell, "Goodbye :)", 0);
 		if (ft_strlen(cmd_container->line) > 0)
 		{
 			add_history(cmd_container->line);
