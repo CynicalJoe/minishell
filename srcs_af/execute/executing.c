@@ -6,7 +6,7 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 13:18:01 by afulmini          #+#    #+#             */
-/*   Updated: 2022/02/17 13:18:03 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/02/24 12:01:10 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,9 @@ void	execute_program(t_shell *shell, char *path, t_cmd *cmd)
 		shell->exit_status = 127;
 		return ;
 	}
+	if (ft_strcmp(cmd->args[0], "./") == 0
+		|| ft_strcmp(cmd->args[0], "../") == 0)
+		return ;
 	if (cmd->pid == -1)
 		cmd->pid = fork();
 	if (cmd->pid == -1)
@@ -63,7 +66,7 @@ void	execute_command(t_shell *shell, t_cmd *cmd)
 		get_builtin(program)(shell, cmd->args);
 	else if (ft_contains_char(program, '/'))
 	{
-		if (check_if_exist(NULL, program))
+		if (check_if_exist(NULL, program) != FALSE)
 			execute_program(shell, program, cmd);
 		else
 			put_error("minishell", "no such file or directory.", cmd->args[0]);

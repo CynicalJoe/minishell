@@ -6,7 +6,7 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 11:28:59 by afulmini          #+#    #+#             */
-/*   Updated: 2022/02/19 16:46:07 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/02/24 12:46:05 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ typedef struct s_redir
 {
 	int	fd_backup;
 	int	fd_replaced;
+	char	*temp_file;
 }	t_redir;
 
 // struct for commands size, flags, args, etc....
@@ -158,6 +159,9 @@ void	catch_keyword(char *keyword, int file_fd);
 bool	file_redir(t_redir *shell_redir, char *file, int mode, int to_replace);
 void	start_redir(t_redir *shell_redir, int to_replace, int replacement);
 void	stop_redir(t_redir *shell_redir);
+
+
+int double_redir(t_redir fds, char *del);
 
 //			src/redir/piping.c
 t_cmd	*process_piped(t_shell *shell, t_cmd *cmd);

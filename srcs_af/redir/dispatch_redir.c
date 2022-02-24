@@ -6,7 +6,7 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 10:09:08 by afulmini          #+#    #+#             */
-/*   Updated: 2022/02/19 16:41:37 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/02/24 12:45:33 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,10 +79,12 @@ bool	dispatch_redir(t_cmd *cmd, size_t arg_i)
 				STDOUT_FILENO));
 	else if (ft_strcmp(cmd->tokens[arg_i - 1], "<<") == 0)
 	{
-		if (!read_to_keyword(cmd->tokens[arg_i]))
-			return (FALSE);
+		if (double_redir(cmd->in, cmd->tokens[arg_i]) == 0)
+			return (TRUE);
+		/* if (!read_to_keyword(cmd->tokens[arg_i]))
+			return (FALSE); */
 		// "filename" buffer created --> check for a rename process
-		return (file_redir(&cmd->in, "filename", O_RDONLY, STDIN_FILENO));	//  leaves trailing file in the working directory
+		//return (file_redir(&cmd->in, "filename", O_RDONLY, STDIN_FILENO));	//  leaves trailing file in the working directory
 	}
 	else if (ft_strcmp(cmd->tokens[arg_i - 1], "<") == 0)
 		return (file_redir(&cmd->in, cmd->tokens[arg_i], O_RDONLY, STDIN_FILENO));
