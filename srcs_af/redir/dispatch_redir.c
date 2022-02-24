@@ -6,11 +6,32 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 10:09:08 by afulmini          #+#    #+#             */
-/*   Updated: 2022/02/24 12:45:33 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/02/24 13:47:57 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
+
+char	*temp_file_gen(void)
+{
+	int i;
+	char *name;
+
+	i = 0;
+	while(i <= INT_MAX)
+	{
+		name = ft_itoa(i);
+		if (!name)
+			return (NULL);
+		if (access(name,F_OK) != 0)
+			break;
+		free(name);
+		if (i == INT_MAX)
+			return (NULL);
+		i++;
+	}
+	return (name);
+}
 
 // prompt to catch the keyword to 
 void	catching(char *keyword, int file_fd)
@@ -33,14 +54,14 @@ void	catching(char *keyword, int file_fd)
 }
 
 // launch process to wait for the keyword (treat it like a file?)
-bool	read_to_keyword(char *keyword)
+bool	read_to_keyword(char *keyword, t_redir fds)
 {
 	pid_t	pid;
 	int		file_fd;
 	int		status;
 
 	// generate a file for the buffer input of the double input redir <-- repris le principe 
-	file_fd = open("filename", O_WRONLY | O_CREAT | O_TRUNC, 0666);
+	file_fd = open(fds.temp_file, O_WRONLY | O_CREAT | O_TRUNC, 0666);
 	if (file_fd == -1)
 		return (put_error("minishell", "file", "cannot be opened."));
 	// create child process
@@ -79,12 +100,13 @@ bool	dispatch_redir(t_cmd *cmd, size_t arg_i)
 				STDOUT_FILENO));
 	else if (ft_strcmp(cmd->tokens[arg_i - 1], "<<") == 0)
 	{
-		if (double_redir(cmd->in, cmd->tokens[arg_i]) == 0)
-			return (TRUE);
-		/* if (!read_to_keyword(cmd->tokens[arg_i]))
-			return (FALSE); */
+		cmd->in.temp_file = temp_file_gen();
+		//if (double_redir(cmd->in, cmd->tokens[arg_i]) == 0)
+		//	return (TRUE);
+		if (!read_to_keyword(cmd->tokens[arg_i], cmd->in))
+			return (FALSE);
 		// "filename" buffer created --> check for a rename process
-		//return (file_redir(&cmd->in, "filename", O_RDONLY, STDIN_FILENO));	//  leaves trailing file in the working directory
+		return (file_redir(&cmd->in, cmd->in.temp_file, O_RDONLY, STDIN_FILENO));	//  leaves trailing file in the working directory
 	}
 	else if (ft_strcmp(cmd->tokens[arg_i - 1], "<") == 0)
 		return (file_redir(&cmd->in, cmd->tokens[arg_i], O_RDONLY, STDIN_FILENO));

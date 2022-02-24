@@ -6,7 +6,7 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 11:28:59 by afulmini          #+#    #+#             */
-/*   Updated: 2022/02/24 12:46:05 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/02/24 13:47:36 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,7 +154,7 @@ void	execute_program(t_shell *shell, char *path, t_cmd *cmd);
 
 //			src/redir/dispatch_redir.c
 bool	dispatch_redir(t_cmd *cmd, size_t arg_i);
-bool	read_to_keyword(char *keyword);
+bool	read_to_keyword(char *keyword, t_redir fds);
 void	catch_keyword(char *keyword, int file_fd);
 bool	file_redir(t_redir *shell_redir, char *file, int mode, int to_replace);
 void	start_redir(t_redir *shell_redir, int to_replace, int replacement);

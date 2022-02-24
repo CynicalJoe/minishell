@@ -6,7 +6,7 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 10:17:32 by afulmini          #+#    #+#             */
-/*   Updated: 2022/02/16 12:13:19 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/02/24 14:07:39 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ t_cmd	*create_cmd(size_t i, char **args)
 	cmd->in.fd_replaced = -1;
 	cmd->out.fd_backup = -1;
 	cmd->out.fd_replaced = -1;
+	cmd->in.temp_file = NULL;
+	cmd->out.temp_file = NULL;
 	return (cmd);
 }
 

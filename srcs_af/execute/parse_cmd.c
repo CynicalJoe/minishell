@@ -6,7 +6,7 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 16:25:24 by afulmini          #+#    #+#             */
-/*   Updated: 2022/02/17 13:21:49 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/02/24 14:07:08 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,9 @@ void	parse_cmd(t_shell *shell, t_cmd *cmd)
 		index++;
 	}	
 	cmd->args = args;
+	if (cmd->in.temp_file)
+	{
+		unlink(cmd->in.temp_file);
+		free(cmd->in.temp_file);
+	}
 }

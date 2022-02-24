@@ -6,7 +6,7 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 12:05:17 by afulmini          #+#    #+#             */
-/*   Updated: 2022/02/24 12:48:30 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/02/24 13:38:58 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int double_redir(t_redir fds, char *del)
 	fds.temp_file = temp_file_gen();
 	if (!fds.temp_file)
 		return(-1);
-	fds.fd_replaced = open(fds.temp_file, O_CREAT);
+	fds.fd_replaced = open(fds.temp_file,  O_WRONLY | O_CREAT | O_TRUNC, 0666);
 	if (read_write(fds.fd_backup, fds.fd_replaced) == -1 || read_stdin(del, fds.fd_backup) == -1)
 	{
 		close(fds.fd_replaced);
@@ -85,5 +85,7 @@ int double_redir(t_redir fds, char *del)
 			return(-2);
 		return(-1);
 	}
+	close(fds.fd_replaced);
+	fds.fd_replaced = open(fds.temp_file, O_RDONLY);
 	return (0);
 }
