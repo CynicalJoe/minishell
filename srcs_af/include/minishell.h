@@ -6,7 +6,7 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 11:28:59 by afulmini          #+#    #+#             */
-/*   Updated: 2022/02/24 13:47:36 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/02/27 07:55:26 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@
 // struct to redirect output/intput 
 typedef struct s_redir
 {
-	int	fd_backup;
-	int	fd_replaced;
+	int		fd_backup;
+	int		fd_replaced;
 	char	*temp_file;
 }	t_redir;
 
@@ -78,7 +78,7 @@ typedef struct s_shell
 	t_cmd_container	cmd_container;
 	int				exit_status;
 	bool			in_exec;
-	int				level;	
+	int				level;
 }	t_shell;
 
 t_shell	*g_shell;
@@ -153,15 +153,13 @@ void	execute_command(t_shell *shell, t_cmd *cmd);
 void	execute_program(t_shell *shell, char *path, t_cmd *cmd);
 
 //			src/redir/dispatch_redir.c
-bool	dispatch_redir(t_cmd *cmd, size_t arg_i);
-bool	read_to_keyword(char *keyword, t_redir fds);
+bool	dispatch_redir(t_shell *shell, t_cmd *cmd, size_t arg_i);
+bool	read_to_keyword(t_shell *shell, char *keyword, t_redir fds);
 void	catch_keyword(char *keyword, int file_fd);
 bool	file_redir(t_redir *shell_redir, char *file, int mode, int to_replace);
 void	start_redir(t_redir *shell_redir, int to_replace, int replacement);
 void	stop_redir(t_redir *shell_redir);
-
-
-int double_redir(t_redir fds, char *del);
+int		double_redir(t_redir fds, char *del);
 
 //			src/redir/piping.c
 t_cmd	*process_piped(t_shell *shell, t_cmd *cmd);

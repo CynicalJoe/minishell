@@ -6,7 +6,7 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 16:25:24 by afulmini          #+#    #+#             */
-/*   Updated: 2022/02/24 14:07:08 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/02/27 07:54:40 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	parse_cmd(t_shell *shell, t_cmd *cmd)
 		if (is_redir(cmd->tokens[index]))
 		{
 			index++;
-			if (!dispatch_redir(cmd, index))
+			if (!dispatch_redir(shell, cmd, index))	// --> add t_shell argument to update exit status for << redir if sigint caugth
 			{
 				ft_destroy_strarray(&args);
 				return ;

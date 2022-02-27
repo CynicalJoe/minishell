@@ -6,32 +6,11 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 12:05:17 by afulmini          #+#    #+#             */
-/*   Updated: 2022/02/24 13:38:58 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/02/25 15:53:26 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
-
-char	*temp_file_gen(void)
-{
-	int i;
-	char *name;
-
-	i = 0;
-	while(i <= INT_MAX)
-	{
-		name = ft_itoa(i);
-		if (!name)
-			return (NULL);
-		if (access(name,F_OK) != 0)
-			break;
-		free(name);
-		if (i == INT_MAX)
-			return (NULL);
-		i++;
-	}
-	return (name);
-}
 
 int	read_write(int old_fd, int new_fd)
 {
@@ -55,12 +34,12 @@ int	read_write(int old_fd, int new_fd)
 
 int read_stdin(char *del, int new_fd)
 {
-	char *read;
+	char	*read;
 
 	read = readline("$>");
 	if (!read)
 		return (-1);
-	while(ft_strncmp(del, read, ft_strlen(del)) != 0)
+	while (ft_strncmp(del, read, ft_strlen(del)) != 0)
 	{
 		write(new_fd, read, ft_strlen(read));
 		free(read);
@@ -76,16 +55,17 @@ int double_redir(t_redir fds, char *del)
 
 	fds.temp_file = temp_file_gen();
 	if (!fds.temp_file)
-		return(-1);
+		return (-1);
 	fds.fd_replaced = open(fds.temp_file,  O_WRONLY | O_CREAT | O_TRUNC, 0666);
 	if (read_write(fds.fd_backup, fds.fd_replaced) == -1 || read_stdin(del, fds.fd_backup) == -1)
 	{
 		close(fds.fd_replaced);
 		if (unlink(fds.temp_file) == -1)
-			return(-2);
-		return(-1);
+			return (-2);
+		return (-1);
 	}
 	close(fds.fd_replaced);
 	fds.fd_replaced = open(fds.temp_file, O_RDONLY);
 	return (0);
 }
+
