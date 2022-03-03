@@ -6,7 +6,7 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 17:21:48 by afulmini          #+#    #+#             */
-/*   Updated: 2022/02/24 12:05:50 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/03/01 08:26:20 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ bool	check_if_exist(char *path, char *program)
 		full_path = program;
 	else
 		full_path = build_path(path, program);
-	res = stat(full_path, &buf) == 0;	// check if norminette of scholl accepts
+	res = stat(full_path, &buf) == 0;
 	if (path != NULL)
 		free(full_path);
 	return (res);

@@ -1,26 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tokenise_redir.c                                   :+:      :+:    :+:   */
+/*   redir_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/22 19:00:38 by afulmini          #+#    #+#             */
-/*   Updated: 2022/03/02 11:40:50 by afulmini         ###   ########.fr       */
+/*   Created: 2022/03/01 10:47:24 by afulmini          #+#    #+#             */
+/*   Updated: 2022/03/02 20:16:35 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-void	tokenise_redir(t_cmd_container *cmd_container, char redir)
+int	output_redir_mode(char *redirection)
 {
-	next_token(cmd_container);
-	cmd_container->token = ft_append_char_to_str(cmd_container->token, redir);
-	if (cmd_container->line[cmd_container->read_index + 1] == redir)
+	if (ft_strcmp(redirection, ">>") == 0)
+		return (O_APPEND);
+	else if (ft_strcmp(redirection, ">") == 0)
+		return (O_TRUNC);
+	return (0);
+}
+
+char	*temp_file_gen(void)
+{
+	int		i;
+	char	*name;
+
+	i = 0;
+	while (i <= INT_MAX)
 	{
-		cmd_container->read_index++;
-		cmd_container->token = ft_append_char_to_str(cmd_container->token,
-				redir);
+		name = ft_itoa(i);
+		if (!name)
+			return (NULL);
+		if (access(name, F_OK) != 0)
+			break ;
+		free(name);
+		if (i == INT_MAX)
+			return (NULL);
+		i++;
 	}
-	next_token(cmd_container);
+	return (name);
 }

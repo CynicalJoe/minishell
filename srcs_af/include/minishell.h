@@ -6,7 +6,7 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 11:28:59 by afulmini          #+#    #+#             */
-/*   Updated: 2022/02/27 07:55:26 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/03/03 16:14:01 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@
 // struct to redirect output/intput 
 typedef struct s_redir
 {
-	int		fd_backup;
+	int		fd;
 	int		fd_replaced;
 	char	*temp_file;
 }	t_redir;
@@ -63,22 +63,23 @@ typedef struct s_cmd
 // struct that contains the full command --> pre executed
 typedef struct s_cmd_container
 {
-	char	*line;		
-	size_t	read_index;	
-	t_cmd	**cmds;		
-	char	**tokens;	
-	char	*token;		
+	char	*line;
+	size_t	read_index;
+	t_cmd	**cmds;	
+	char	**tokens;
+	char	*token;
 }	t_cmd_container;
 
 // struct of shell ==> if used as global is it justifiable?
 typedef struct s_shell
 {
-	char			**env;		
+	char			**env;
 	char			*prompt;
 	t_cmd_container	cmd_container;
 	int				exit_status;
 	bool			in_exec;
 	int				level;
+	bool			double_out;
 }	t_shell;
 
 t_shell	*g_shell;
@@ -102,6 +103,7 @@ void	tokenise_quote(t_cmd_container *cmd_container, char quote);
 void	tokenise_redir(t_cmd_container *cmd_container, char redir);
 bool	tokenise(t_cmd_container *cmd_container);
 
+size_t	get_nbr_tokens(t_cmd *cmd);
 size_t	get_cmd_size(t_cmd_container *cmd_container);
 char	**ft_append_str_to_str_array(char **strarray, char *str,
 			bool free_array);
@@ -136,6 +138,7 @@ void	next_cmd(t_cmd_container *cmd_container);
 
 //			src/execute/ 		==> process commands before executing them
 void	process_commands(t_shell *shell, t_cmd_container *cmd_container);
+void	set_in_exec(t_shell *shell, bool state);
 
 char	*get_processed_arg(t_shell *shell, char *arg);
 char	*get_processed_quote(t_shell *shell, char *args, size_t len, size_t *i);
@@ -147,22 +150,27 @@ void	parse_cmd(t_shell *shell, t_cmd *cmd);
 char	*get_program_path(t_shell *shell, char *program);
 bool	check_if_exist(char *path, char *program);
 char	*build_path(char *path, char *program);
+bool	is_redir(char *arg);
 
 //			 exec program
 void	execute_command(t_shell *shell, t_cmd *cmd);
 void	execute_program(t_shell *shell, char *path, t_cmd *cmd);
 
 //			src/redir/dispatch_redir.c
-bool	dispatch_redir(t_shell *shell, t_cmd *cmd, size_t arg_i);
+bool	dispatch_redir(t_shell *shell, t_cmd *cmd, size_t *arg_i);
 bool	read_to_keyword(t_shell *shell, char *keyword, t_redir fds);
 void	catch_keyword(char *keyword, int file_fd);
-bool	file_redir(t_redir *shell_redir, char *file, int mode, int to_replace);
-void	start_redir(t_redir *shell_redir, int to_replace, int replacement);
+bool	file_redir(t_redir *shell_redir, char *file, int mode);
+void	start_redir(t_redir *shell_redir, int replacement);
 void	stop_redir(t_redir *shell_redir);
 int		double_redir(t_redir fds, char *del);
 
 //			src/redir/piping.c
 t_cmd	*process_piped(t_shell *shell, t_cmd *cmd);
+
+//			src/redir/redir_utils.c
+char	*temp_file_gen(void);
+int		output_redir_mode(char *redirection);
 
 //			src/builtin/
 // check builtin function list 

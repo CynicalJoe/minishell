@@ -36,7 +36,8 @@ char	*get_processed_arg(t_shell *shell, char *arg)
 		if (arg[i] == '\'' || arg[i] == '\"')
 			processed = ft_append_str(processed,
 					get_processed_quotes(shell, arg, len, &i), TRUE, TRUE);
-		else if (arg[i] == '$' && (ft_isalnum(arg[i + 1]) || arg[i + 1] == '?'))
+		else if (arg[i] == '$' && (ft_isalnum(arg[i + 1])
+				|| arg[i + 1] == '?' || arg[i + 1] == '_'))
 			processed = ft_append_env_var_to_str(shell,
 					processed, get_env_var_name(arg, len, &i));
 		else

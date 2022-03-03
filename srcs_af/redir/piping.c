@@ -3,10 +3,10 @@
 void	start_pipe_redir(t_cmd *cmd)
 {
 	if (cmd->previous != NULL && cmd->previous->piped)
-		if (cmd->in.fd_backup == -1)
+		if (cmd->in.fd == -1)
 			dup2(cmd->previous->pipe[0], 0);
 	if (cmd->next != NULL && cmd->piped)
-		if (cmd->out.fd_backup == -1)
+		if (cmd->out.fd == -1)
 			dup2(cmd->pipe[1], 1);
 	if (cmd->piped)
 	{
@@ -66,6 +66,8 @@ t_cmd	*process_piped(t_shell *shell, t_cmd *cmd)
 		}
 		if (current->piped)
 			close_pipes(current);
+		if (current->piped && current->next == NULL)
+			put_error("Ambiguous", "Piping", "Behaviour not defined");
 		current = current->next;
 	}
 	wait_pipes(shell, cmd);

@@ -6,14 +6,12 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 18:59:30 by afulmini          #+#    #+#             */
-/*   Updated: 2022/02/16 12:05:38 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/03/01 11:52:30 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-// check is commands are filled
-// check if we have empty tokens if yes return error
 bool	all_cmds_filled(t_cmd_container *cmd_container)
 {
 	size_t	cmd_idx;

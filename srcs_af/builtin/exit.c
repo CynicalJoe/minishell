@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   exit.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/01 08:56:30 by afulmini          #+#    #+#             */
+/*   Updated: 2022/03/01 08:56:32 by afulmini         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/minishell.h"
 
 bool	only_numbers(char *str)
@@ -20,7 +32,7 @@ bool	only_numbers(char *str)
 
 void	exit_action(t_shell *shell, int exit_code)
 {
-	ft_putendl_fd("Goodbye:)", 1);
+	ft_putendl_fd("\033[1;32mGoodbye :) \033[0m", 1);
 	errno = exit_code;
 	exit_shell(shell, NULL, exit_code);
 }
