@@ -6,7 +6,7 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 10:09:08 by afulmini          #+#    #+#             */
-/*   Updated: 2022/03/03 16:14:23 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/03/03 20:02:05 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,14 @@ void	catching(char *keyword, int file_fd)
 	exit (0);
 }
 
-bool	read_to_keyword(t_shell *shell, char *keyword, t_redir fds)
+bool	read_to_keyword(t_shell *shell, char *keyword, t_cmd *fds)
 {
 	pid_t	pid;
 	int		file_fd;
 	int		status;
 
 	signal(SIGQUIT, SIG_IGN);
-	file_fd = open(fds.temp_file, O_WRONLY | O_CREAT | O_TRUNC, 0666);
+	file_fd = open(fds->temp_file, O_WRONLY | O_CREAT | O_TRUNC, 0666);
 	if (file_fd == -1)
 		return (put_error("minishell", "file", "cannot be opened."));
 	pid = fork();
@@ -68,10 +68,10 @@ bool	read_while_redir(t_shell *shell, t_cmd *cmd, size_t *arg_i)
 	is_redir = TRUE;
 	while (is_redir == TRUE)
 	{
-		if (!read_to_keyword(shell, cmd->tokens[*arg_i + i], cmd->in))
+		if (!read_to_keyword(shell, cmd->tokens[*arg_i + i], cmd))
 		{
-			unlink(cmd->in.temp_file);
-			free(cmd->in.temp_file);
+			unlink(cmd->temp_file);
+			free(cmd->temp_file);
 			return (FALSE);
 		}
 		*arg_i = *arg_i + 1;
@@ -92,19 +92,20 @@ bool	dispatch_redir(t_shell *shell, t_cmd *cmd, size_t *arg_i)
 	{
 		if (ft_strcmp(cmd->tokens[*arg_i - 1], ">>") == 0)
 			shell->double_out = TRUE;
-		return(file_redir(&cmd->out, cmd->tokens[*arg_i],
-			O_WRONLY | O_CREAT | output_redir_mode(cmd->tokens[*arg_i - 1])));
+		return (file_redir(cmd, cmd->tokens[*arg_i],
+				O_WRONLY | O_CREAT
+				| output_redir_mode(cmd->tokens[*arg_i - 1]), 1));
 	}
 	else if (ft_strcmp(cmd->tokens[*arg_i - 1], "<<") == 0)
 	{
-		cmd->in.temp_file = temp_file_gen();
+		cmd->temp_file = temp_file_gen();
 		if (!read_while_redir(shell, cmd, arg_i))
 			return (FALSE);
-		return (file_redir(&cmd->in, cmd->in.temp_file,
-				O_RDONLY));
+		return (file_redir(cmd, cmd->temp_file,
+				O_RDONLY, 0));
 	}
 	else if (ft_strcmp(cmd->tokens[*arg_i - 1], "<") == 0)
-		return (file_redir(&cmd->in, cmd->tokens[*arg_i],
-				O_RDONLY));
+		return (file_redir(cmd, cmd->tokens[*arg_i],
+				O_RDONLY, 0));
 	return (FALSE);
 }

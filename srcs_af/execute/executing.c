@@ -6,92 +6,62 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 13:18:01 by afulmini          #+#    #+#             */
-/*   Updated: 2022/03/03 16:28:07 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/03/03 20:41:52 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-char	*ft_str_tolower(char *s)
-{
-	size_t	i;
-
-	i = 0;
-	while (s[i])
-	{
-		s[i] = (char)ft_tolower(s[i]);
-		i++;
-	}
-	return (s);
-}
-
 void	dup_handler(t_cmd *cmd)
 {
-	
-	if (cmd->in.fd != -1)
+	if (cmd->in != -1)
 	{
-		dup2(STDIN_FILENO, cmd->in.fd); // fermer standard input pour remplacer avec le fd de source si doit
-		close(STDIN_FILENO);
+		printf(" in handler fd = %d\n", cmd->in);
+		dup2(cmd->in, STDIN_FILENO); // fermer standard input pour remplacer avec le fd de source si doit
+		//close(cmd->in);
 	}
-	if (cmd->out.fd != -1)		// pas de else if car il doit pouvoir faire les deux si nécessaire
+	if (cmd->out != -1)		// pas de else if car il doit pouvoir faire les deux si nécessaire
 	{
-		printf("hi\n");
-		dup2(STDOUT_FILENO, cmd->out.fd); // la même ici pour l'output
-		close(STDOUT_FILENO);
+		printf(" out handler fd = %d\n", cmd->out);
+		dup2(cmd->out, STDOUT_FILENO); // la même ici pour l'output
+		//close(cmd->out);
 	}
 }
 
 void	close_fd(t_cmd *cmd)
 {
-	if (cmd->in.fd != -1)
-		close(cmd->in.fd);
-	if (cmd->out.fd != -1)
-		close(cmd->out.fd);
+	if (cmd->in != -1)
+		close(cmd->in);
+	if (cmd->out != -1)
+		close(cmd->out);
 }
 
 void	execute_program(t_shell *shell, char *path, t_cmd *cmd)
 {
-	int	status;
-
-	if (path == NULL)
-	{
-		put_error("minishell", "command not found.", cmd->args[0]);
-		shell->exit_status = 127;
-		return ;
-	}
-	if (ft_strncmp(cmd->args[0], "./", 2) == 0
-		|| ft_strncmp(cmd->args[0], "../", 3) == 0)
-	{
-		put_error("minishell", "no such file or directory.", cmd->args[0]);
-		shell->exit_status = 126;
-		return ;
-	}
+	check_exec(shell, cmd, path);
+	printf("hello\n");
 	if (cmd->pid == -1)
 		cmd->pid = fork();
-	if (cmd->pid >= 0 && shell->double_out == TRUE && cmd->in.fd != -1)
+/* 	if (cmd->pid >= 0 && shell->double_out == TRUE && cmd->in != -1)
 	{	
-		dup2(cmd->in.fd, STDIN_FILENO);
-		close(cmd->in.fd);
-	}
+		dup2(cmd->in, STDIN_FILENO);
+	} */
 	if (cmd->pid == -1)
 		put_error("minishell", "fork error.", strerror(errno));
 	else if (cmd->pid > 0 && !cmd->piped)
-	{
-		waitpid(cmd->pid, &status, 0);
-		if (WIFEXITED(status))
-			shell->exit_status = WEXITSTATUS(status);
-		else if (WIFSIGNALED(status))
-			shell->exit_status = 128 + WTERMSIG(status);
-	}
+		waiting(shell, cmd);
 	else if (cmd->pid == 0)
 	{
-		printf("fd = %d\n",cmd->in.fd );
+		printf("last fd = %d\n", cmd->in);
 		dup_handler(cmd);
 		execve(path, cmd->args, shell->env);
+		
 		close_fd(cmd);
 		return ;
 	}
-	close(cmd->in.fd);
+	printf("close\n");
+	close_fd(cmd);
+	
 }
 
 void	execute_command(t_shell *shell, t_cmd *cmd)
@@ -102,8 +72,10 @@ void	execute_command(t_shell *shell, t_cmd *cmd)
 	if (cmd->args == NULL)
 		return ;
 	program = ft_str_tolower(cmd->args[0]);
+	printf("fd in exec cmd = %d\n", cmd->out);	
 	if (get_builtin(program) != NULL)
 		get_builtin(program)(shell, cmd->args);
+		
 	else if (ft_contains_char(program, '/'))
 	{
 		if (check_if_exist(NULL, program) != FALSE)

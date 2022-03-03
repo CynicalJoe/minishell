@@ -6,7 +6,7 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 08:10:59 by afulmini          #+#    #+#             */
-/*   Updated: 2022/03/03 16:13:24 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/03/03 20:07:44 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,11 @@ void	process_commands(t_shell *shell, t_cmd_container *cmd_container)
 		else
 		{
 			if (current->previous != NULL && current->previous->piped)
-				start_redir(&current->in, current->previous->pipe[0]);
+				start_redir(current, current->previous->pipe[0], 0);
 			parse_cmd(shell, current);
+			printf("fd after parse = %d\n", current->out);
 			execute_command(shell, current);
-			stop_redir(&current->in);
-			stop_redir(&current->out);
+			close_fd(current);
 			current = current->next;
 		}
 	}

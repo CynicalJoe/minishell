@@ -17,6 +17,7 @@ SOURCES += execute/executing.c
 SOURCES += execute/parse_cmd.c
 SOURCES += execute/process_utils.c
 SOURCES += execute/process_command.c
+SOURCES += execute/execute_utils.c
 
 SOURCES += redir/start_stop_redir.c 
 SOURCES += redir/piping.c

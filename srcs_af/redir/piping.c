@@ -1,12 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   piping.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/03 19:03:22 by afulmini          #+#    #+#             */
+/*   Updated: 2022/03/03 19:59:05 by afulmini         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/minishell.h"
 
 void	start_pipe_redir(t_cmd *cmd)
 {
 	if (cmd->previous != NULL && cmd->previous->piped)
-		if (cmd->in.fd == -1)
+		if (cmd->in == -1)
 			dup2(cmd->previous->pipe[0], 0);
 	if (cmd->next != NULL && cmd->piped)
-		if (cmd->out.fd == -1)
+		if (cmd->out == -1)
 			dup2(cmd->pipe[1], 1);
 	if (cmd->piped)
 	{
@@ -44,6 +56,13 @@ void	wait_pipes(t_shell *shell, t_cmd *cmd)
 	}
 }
 
+void	parse_execute_pipe(t_shell *shell, t_cmd *cmd)
+{
+	parse_cmd(shell, cmd);
+	start_pipe_redir(cmd);
+	execute_command(shell, cmd);
+}
+
 t_cmd	*process_piped(t_shell *shell, t_cmd *cmd)
 {
 	t_cmd	*current;
@@ -59,9 +78,7 @@ t_cmd	*process_piped(t_shell *shell, t_cmd *cmd)
 			put_error("minishell", "fork error", strerror(errno));
 		else if (current->pid == 0)
 		{
-			parse_cmd(shell, current);
-			start_pipe_redir(current);
-			execute_command(shell, current);
+			parse_execute_pipe(shell, current);
 			exit(EXIT_SUCCESS);
 		}
 		if (current->piped)

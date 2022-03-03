@@ -6,38 +6,35 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 18:15:15 by afulmini          #+#    #+#             */
-/*   Updated: 2022/03/03 16:28:46 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/03/03 19:58:00 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-bool	file_redir(t_redir *shell_redir, char *file, int mode)
+bool	file_redir(t_cmd *shell_redir, char *file, int mode, int redir)
 {
 	int	fd;
 
 	fd = open(file, mode, 0666);
 	if (fd == -1)
 		return (put_error("minishell", file, strerror(errno)));
-	start_redir(shell_redir, fd);
+	start_redir(shell_redir, fd, redir);
 	return (TRUE);
 }
 
-void	start_redir(t_redir *shell_redir, int replacement)
+void	start_redir(t_cmd *shell_redir, int replacement, int mode)
 {
-	printf("redir sfd = %d\n", shell_redir->fd ); 
-	if (shell_redir->fd != -1)
-		close(shell_redir->fd);
-	shell_redir->fd = replacement;
-	printf("redir after = %d\n", shell_redir->fd ); 
-}
-
-void	stop_redir(t_redir *shell_redir)
-{
-	if (shell_redir->fd == -1)
-		return ;
-	dup2(shell_redir->fd, shell_redir->fd_replaced);
-	close(shell_redir->fd);
-	shell_redir->fd = -1;
-	shell_redir->fd_replaced = -1;
+	if (mode == 0)
+	{
+		if (shell_redir->in != -1)
+			close(shell_redir->in);
+		shell_redir->in = replacement;
+	}
+	else
+	{
+		if (shell_redir->out != -1)
+			close(shell_redir->out);
+		shell_redir->out = replacement;
+	}
 }

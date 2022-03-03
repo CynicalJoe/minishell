@@ -6,7 +6,7 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 11:28:59 by afulmini          #+#    #+#             */
-/*   Updated: 2022/03/03 16:14:01 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/03/03 20:02:28 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,12 @@
 # include "../libft/libft.h"
 
 // struct to redirect output/intput 
-typedef struct s_redir
+/* typedef struct s_redir
 {
 	int		fd;
-	int		fd_replaced;
 	char	*temp_file;
 }	t_redir;
-
+ */
 // struct for commands size, flags, args, etc....
 // 1 for each command
 typedef struct s_cmd
@@ -56,8 +55,9 @@ typedef struct s_cmd
 	bool			piped;
 	pid_t			pid;
 	int				pipe[2];
-	t_redir			out;
-	t_redir			in;
+	int				out;
+	int				in;
+	char			*temp_file;
 }	t_cmd;
 
 // struct that contains the full command --> pre executed
@@ -146,6 +146,7 @@ char	*get_env_var_name(char *arg, size_t len, size_t *i);
 char	*ft_append_env_var_to_str(t_shell *shell, char *str, char *key);
 
 //			src/execute/
+void	close_fd(t_cmd *cmd);
 void	parse_cmd(t_shell *shell, t_cmd *cmd);
 char	*get_program_path(t_shell *shell, char *program);
 bool	check_if_exist(char *path, char *program);
@@ -156,14 +157,18 @@ bool	is_redir(char *arg);
 void	execute_command(t_shell *shell, t_cmd *cmd);
 void	execute_program(t_shell *shell, char *path, t_cmd *cmd);
 
+//			execute/execute_utils.c
+char	*ft_str_tolower(char *s);
+void	check_exec(t_shell *shell, t_cmd *cmd, char *path);
+void	waiting(t_shell *shell, t_cmd *cmd);
+
 //			src/redir/dispatch_redir.c
 bool	dispatch_redir(t_shell *shell, t_cmd *cmd, size_t *arg_i);
-bool	read_to_keyword(t_shell *shell, char *keyword, t_redir fds);
+//bool	read_to_keyword(t_shell *shell, char *keyword, t_cmd *fds);
 void	catch_keyword(char *keyword, int file_fd);
-bool	file_redir(t_redir *shell_redir, char *file, int mode);
-void	start_redir(t_redir *shell_redir, int replacement);
-void	stop_redir(t_redir *shell_redir);
-int		double_redir(t_redir fds, char *del);
+bool	file_redir(t_cmd *shell_redir, char *file, int mode, int redir);
+void	start_redir(t_cmd *shell_redir, int replacement, int mode);
+void	stop_redir(t_cmd *shell_redir);
 
 //			src/redir/piping.c
 t_cmd	*process_piped(t_shell *shell, t_cmd *cmd);
