@@ -6,7 +6,7 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 13:18:01 by afulmini          #+#    #+#             */
-/*   Updated: 2022/03/03 21:17:58 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/03/03 21:19:42 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ void	execute_command(t_shell *shell, t_cmd *cmd)
 	program = ft_str_tolower(cmd->args[0]);
 	if (get_builtin(program) != NULL)
 	{
+		
 		cmd->pid = fork();
 		if (cmd->pid == 0)
 		{
