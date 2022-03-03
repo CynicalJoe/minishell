@@ -6,7 +6,7 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 13:18:01 by afulmini          #+#    #+#             */
-/*   Updated: 2022/03/03 20:41:52 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/03/03 21:17:58 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,10 +72,19 @@ void	execute_command(t_shell *shell, t_cmd *cmd)
 	if (cmd->args == NULL)
 		return ;
 	program = ft_str_tolower(cmd->args[0]);
-	printf("fd in exec cmd = %d\n", cmd->out);	
 	if (get_builtin(program) != NULL)
-		get_builtin(program)(shell, cmd->args);
-		
+	{
+		cmd->pid = fork();
+		if (cmd->pid == 0)
+		{
+			dup_handler(cmd);
+			get_builtin(program)(shell, cmd->args);
+			printf("get pid = %d\n",getpid());
+			//kill(cmd->pid, SIGTERM);
+			exit(shell->exit_status);
+		}
+		wait(NULL);
+	}
 	else if (ft_contains_char(program, '/'))
 	{
 		if (check_if_exist(NULL, program) != FALSE)

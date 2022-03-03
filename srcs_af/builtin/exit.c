@@ -6,7 +6,7 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 08:56:30 by afulmini          #+#    #+#             */
-/*   Updated: 2022/03/01 08:56:32 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/03/03 21:14:37 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	my_exit(t_shell *shell, char **args)
 	size_t	exit_code;
 
 	size = ft_strarray_length(args);
-	ft_putendl_fd("exit", 2);
+	ft_putendl_fd("hey exit", 2);
 	if (size == 1)
 		exit_action(shell, 0);
 	else if (size >= 2)

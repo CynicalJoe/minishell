@@ -6,7 +6,7 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 12:15:21 by afulmini          #+#    #+#             */
-/*   Updated: 2022/02/15 15:22:47 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/03/03 20:54:54 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,3 +54,4 @@ void	my_cd(t_shell *shell, char **cmd)
 	free(old_pwd);
 	free(new_pwd);
 }
+
