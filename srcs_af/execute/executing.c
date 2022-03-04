@@ -6,7 +6,7 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 13:18:01 by afulmini          #+#    #+#             */
-/*   Updated: 2022/03/04 11:27:22 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/03/04 13:33:07 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,33 @@
 void	dup_handler(t_cmd *cmd)
 {
 	if (cmd->in != -1)
+	{
 		dup2(cmd->in, STDIN_FILENO);
+		close(cmd->in);
+	}
+	else if (cmd->previous != NULL && cmd->previous->piped)
+	{
+		dup2(cmd->previous->pipe[0], 0);
+		close(cmd->previous->pipe[1]);
+	}
 	if (cmd->out != -1)
+	{
 		dup2(cmd->out, STDOUT_FILENO);
+		close(cmd->out);
+	}
+	else if (cmd->next != NULL && cmd->piped)
+	{
+		dup2(cmd->previous->pipe[1], cmd->pipe[0]);
+		//dup2(cmd->pipe[1], 1);
+		close(cmd->pipe[0]);
+	}
 }
 
 void	close_fd(t_cmd *cmd)
 {
-	if (cmd->in != -1 && !cmd->piped)
+	if (cmd->in != -1)
 		close(cmd->in);
-	if (cmd->out != -1 && !cmd->piped)
+	if (cmd->out != -1)
 		close(cmd->out);
 }
 
@@ -81,6 +98,7 @@ void	execute_command(t_shell *shell, t_cmd *cmd)
 			{
 				dup_handler(cmd);
 				get_builtin(program)(shell, cmd->args);
+				close_fd(cmd);
 				exit(shell->exit_status);
 			}
 		}
@@ -88,6 +106,6 @@ void	execute_command(t_shell *shell, t_cmd *cmd)
 			get_builtin(program)(shell, cmd->args);
 		wait(NULL);
 	}
-	else if (get_builtin(program) == NULL)
+	else
 		not_builtin(shell, program, cmd);
 }

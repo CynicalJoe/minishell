@@ -6,7 +6,7 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 19:03:22 by afulmini          #+#    #+#             */
-/*   Updated: 2022/03/04 11:45:40 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/03/04 12:38:07 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,9 @@ void	start_pipe_redir(t_cmd *cmd)
 
 void	close_pipes(t_cmd *cmd)
 {
-	
-	if (cmd->piped && cmd->previous == NULL) // && cmd->pipe[0] > 0)
-		close(cmd->pipe[0]);
+	close(cmd->pipe[1]);
 	if (cmd->piped && cmd->next == NULL) //  && cmd->pipe[1] > 0)
-		close(cmd->pipe[1]);
+		close(cmd->pipe[0]);
 }
 
 void	wait_pipes(t_shell *shell, t_cmd *cmd)
@@ -61,7 +59,7 @@ void	wait_pipes(t_shell *shell, t_cmd *cmd)
 void	parse_execute_pipe(t_shell *shell, t_cmd *cmd)
 {
 	parse_cmd(shell, cmd);
-	start_pipe_redir(cmd);
+	//start_pipe_redir(cmd);
 	execute_command(shell, cmd);
 }
 
@@ -69,21 +67,13 @@ t_cmd	*process_piped(t_shell *shell, t_cmd *cmd)
 {
 	t_cmd	*current;
 
-	printf("closinf pipe\n");
 	current = cmd;
 	while (current != NULL && (current->piped || current->previous->piped))
 	{
 		if (current->piped)
 			if (pipe(current->pipe) == -1)
 				break ;
-		current->pid = fork();
-		if (current->pid == -1)
-			put_error("minishell", "fork error", strerror(errno));
-		else if (current->pid == 0)
-		{
-			parse_execute_pipe(shell, current);
-			exit(EXIT_SUCCESS);
-		}
+		parse_execute_pipe(shell, current);
 		if (current->piped)
 			close_pipes(current);
 		if (current->piped && current->next == NULL)
@@ -93,3 +83,15 @@ t_cmd	*process_piped(t_shell *shell, t_cmd *cmd)
 	wait_pipes(shell, cmd);
 	return (current);
 }
+
+		/* current->pid = fork();
+		if (current->pid == -1)
+			put_error("minishell", "fork error", strerror(errno));
+		else if (current->pid == 0)
+		{
+			printf("opening pipe\n");
+			printf("closinf pipe\n");
+
+			exit(EXIT_SUCCESS);
+		}
+		 */
