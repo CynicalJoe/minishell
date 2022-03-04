@@ -28,6 +28,7 @@ OBJS 				=	$(SOURCES:.c=.o)
 
 BREW_PATH			=	/usr/local/opt
 BREW_INCLUDES_PATH	=	$(BREW_PATH)/readline/include
+#READLINE_PATH		=	$(BREW_INCLUDES_PATH)
 
 all		: $(NAME)
 

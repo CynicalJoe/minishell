@@ -6,7 +6,7 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 11:28:59 by afulmini          #+#    #+#             */
-/*   Updated: 2022/03/04 10:45:10 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/03/04 11:35:26 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ typedef struct s_cmd
 	struct s_cmd	*next;
 	bool			piped;
 	pid_t			pid;
-	int				pipe[2];
+	int				pipe[2];	// entry pip =>pipe[0] pipe[1]
 	int				out;
 	int				in;
 	char			*temp_file;

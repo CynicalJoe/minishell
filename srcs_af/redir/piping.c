@@ -6,7 +6,7 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 19:03:22 by afulmini          #+#    #+#             */
-/*   Updated: 2022/03/03 19:59:05 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/03/04 11:45:40 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,11 @@ void	start_pipe_redir(t_cmd *cmd)
 
 void	close_pipes(t_cmd *cmd)
 {
-	close(cmd->pipe[1]);
-	if (cmd->piped && cmd->next == NULL)
+	
+	if (cmd->piped && cmd->previous == NULL) // && cmd->pipe[0] > 0)
 		close(cmd->pipe[0]);
+	if (cmd->piped && cmd->next == NULL) //  && cmd->pipe[1] > 0)
+		close(cmd->pipe[1]);
 }
 
 void	wait_pipes(t_shell *shell, t_cmd *cmd)
@@ -67,6 +69,7 @@ t_cmd	*process_piped(t_shell *shell, t_cmd *cmd)
 {
 	t_cmd	*current;
 
+	printf("closinf pipe\n");
 	current = cmd;
 	while (current != NULL && (current->piped || current->previous->piped))
 	{
