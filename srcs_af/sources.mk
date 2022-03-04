@@ -40,5 +40,6 @@ SOURCES += shell/prompt.c
 SOURCES += shell/unset_env.c
 SOURCES += shell/set_env.c
 SOURCES += signals/signals.c
-SOURCES += main.c 
+SOURCES += main.c
+SOURCES += check.c
 SOURCES += error.c

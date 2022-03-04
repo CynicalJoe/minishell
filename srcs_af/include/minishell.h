@@ -6,7 +6,7 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 11:28:59 by afulmini          #+#    #+#             */
-/*   Updated: 2022/03/03 20:02:28 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/03/04 10:45:10 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,7 +159,7 @@ void	execute_program(t_shell *shell, char *path, t_cmd *cmd);
 
 //			execute/execute_utils.c
 char	*ft_str_tolower(char *s);
-void	check_exec(t_shell *shell, t_cmd *cmd, char *path);
+bool	check_exec(t_shell *shell, t_cmd *cmd, char *path);
 void	waiting(t_shell *shell, t_cmd *cmd);
 
 //			src/redir/dispatch_redir.c
@@ -179,6 +179,7 @@ int		output_redir_mode(char *redirection);
 
 //			src/builtin/
 // check builtin function list 
+
 void	(*get_builtin(char *builtin_str))(t_shell *shell, char **cmd);
 void	my_cd(t_shell *shell, char **cmd);
 void	my_echo(t_shell *shell, char **cmd);
@@ -191,6 +192,11 @@ void	my_export(t_shell *shell, char **cmd);
 // utils
 int		ft_contains_char(char *str, char c);
 ssize_t	ft_find_char(char *s, char c);
+
+//		check.c
+bool	check_redir(char **tokens, int i);
+bool	check_cmd(t_cmd *cmds);
+bool	check_cmd_container(t_cmd_container *cmd_container);
 
 // TESTING
 void	display_env_var(t_shell *shell);

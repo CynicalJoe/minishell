@@ -6,7 +6,7 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 10:17:32 by afulmini          #+#    #+#             */
-/*   Updated: 2022/03/03 19:39:04 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/03/04 10:03:46 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ t_cmd	*create_cmd(size_t i, char **args)
 	cmd->next = NULL;
 	cmd->pid = -1;
 	cmd->in = -1;
-	cmd->out= -1;
+	cmd->out = -1;
 	cmd->temp_file = NULL;
 	return (cmd);
 }

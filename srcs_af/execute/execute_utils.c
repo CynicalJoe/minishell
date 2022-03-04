@@ -6,7 +6,7 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 19:16:32 by afulmini          #+#    #+#             */
-/*   Updated: 2022/03/03 19:19:56 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/03/03 22:44:14 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,13 @@ char	*ft_str_tolower(char *s)
 	return (s);
 }
 
-void	check_exec(t_shell *shell, t_cmd *cmd, char *path)
+bool	check_exec(t_shell *shell, t_cmd *cmd, char *path)
 {
 	if (path == NULL)
 	{
 		put_error("minishell", "command not found.", cmd->args[0]);
 		shell->exit_status = 127;
-		return ;
+		return (FALSE);
 	}
 	if (ft_strncmp(cmd->args[0], "./", 2) == 0
 		|| ft_strncmp(cmd->args[0], "../", 3) == 0)
@@ -40,9 +40,10 @@ void	check_exec(t_shell *shell, t_cmd *cmd, char *path)
 		{
 			put_error("minishell", "no such file or directory.", cmd->args[0]);
 			shell->exit_status = 126;
-			return ;
+			return (FALSE);
 		}
 	}
+	return (TRUE);
 }
 
 void	waiting(t_shell *shell, t_cmd *cmd)

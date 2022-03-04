@@ -6,7 +6,7 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 12:07:47 by afulmini          #+#    #+#             */
-/*   Updated: 2022/03/03 16:07:14 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/03/04 10:44:32 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,93 +16,6 @@ void	set_line(t_cmd_container *cmd_container, char *line)
 {
 	free(cmd_container->line);
 	cmd_container->line = line;
-}
-
-void	display_cmd_container(t_cmd_container *cmd_container)
-{
-	t_cmd	*current;
-
-	if (cmd_container->cmds == NULL)
-		return;
-	current = cmd_container->cmds[0];
-	while (current != NULL)
-	{
-		display_cmd(current);
-		current = current->next;
-	}
-}
-
-void	display_cmd(t_cmd *cmd)
-{
-	size_t	cmd_part_index;
-
-	if (cmd == NULL)
-		return;
-	ft_putstr_fd("Command ", 1);
-	ft_putnbr_fd(cmd->index, 1);
-	if (cmd->piped)
-		ft_putstr_fd(" (piped)", 1);
-	ft_putendl_fd(":", 1);
-	if (cmd->tokens != NULL)
-	{
-		cmd_part_index = 0;
-		while (cmd->tokens[cmd_part_index] != NULL)
-		{
-			ft_putnbr_fd(cmd_part_index, 1);
-			ft_putstr_fd(" - ", 1);
-			ft_putendl_fd(cmd->tokens[cmd_part_index], 1);
-			cmd_part_index++;
-		}
-	}
-	else
-		ft_putendl_fd("(null)", 1);
-}
-
-bool	check_cmd(t_cmd *cmds)
-{
-	size_t	i;
-
-	if (cmds == NULL)
-		return (FALSE);
-	if (cmds->tokens != NULL)
-	{
-		i = 0;	
-		while (cmds->tokens[i] != NULL)
-		{
-			if (is_redir(cmds->tokens[i]))
-			{
-				if (is_redir(cmds->tokens[i + 1]))
-				{
-					put_error("minishell", "syntax error near unexpected token", cmds[0].tokens[i]);
-					return (FALSE);
-				}
-				else if (cmds->tokens[i + 1] == NULL)
-				{
-
-					put_error("minishell", "syntax error near unexpected token", "newline");
-					return(FALSE);
-				}
-			}
-			i++;
-		}
-	}
-	return (TRUE);
-}
-
-bool	check_cmd_container(t_cmd_container *cmd_container)
-{
-	t_cmd	*current;
-
-	if (cmd_container->cmds == NULL)
-		return (FALSE);
-	current = *cmd_container->cmds;
-	while (current != NULL)
-	{
-		if (!check_cmd(current))
-			return (FALSE);
-		current = current->next;
-	}
-	return (TRUE);
 }
 
 void	loop(t_shell shell, t_cmd_container *cmd_container, bool check)
@@ -120,7 +33,7 @@ void	loop(t_shell shell, t_cmd_container *cmd_container, bool check)
 		{
 			add_history(cmd_container->line);
 			if (!tokenise(cmd_container))
-				continue;
+				continue ;
 			if (!check_cmd_container(cmd_container))
 			{
 				shell.exit_status = 258;
@@ -138,7 +51,7 @@ int	main(int ac, char **av, char **env)
 	t_shell			shell;
 	t_cmd_container	*cmd_container;
 	bool			check;
-	
+
 	(void)av;
 	shell = create_shell(env);
 	g_shell = &shell;
@@ -151,18 +64,15 @@ int	main(int ac, char **av, char **env)
 	loop(shell, cmd_container, check);
 	return (0);
 }
+
 /*
 
-
-
-
-
-void display_cmd_container(t_cmd_container *cmd_container)
+void	display_cmd_container(t_cmd_container *cmd_container)
 {
-	t_cmd *current;
+	t_cmd	*current;
 
 	if (cmd_container->cmds == NULL)
-		return;
+		return ;
 	current = cmd_container->cmds[0];
 	while (current != NULL)
 	{
@@ -171,12 +81,12 @@ void display_cmd_container(t_cmd_container *cmd_container)
 	}
 }
 
-void display_cmd(t_cmd *cmd)
+void	display_cmd(t_cmd *cmd)
 {
-	size_t cmd_part_index;
+	size_t	cmd_part_index;
 
 	if (cmd == NULL)
-		return;
+		return ;
 	ft_putstr_fd("Command ", 1);
 	ft_putnbr_fd(cmd->index, 1);
 	if (cmd->piped)
@@ -196,12 +106,4 @@ void display_cmd(t_cmd *cmd)
 	else
 		ft_putendl_fd("(null)", 1);
 }
-
-
-
-
-
-
-
-// check all the tokesn if no valid fuck off
- */
+*/

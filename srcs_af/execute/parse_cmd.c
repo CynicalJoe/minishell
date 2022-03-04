@@ -6,7 +6,7 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 16:25:24 by afulmini          #+#    #+#             */
-/*   Updated: 2022/03/03 20:06:57 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/03/04 10:14:18 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,6 @@ static void	cleaning(t_cmd *cmd)
 	free(cmd->temp_file);
 }
 
-/* bool	check_redir(t_shell *shell, t_cmd *cmd, char **args, size_t index, size_t *temp)
-{
-	return (9);
-}
- */
 void	parse_cmd(t_shell *shell, t_cmd *cmd)
 {
 	char	**args;
@@ -55,7 +50,6 @@ void	parse_cmd(t_shell *shell, t_cmd *cmd)
 				free(temp_index);
 				return ;
 			}
-			printf("fd after redir = %d\n", cmd->out);
 		}
 		else
 			args = ft_append_str_to_str_array(args,
