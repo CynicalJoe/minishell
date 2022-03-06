@@ -6,7 +6,7 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 09:13:36 by afulmini          #+#    #+#             */
-/*   Updated: 2022/03/04 23:56:29 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/03/06 22:16:20 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,11 @@
 t_shell	update_level(t_shell shell)
 {
 	char	*level;
-
+	char	c;
+	
 	level = get_env_var(&shell, "SHLVL");
-	level[0] = ++level[0];
+	c = level[0];
+	level[0] = ++c;
 	set_env(&shell, "SHLVL", level, TRUE);
 	return (shell);
 }

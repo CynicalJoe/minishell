@@ -6,7 +6,7 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 08:10:59 by afulmini          #+#    #+#             */
-/*   Updated: 2022/03/05 11:28:44 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/03/06 18:10:21 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ void	process_commands(t_shell *shell, t_cmd_container *cmd_container)
 {
 	t_cmd	*current;
 
-//	printf("looool\n");
 	if (get_cmd_size(cmd_container) <= 0)
 		return ;
 	set_in_exec(shell, TRUE);

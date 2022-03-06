@@ -6,7 +6,7 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 12:07:47 by afulmini          #+#    #+#             */
-/*   Updated: 2022/03/05 11:28:55 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/03/06 18:10:38 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ void	loop(t_shell shell, t_cmd_container *cmd_container, bool check)
 	verif = check;
 	while (verif)
 	{
-		//printf("lol I am here\n");
 		verif = TRUE;
 		set_line(cmd_container, readline(shell.prompt));
 		if (cmd_container->line == NULL)
@@ -42,10 +41,7 @@ void	loop(t_shell shell, t_cmd_container *cmd_container, bool check)
 				destroy_cmd_container(cmd_container);
 			}
 			else
-			{
-			//	printf("i am processing\n");
 				process_commands(&shell, cmd_container);
-			}
 		}
 	}
 }
