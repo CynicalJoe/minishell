@@ -6,7 +6,7 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 09:13:36 by afulmini          #+#    #+#             */
-/*   Updated: 2022/03/04 08:13:25 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/03/04 23:56:29 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ t_shell	create_shell(char **env)
 	init_container(&shell.cmd_container);
 	shell.in_exec = FALSE;
 	shell.exit_status = 0;
+	shell.level = 0;
 	shell = update_level(shell);
 	return (shell);
 }

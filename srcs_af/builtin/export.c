@@ -6,7 +6,7 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 18:49:47 by afulmini          #+#    #+#             */
-/*   Updated: 2022/02/15 12:39:00 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/03/05 11:28:59 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,20 +61,26 @@ void	display_env_var(t_shell *shell)
 void	my_export(t_shell *shell, char **cmd)
 {
 	size_t	i;
+	size_t	j;
 
 	i = 1;
 	if (cmd[i] == NULL)
 		display_env_var(shell);
 	while (cmd[i] != NULL)
 	{
-		if (ft_isalpha(cmd[i][0]) || cmd[i][0] == '_')
-			export_var(shell, cmd[i]);
-		else
+		j = 0;
+		while (cmd[i][j] != '\0')
 		{
-			put_error("export", cmd[i], "not valid identifier.");
-			shell->exit_status = 1;
-			return ;
+			if (ft_isalpha(cmd[i][j]) || cmd[i][j] == '_' || cmd[i][j] == '=')
+				j++;
+			else
+			{
+				put_error("export", cmd[i], "not valid identifier.");
+				shell->exit_status = 1;
+				return ;
+			}
 		}
+		export_var(shell, cmd[i]);
 		i++;
 	}
 }

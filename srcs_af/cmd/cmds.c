@@ -6,7 +6,7 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 10:17:32 by afulmini          #+#    #+#             */
-/*   Updated: 2022/03/04 10:03:46 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/03/04 21:22:42 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ t_cmd	*create_cmd(size_t i, char **args)
 	cmd->in = -1;
 	cmd->out = -1;
 	cmd->temp_file = NULL;
+	cmd->piped = FALSE;
 	return (cmd);
 }
 
@@ -38,6 +39,7 @@ void	*destroy_cmd(t_cmd *cmd)
 	{
 		ft_destroy_strarray(&cmd->tokens);
 		ft_destroy_strarray(&cmd->args);
+		close_fd(cmd);
 	}
 	free(cmd);
 	return (NULL);

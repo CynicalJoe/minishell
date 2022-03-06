@@ -6,7 +6,7 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 16:25:24 by afulmini          #+#    #+#             */
-/*   Updated: 2022/03/04 13:50:17 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/03/04 21:18:11 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,22 +28,16 @@ static void	cleaning(t_cmd *cmd)
 	free(cmd->temp_file);
 }
 
-
-/*
-bool	check_redir(t_shell *shell, t_cmd *cmd, size_t index, char **args)
+bool	check_command(t_shell *shell, t_cmd *cmd, size_t *temp, char **args)
 {
-	size_t	*temp_index;
-
-	temp_index = malloc(sizeof(size_t));
-	*temp_index = 0;
-	*temp_index = index;
-	if (!dispatch_redir(shell, cmd, temp_index))
+	if (!dispatch_redir(shell, cmd, temp))
 	{
 		ft_destroy_strarray(&args);
-		free(temp_index);
-		return ;
+		free(temp);
+		return (FALSE);
 	}
-} */
+	return (TRUE);
+}
 
 void	parse_cmd(t_shell *shell, t_cmd *cmd)
 {
@@ -53,31 +47,13 @@ void	parse_cmd(t_shell *shell, t_cmd *cmd)
 
 	args = NULL;
 	index = 0;
-	
 	temp_index = malloc(sizeof(size_t));
 	*temp_index = 0;
-
-/* 	while (index < cmd->size)
-	{
-		if (is_redir(cmd->tokens[index]))
-		{
-			index++;
-		}
-		else
-			args = ft_append_str_to_str_array(args,
-					get_processed_arg(shell, cmd->tokens[index]), TRUE);
-		if (index + 1 < *temp_index)
-			index = *temp_index;
-		else
-			index
-	} */
-
 	while (index < cmd->size)
 	{
 		if (is_redir(cmd->tokens[index]))
 		{
 			index++;
-			//check_redir(shell, cmd, index, args);
 			*temp_index = index;
 			if (!dispatch_redir(shell, cmd, temp_index))
 			{

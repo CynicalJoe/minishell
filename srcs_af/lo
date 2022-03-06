@@ -16,7 +16,6 @@ main.c
 main.o
 minishell
 nicky
-ok
 parser
 redir
 shell

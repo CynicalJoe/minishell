@@ -17,7 +17,7 @@ RESTORE			=	"\033[u"
 
 GCC				=	gcc
 RM				=	rm -rf
-CFLAGS			=	-Wall -Wextra -Werror
+CFLAGS			=	-Wall -Wextra -Werror -g
 LIBFT_PATH		=	./libft
 INCLUDES_PATH	=	./include
 INCLUDES		= 	./include/minishell.h

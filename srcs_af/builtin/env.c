@@ -6,7 +6,7 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 11:30:44 by afulmini          #+#    #+#             */
-/*   Updated: 2022/02/07 14:58:26 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/03/04 18:49:24 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,12 @@ void	my_env(t_shell *shell, char **cmd)
 {
 	size_t	i;
 
-	(void)cmd;
+	if (cmd[1] != NULL)
+	{
+		put_error("env", "no arguments please", strerror(errno));
+		shell->exit_status = 1;
+		return ;
+	}
 	i = 0;
 	while (shell->env[i] != NULL)
 	{

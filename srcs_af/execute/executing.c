@@ -6,7 +6,7 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 13:18:01 by afulmini          #+#    #+#             */
-/*   Updated: 2022/03/04 13:33:07 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/03/05 11:20:34 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,21 +19,10 @@ void	dup_handler(t_cmd *cmd)
 		dup2(cmd->in, STDIN_FILENO);
 		close(cmd->in);
 	}
-	else if (cmd->previous != NULL && cmd->previous->piped)
-	{
-		dup2(cmd->previous->pipe[0], 0);
-		close(cmd->previous->pipe[1]);
-	}
 	if (cmd->out != -1)
 	{
 		dup2(cmd->out, STDOUT_FILENO);
 		close(cmd->out);
-	}
-	else if (cmd->next != NULL && cmd->piped)
-	{
-		dup2(cmd->previous->pipe[1], cmd->pipe[0]);
-		//dup2(cmd->pipe[1], 1);
-		close(cmd->pipe[0]);
 	}
 }
 
@@ -76,10 +65,9 @@ void	execute_program(t_shell *shell, char *path, t_cmd *cmd)
 	{
 		dup_handler(cmd);
 		execve(path, cmd->args, shell->env);
-		close_fd(cmd);
 		return ;
 	}
-	//close_fd(cmd);
+	close_fd(cmd);
 }
 
 void	execute_command(t_shell *shell, t_cmd *cmd)
@@ -89,7 +77,7 @@ void	execute_command(t_shell *shell, t_cmd *cmd)
 	if (cmd->args == NULL)
 		return ;
 	program = ft_str_tolower(cmd->args[0]);
-	if (get_builtin(program) != NULL)
+	if (is_builtin(program))
 	{
 		if (cmd->in != -1 || cmd->out != -1)
 		{
@@ -97,13 +85,13 @@ void	execute_command(t_shell *shell, t_cmd *cmd)
 			if (cmd->pid == 0)
 			{
 				dup_handler(cmd);
-				get_builtin(program)(shell, cmd->args);
+				get_builtin(program, shell, cmd->args);
 				close_fd(cmd);
 				exit(shell->exit_status);
 			}
 		}
 		else
-			get_builtin(program)(shell, cmd->args);
+			get_builtin(program, shell, cmd->args);
 		wait(NULL);
 	}
 	else

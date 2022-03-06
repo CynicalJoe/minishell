@@ -6,7 +6,7 @@
 /*   By: afulmini <afulmini@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 11:28:59 by afulmini          #+#    #+#             */
-/*   Updated: 2022/03/04 11:35:26 by afulmini         ###   ########.fr       */
+/*   Updated: 2022/03/04 21:44:13 by afulmini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,16 +32,8 @@
 # include <fcntl.h>
 # include<readline/readline.h>
 # include<readline/history.h>
-
 # include "../libft/libft.h"
 
-// struct to redirect output/intput 
-/* typedef struct s_redir
-{
-	int		fd;
-	char	*temp_file;
-}	t_redir;
- */
 // struct for commands size, flags, args, etc....
 // 1 for each command
 typedef struct s_cmd
@@ -54,10 +46,13 @@ typedef struct s_cmd
 	struct s_cmd	*next;
 	bool			piped;
 	pid_t			pid;
-	int				pipe[2];	// entry pip =>pipe[0] pipe[1]
+	int				pipe[2];
 	int				out;
 	int				in;
 	char			*temp_file;
+
+	pid_t			pipe_pid;
+
 }	t_cmd;
 
 // struct that contains the full command --> pre executed
@@ -179,8 +174,8 @@ int		output_redir_mode(char *redirection);
 
 //			src/builtin/
 // check builtin function list 
-
-void	(*get_builtin(char *builtin_str))(t_shell *shell, char **cmd);
+bool	is_builtin(char *builtin_str);
+void	get_builtin(char *builtin_str, t_shell *shell, char **cmd);
 void	my_cd(t_shell *shell, char **cmd);
 void	my_echo(t_shell *shell, char **cmd);
 void	my_env(t_shell *shell, char **cmd);
