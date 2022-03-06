@@ -43,7 +43,7 @@ bool	check_cmd(t_cmd *cmds)
 		i = 0;
 		while (cmds->tokens[i] != NULL)
 		{
-			if (!check_redir(&cmds->tokens[i], i))
+			if (!check_redir(cmds->tokens, i))
 				return (FALSE);
 			i++;
 		}
