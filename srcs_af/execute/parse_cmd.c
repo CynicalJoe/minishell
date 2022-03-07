@@ -28,14 +28,15 @@ static void	cleaning(t_cmd *cmd)
 	free(cmd->temp_file);
 }
 
-void	parse_redir(t_shell *shell, t_cmd *cmd, size_t *temp, char **args)
+bool	parse_redir(t_shell *shell, t_cmd *cmd, size_t *temp, char **args)
 {
 	if (!dispatch_redir(shell, cmd, temp))
 	{
 		ft_destroy_strarray(&args);
 		free(temp);
-		return ;
+		return (FALSE) ;
 	}
+	return (TRUE);
 }
 
 size_t	check(size_t index, size_t *temp)
@@ -44,6 +45,14 @@ size_t	check(size_t index, size_t *temp)
 		return (index = *temp);
 	else
 		return (index + 1);
+}
+
+void	end_parse(size_t *temp, t_cmd *cmd, char **args)
+{
+	free(temp);
+	cmd->args = args;
+	if (cmd->temp_file)
+		cleaning(cmd);
 }
 
 void	parse_cmd(t_shell *shell, t_cmd *cmd)
@@ -62,15 +71,13 @@ void	parse_cmd(t_shell *shell, t_cmd *cmd)
 		{
 			index++;
 			*temp_index = index;
-			parse_redir(shell, cmd, temp_index, args);
+			if (!parse_redir(shell, cmd, temp_index, args))
+				return;
 		}
 		else
 			args = ft_append_str_to_str_array(args,
 					get_processed_arg(shell, cmd->tokens[index]), TRUE);
 		index = check(index, temp_index);
 	}
-	free(temp_index);
-	cmd->args = args;
-	if (cmd->temp_file)
-		cleaning(cmd);
+	end_parse(temp_index, cmd, args);
 }

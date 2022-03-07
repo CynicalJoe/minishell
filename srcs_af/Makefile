@@ -35,15 +35,6 @@ all		: $(NAME)
 $(LIBFT_PATH)/libft.a:
 	$(MAKE) -C $(LIBFT_PATH)
 
-%.o		: %.c $(INCLUDES)
-		@$(GCC) $(CFLAGS) -I $(INCLUDES) -I $(BREW_INCLUDES_PATH) \
-		-D READLINE_PATH=\"$(BREW_INCLUDES_PATH)/readline/readline.h\" \
-		-D HISTORY_PATH=\"$(BREW_INCLUDES_PATH)/readline/history.h\" \
-		-c $< -o $@
-		@echo $(SAVE)$(CUT)$(BOLD)$(L_GREEN) Compiling with $(CFLAGS)...$(RESET)
-		@echo $(CUT) $(GREEN)[$^] to [$@] $(RESET)
-		@printf $(UP)$(UP)
-
 $(NAME)	: $(LIBFT_PATH)/libft.a $(INCLUDES) $(OBJS)
 		@$(GCC) $(CFLAGS) $(LIBFT_PATH)/libft.a \
 		-L $(BREW_PATH)/readline/lib -lreadline -I $(INCLUDES) -I $(BREW_INCLUDES_PATH) $(OBJS) -o $(NAME)
@@ -51,6 +42,10 @@ $(NAME)	: $(LIBFT_PATH)/libft.a $(INCLUDES) $(OBJS)
 
 #  -lreadline -L /usr/local/opt/readline/lib -I /usr/local/opt/readline/include
 #	Clean	
+linux	:	$(OBJS)
+			$(MAKE) -C $(LIBFT_PATH)
+			$(GCC) $(CFLAGS) $(OBJS) -o minishell libft/libft.a -lreadline
+
 clean	:
 		$(MAKE) -C $(LIBFT_PATH) clean
 		@$(RM) $(OBJS)
